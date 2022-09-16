@@ -1,0 +1,7 @@
+    GUI_DrawRectangle(62, 42, 130, 110, WHITE, 0, 1); 측정시작
+
+    GUI_DrawRectangle(190 , 42, 256, 110, WHITE, 0, 1) 측정기록
+
+    GUI_DrawRectangle(62, 138, 130, 205, WHITE, 0, 1); 센서조정
+
+    GUI_DrawRectangle(190, 138, 256, 205, WHITE, 0, 1); 설정

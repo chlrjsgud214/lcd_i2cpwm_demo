@@ -1,0 +1,19 @@
+{
+    "files.associations": {
+        "lcd_driver.h": "c",
+        "lcd_touch.h": "c",
+        "dev_config.h": "c",
+        "lcd_gui.h": "c",
+        "lcd_fonts.h": "c",
+        "han.h": "c",
+        "main.h": "c",
+        "bsp.h": "c",
+        "uart.h": "c",
+        "s_uart.h": "c",
+        "stdlib.h": "c",
+        "string.h": "c",
+        "pca9685.h": "c",
+        "fatfs_storage.h": "c",
+        "type_traits": "c"
+    }
+}
