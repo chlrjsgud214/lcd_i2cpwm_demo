@@ -51,9 +51,12 @@
 
 
 int pca_i2c_init();
-void setPWM(uint8_t led,int on_value,int off_value);
+void i2c_bus_scan();
+void setPWM(uint8_t led,int on_value);
 void setPWMFreq(int freq);
-void getPCAmode();
+void read_PCA_reg(uint8_t reg,uint8_t len);
+void write_PCA_reg(uint8_t reg,uint8_t rx);
+void getPCAmode(uint8_t setPCA);
 // // Setup a pca9685 at the specific i2c address
 // extern int pca9685Setup(const int pinBase, const int i2cAddress/* = 0x40*/, float freq/* = 50*/);
 

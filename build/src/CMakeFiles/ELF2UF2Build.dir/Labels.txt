@@ -1,13 +1,13 @@
 # Target labels
  ELF2UF2Build
 # Source files and their labels
-C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src/CMakeFiles/ELF2UF2Build
-C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src/CMakeFiles/ELF2UF2Build.rule
-C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src/CMakeFiles/ELF2UF2Build-complete.rule
-C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-build.rule
-C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-configure.rule
-C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-download.rule
-C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-install.rule
-C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-mkdir.rule
-C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-patch.rule
-C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-update.rule
+C:/gitprj/lcd_i2cpwm_demo/build/src/CMakeFiles/ELF2UF2Build
+C:/gitprj/lcd_i2cpwm_demo/build/src/CMakeFiles/ELF2UF2Build.rule
+C:/gitprj/lcd_i2cpwm_demo/build/src/CMakeFiles/ELF2UF2Build-complete.rule
+C:/gitprj/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-build.rule
+C:/gitprj/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-configure.rule
+C:/gitprj/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-download.rule
+C:/gitprj/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-install.rule
+C:/gitprj/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-mkdir.rule
+C:/gitprj/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-patch.rule
+C:/gitprj/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-update.rule

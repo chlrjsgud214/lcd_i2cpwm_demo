@@ -117,11 +117,11 @@ note:
 ********************************************************************************/
 uint8_t System_Init(void)
 {
-	set_sys_clock_khz(250000, true);
+	set_sys_clock_khz(250000, true); // 250Mhz
 	stdio_init_all();
   
 	DEV_GPIO_Init();
-	spi_init(SPI_PORT,4000000);
+	spi_init(SPI_PORT,4*1000*1000);
 	gpio_set_function(LCD_CLK_PIN,GPIO_FUNC_SPI);
 	gpio_set_function(LCD_MOSI_PIN,GPIO_FUNC_SPI);
 	gpio_set_function(LCD_MISO_PIN,GPIO_FUNC_SPI);

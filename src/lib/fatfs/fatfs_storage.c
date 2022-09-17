@@ -80,23 +80,18 @@
 
 extern LCD_DIS sLCD_DIS;
 // static PIC_PAGE_ p_PAGE;
-static uint8_t aBuffer[1440];/* 480 * 3 = 1440 */
+static uint8_t aBuffer[720];/* 360 * 2 = 1440 */
 FILINFO MyFileInfo;
 DIR MyDirectory;
 FIL MyFile;
 UINT BytesWritten;
 UINT BytesRead;
-static uint16_t pic_page1[76800];
-static uint16_t pic_page2[76800];
-static uint16_t pic_page3[76800];
-static uint16_t pic_page4[76800];
 // static uint16_t pic_page5[76800];
 
 uint16_t pic[76800];
 
 extern uint8_t id;
 const char bmp_name;
-static const char page_cat2[]="cat2.bmp",page_main[]="main.bmp",page_start01[]="start01.bmp",page_result[]="result.bmp",page_start02[]="start02.bmp";
 // const char page_list[] = {"cat2.bmp","main.bmp","result.bmp","start.bmp","","","","",""};
 /**
 * @}
@@ -137,15 +132,15 @@ uint32_t Storage_OpenReadFile(uint8_t Xpoz, uint16_t Ypoz, const char* BmpName)
     f_read(&file1, aBuffer, 30, &BytesRead);
 
 	bmpaddress = (uint32_t)aBuffer;
-
+	printf("%s \r\n",BmpName);
 	/* Read bitmap size */
 	size = *(uint16_t *) (bmpaddress + 2);
 	size |= (*(uint16_t *) (bmpaddress + 4)) << 16;
-//	printf("file size =  %d \r\n",size);
+	printf("file size =  %d \r\n",size);
 	/* Get bitmap data address offset */
 	index = *(uint16_t *) (bmpaddress + 10);
 	index |= (*(uint16_t *) (bmpaddress + 12)) << 16;
-	// printf("file index =  %d \r\n",index);
+	printf("file index =  %d \r\n",index);
 	/* Read bitmap width */
 	width = *(uint16_t *) (bmpaddress + 18);
 	width |= (*(uint16_t *) (bmpaddress + 20)) << 16;
@@ -156,22 +151,12 @@ uint32_t Storage_OpenReadFile(uint8_t Xpoz, uint16_t Ypoz, const char* BmpName)
 	// printf("file height =  %d \r\n",height);
 	/* Read bit/pixel */
 	bit_pixel = *(uint16_t *) (bmpaddress + 28);  
-//	printf("bit_pixel = %d \r\n",bit_pixel);
+	printf("bit_pixel = %d \r\n",bit_pixel);
 	f_close (&file1);
 
-    if (24 != bit_pixel) {
-        return 0;
-    }
 
-	if (width != sLCD_DIS.LCD_Dis_Column || height != sLCD_DIS.LCD_Dis_Page) {
-		// printf("width != sLCD_DIS.LCD_Dis_Column \r\n");
-		// printf("file width =  %d \r\n",width);
-		// printf("file height =  %d \r\n",height);
-		// printf("sLCD_DIS.LCD_Dis_Column =  %d \r\n",sLCD_DIS.LCD_Dis_Column);
-		// printf("sLCD_DIS.LCD_Dis_Page =  %d \r\n",sLCD_DIS.LCD_Dis_Page);
-		return 1;
-	}
-	
+
+	printf("width ok!");
     /* Synchronize f_read right in front of the image data */
     f_open(&file1, (TCHAR const*)BmpName, FA_READ);
     f_read(&file1, aBuffer, index, &BytesRead);
@@ -186,34 +171,7 @@ uint32_t Storage_OpenReadFile(uint8_t Xpoz, uint16_t Ypoz, const char* BmpName)
 				  k = j * 3; 
 				  
 				  pic[i*240+j] = (uint16_t)(((aBuffer[k + 2] >> 3) << 11 ) | ((aBuffer[k + 1] >> 2) << 5) | (aBuffer[k] >> 3));		
-				//   if(!strcmp(page_cat2,BmpName)){			
-				// 	p_PAGE.pic_page1[i*240+j] = (uint16_t)(((aBuffer[k + 2] >> 3) << 11 ) | ((aBuffer[k + 1] >> 2) << 5) | (aBuffer[k] >> 3));
-				//   }else if(!strcmp(page_main,BmpName)){
-				// 	p_PAGE.pic_page2[i*240+j] = (uint16_t)(((aBuffer[k + 2] >> 3) << 11 ) | ((aBuffer[k + 1] >> 2) << 5) | (aBuffer[k] >> 3));
-				//   }else if(!strcmp(page_start01,BmpName)){
-				// 	p_PAGE.pic_page3[i*240+j] = (uint16_t)(((aBuffer[k + 2] >> 3) << 11 ) | ((aBuffer[k + 1] >> 2) << 5) | (aBuffer[k] >> 3));
-				//   }else if(!strcmp(page_result,BmpName)){
-				// 	p_PAGE.pic_page4[i*240+j] = (uint16_t)(((aBuffer[k + 2] >> 3) << 11 ) | ((aBuffer[k + 1] >> 2) << 5) | (aBuffer[k] >> 3));
-				//   }else if(!strcmp(page_start02,BmpName)){
-				// 	// p_PAGE.pic_page5[i*240+j] = (uint16_t)(((aBuffer[k + 2] >> 3) << 11 ) | ((aBuffer[k + 1] >> 2) << 5) | (aBuffer[k] >> 3));
-				//   }else {
-				// 	// pic_page6[i*240+j] = (uint16_t)(((aBuffer[k + 2] >> 3) << 11 ) | ((aBuffer[k + 1] >> 2) << 5) | (aBuffer[k] >> 3));
-				//   }
 				
-				//  테스트 추후 진행
-				//   if(!strcmp(page_main,BmpName)){			
-				// 	pic_page1[i*240+j] = (uint16_t)(((aBuffer[k + 2] >> 3) << 11 ) | ((aBuffer[k + 1] >> 2) << 5) | (aBuffer[k] >> 3));
-				//   }else if(!strcmp(page_cat2,BmpName)){
-				// 	pic_page2[i*240+j] = (uint16_t)(((aBuffer[k + 2] >> 3) << 11 ) | ((aBuffer[k + 1] >> 2) << 5) | (aBuffer[k] >> 3));
-				//   }else if(!strcmp(page_start01,BmpName)){
-				// 	pic_page3[i*240+j] = (uint16_t)(((aBuffer[k + 2] >> 3) << 11 ) | ((aBuffer[k + 1] >> 2) << 5) | (aBuffer[k] >> 3));
-				//   }else if(!strcmp(page_result,BmpName)){
-				// 	pic_page4[i*240+j] = (uint16_t)(((aBuffer[k + 2] >> 3) << 11 ) | ((aBuffer[k + 1] >> 2) << 5) | (aBuffer[k] >> 3));
-				//   }else if(!strcmp(page_start02,BmpName)){
-				// 	// p_PAGE.pic_page5[i*240+j] = (uint16_t)(((aBuffer[k + 2] >> 3) << 11 ) | ((aBuffer[k + 1] >> 2) << 5) | (aBuffer[k] >> 3));
-				//   }else {
-				// 	// pic_page6[i*240+j] = (uint16_t)(((aBuffer[k + 2] >> 3) << 11 ) | ((aBuffer[k + 1] >> 2) << 5) | (aBuffer[k] >> 3));
-				//   }
 				  
 			  }
 		}
@@ -226,7 +184,7 @@ uint32_t Storage_OpenReadFile(uint8_t Xpoz, uint16_t Ypoz, const char* BmpName)
 		DEV_Digital_Write(LCD_DC_PIN, 1);
 		DEV_Digital_Write(LCD_CS_PIN, 0);
 		spi_set_baudrate(SPI_PORT,250*1000*1000);
-		for(index=0;index<76800;index++){
+		for(index=0;index<width*height;index++){
 			  SPI4W_Write_Byte((pic[index] >> 8) & 0xFF);
 			  SPI4W_Write_Byte(pic[index] & 0xFF);
 		}
@@ -297,7 +255,7 @@ uint32_t Storage_CopyFile(const char* BmpName1, const char* BmpName2)
   uint32_t index = 0;
   FIL file1, file2;
   
-  /* Open an Existent BMP file system */
+  /* Open an Existent BMP file system */ // 226000byte
   f_open(&file1, BmpName1, FA_READ);
   /* Create a new BMP file system */
   f_open(&file2, BmpName2, FA_CREATE_ALWAYS | FA_WRITE);

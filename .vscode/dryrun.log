@@ -1,6 +1,0 @@
-make.exe --dry-run --always-make --keep-going --print-directory
-make: Entering directory 'c:/gitprj/lcd_pwm_demo'
-make: Leaving directory 'c:/gitprj/lcd_pwm_demo'
- 
-make: *** No targets specified and no makefile found.  Stop.
-

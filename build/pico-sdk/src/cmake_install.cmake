@@ -1,4 +1,4 @@
-# Install script for directory: C:/pico/pico-sdk/src
+# Install script for directory: D:/pico/pico-sdk/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,14 +34,14 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "C:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-objdump.exe")
+  set(CMAKE_OBJDUMP "D:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-objdump.exe")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("C:/gitprj/gitnas/lcd_i2cpwm_demo/build/pico-sdk/src/common/cmake_install.cmake")
-  include("C:/gitprj/gitnas/lcd_i2cpwm_demo/build/pico-sdk/src/rp2_common/cmake_install.cmake")
-  include("C:/gitprj/gitnas/lcd_i2cpwm_demo/build/pico-sdk/src/rp2040/cmake_install.cmake")
+  include("C:/gitprj/lcd_i2cpwm_demo/build/pico-sdk/src/common/cmake_install.cmake")
+  include("C:/gitprj/lcd_i2cpwm_demo/build/pico-sdk/src/rp2_common/cmake_install.cmake")
+  include("C:/gitprj/lcd_i2cpwm_demo/build/pico-sdk/src/rp2040/cmake_install.cmake")
 
 endif()
 

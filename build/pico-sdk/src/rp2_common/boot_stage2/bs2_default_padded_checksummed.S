@@ -1,4 +1,4 @@
-// Padded and checksummed version of: C:/gitprj/gitnas/lcd_i2cpwm_demo/build/pico-sdk/src/rp2_common/boot_stage2/bs2_default.bin
+// Padded and checksummed version of: C:/gitprj/lcd_i2cpwm_demo/build/pico-sdk/src/rp2_common/boot_stage2/bs2_default.bin
 
 .cpu cortex-m0plus
 .thumb

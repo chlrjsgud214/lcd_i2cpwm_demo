@@ -30,9 +30,7 @@
 #include "main.h"
 #include "LCD_Driver.h"
 #include "LCD_Touch.h"
-#include "LCD_GUI.h"`
 #include "LCD_Bmp.h"
-#include "DEV_Config.h"`
 #include "hardware/watchdog.h"
 #include "fatfs_storage.h"
 #include "pca9685.h"
@@ -44,7 +42,7 @@ int lcd_test(void)
 	System_Init();
 	SD_Init();
 	DEV_PWM_Init();
-	Driver_Delay_ms(200);
+	// Driver_Delay_ms(200);
 	pca_i2c_init();
 	i2c_bus_scan();
 	LCD_SCAN_DIR  lcd_scan_dir = SCAN_DIR_DFT;
@@ -61,6 +59,7 @@ int lcd_test(void)
 	// LCD_SetGramScanWay( lcd_scan_dir ); // 터치용 각도로 변경	
 	TP_GetAdFac(); // 터치 캘리브레이션
 	//TP_Dialog();
+	LCD_Clear(LCD_BACKGROUND);
 	TP_gesmain();
 	// TP_gesvallist();
 	//Driver_Delay_ms(50);

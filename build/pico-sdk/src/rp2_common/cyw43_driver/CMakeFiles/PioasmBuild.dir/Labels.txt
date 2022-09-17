@@ -1,13 +1,13 @@
 # Target labels
  PioasmBuild
 # Source files and their labels
-C:/gitprj/gitnas/lcd_i2cpwm_demo/build/pico-sdk/src/rp2_common/cyw43_driver/CMakeFiles/PioasmBuild
-C:/gitprj/gitnas/lcd_i2cpwm_demo/build/pico-sdk/src/rp2_common/cyw43_driver/CMakeFiles/PioasmBuild.rule
-C:/gitprj/gitnas/lcd_i2cpwm_demo/build/pico-sdk/src/rp2_common/cyw43_driver/CMakeFiles/PioasmBuild-complete.rule
-C:/gitprj/gitnas/lcd_i2cpwm_demo/build/pico-sdk/src/rp2_common/cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-build.rule
-C:/gitprj/gitnas/lcd_i2cpwm_demo/build/pico-sdk/src/rp2_common/cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-configure.rule
-C:/gitprj/gitnas/lcd_i2cpwm_demo/build/pico-sdk/src/rp2_common/cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-download.rule
-C:/gitprj/gitnas/lcd_i2cpwm_demo/build/pico-sdk/src/rp2_common/cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-install.rule
-C:/gitprj/gitnas/lcd_i2cpwm_demo/build/pico-sdk/src/rp2_common/cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-mkdir.rule
-C:/gitprj/gitnas/lcd_i2cpwm_demo/build/pico-sdk/src/rp2_common/cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-patch.rule
-C:/gitprj/gitnas/lcd_i2cpwm_demo/build/pico-sdk/src/rp2_common/cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-update.rule
+C:/gitprj/lcd_i2cpwm_demo/build/pico-sdk/src/rp2_common/cyw43_driver/CMakeFiles/PioasmBuild
+C:/gitprj/lcd_i2cpwm_demo/build/pico-sdk/src/rp2_common/cyw43_driver/CMakeFiles/PioasmBuild.rule
+C:/gitprj/lcd_i2cpwm_demo/build/pico-sdk/src/rp2_common/cyw43_driver/CMakeFiles/PioasmBuild-complete.rule
+C:/gitprj/lcd_i2cpwm_demo/build/pico-sdk/src/rp2_common/cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-build.rule
+C:/gitprj/lcd_i2cpwm_demo/build/pico-sdk/src/rp2_common/cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-configure.rule
+C:/gitprj/lcd_i2cpwm_demo/build/pico-sdk/src/rp2_common/cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-download.rule
+C:/gitprj/lcd_i2cpwm_demo/build/pico-sdk/src/rp2_common/cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-install.rule
+C:/gitprj/lcd_i2cpwm_demo/build/pico-sdk/src/rp2_common/cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-mkdir.rule
+C:/gitprj/lcd_i2cpwm_demo/build/pico-sdk/src/rp2_common/cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-patch.rule
+C:/gitprj/lcd_i2cpwm_demo/build/pico-sdk/src/rp2_common/cyw43_driver/pioasm/src/PioasmBuild-stamp/PioasmBuild-update.rule

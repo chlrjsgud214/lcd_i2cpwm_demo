@@ -8,14 +8,17 @@
 #include "DEV_Config.h"
 
 // Setup registers
-#define PCA9685_MODE1 0x0
+const uint8_t PCA9685_MODE1 = 0x00;
 #define PCA9685_PRESCALE 0xFE
 
 // Define first LED and all LED. We calculate the rest
 #define LED0_ON_L 0x6
 #define LEDALL_ON_L 0xFA
-#define PCA_ADDR 0x40<<1
+#define PWMALL_OFF_L 0xFC
+#define PWMALL_OFF_H 0xFD
+// #define PCA_ADDR 0x40
 #define PIN_ALL 16
+static uint8_t pca_addr =0x40;
 
 
 // // Declare
@@ -40,7 +43,7 @@ bool reserved_addr(uint8_t addr) {
 
 int pca_i2c_init()
 {
-
+	uint8_t setBuf[2]={0x00,0x00};
 	i2c_init(PICO_i2c1, 100 * 1000);
     gpio_set_function(PICO_I2C1_SDA_PIN, GPIO_FUNC_I2C);
     gpio_set_function(PICO_I2C1_SCL_PIN, GPIO_FUNC_I2C);
@@ -48,9 +51,11 @@ int pca_i2c_init()
     gpio_pull_up(PICO_I2C1_SCL_PIN);
     // Make the I2C pins available to picotool
     bi_decl(bi_2pins_with_func(PICO_I2C1_SDA_PIN, PICO_I2C1_SCL_PIN, GPIO_FUNC_I2C));
-	Driver_Delay_ms(200);
+	
+	getPCAmode(0x00); // 기본상태로 wake 명령 ,serial로 addr scan
+	// i2c_write_blocking(PICO_i2c1,pca_addr,)
 	// setPWMFreq(4096);
-	i2c_bus_scan();
+	// i2c_bus_scan();
 }
 
 void i2c_bus_scan()
@@ -80,7 +85,7 @@ void i2c_bus_scan()
         printf(addr % 16 == 15 ? "\n" : "  ");
     }
     printf("Done.\n");
-    return 0;
+    // return 0;
 
 }
 
@@ -117,269 +122,98 @@ void setPWMFreq(int freq)
 	
 }
 
-void setPWM(uint8_t led,int on_value,int off_value){
+/*  
+        on 값이 off 값과 비슷해질수록 V전압이 높아짐 duty
+        1,0 	duty 100%   4.6V
+        512,0 	duty 90%	4.1V
+        1024,0 	duty 75%	
+        2048,0 	duty 50%	2.3V
+        3060,0 	duty 25%	1.18V
+        4096,0 	duty 0%		0V
+		off값 0로 고정후 on값만 변경하여 PWM 제어
+
+*/
+void setPWM(uint8_t led,int on_value){
 	uint8_t wbuf[2];
-	uint8_t addr=PCA_ADDR | 0x80 | 0x00;
+	uint16_t ON_L_H=0x00,OFF_L_H=0x00;
+	if(on_value>1)
+	on_value--;
+
+
+
+
+
 	wbuf[0]=PWM_ON_L+((led-1)*MULTI);
 	wbuf[1]=(uint8_t)on_value;
-	i2c_write_blocking(PICO_i2c1,addr,wbuf,2,false);
+	i2c_write_blocking(PICO_i2c1,pca_addr,wbuf,2,false);
+	printf("ON_L : %02xh , D.%02x \r\n",wbuf[0],wbuf[1]);
 
 	wbuf[0]=PWM_ON_H+((led-1)*MULTI);
-	wbuf[1]=(uint8_t)on_value>>8;
-	i2c_write_blocking(PICO_i2c1,addr,wbuf,2,false);
+	ON_L_H=on_value>>8;
+	wbuf[1]=(uint8_t)ON_L_H;
+	i2c_write_blocking(PICO_i2c1,pca_addr,wbuf,2,false);
+	printf("ON_H : %02xh , D.%02x \r\n",wbuf[0],wbuf[1]);
 
-	wbuf[0]=PWM_OFF_L+((led-1)*MULTI);
-	wbuf[1]=(uint8_t)off_value;
-	i2c_write_blocking(PICO_i2c1,addr,wbuf,2,false);
+	// wbuf[0]=PWM_OFF_L+((led-1)*MULTI);	
+	// wbuf[1]=(uint8_t)off_value;
+	// i2c_write_blocking(PICO_i2c1,pca_addr,wbuf,2,false);
+	// printf("OFF_L : %02xh , D.%02x \r\n",wbuf[0],wbuf[1]);
 
-	wbuf[0]=PWM_OFF_H+((led-1)*MULTI);
-	wbuf[1]=(uint8_t)off_value>>8;
-	i2c_write_blocking(PICO_i2c1,addr,wbuf,2,false);
-	printf("pwm %d Ch on:%d , off:%d \r\n",led,on_value,off_value);
+	// wbuf[0]=PWM_OFF_H+((led-1)*MULTI);
+	// OFF_L_H=off_value>>8;
+	// wbuf[1]=(uint8_t)OFF_L_H;
+	// i2c_write_blocking(PICO_i2c1,pca_addr,wbuf,2,false);
+	// printf("OFF_H : %02xh , D.%02x \r\n",wbuf[0],wbuf[1]);
+	
+	printf("pwm %d Ch on:%04x , addr:%02x \r\n",led,on_value,pca_addr);
 }
 
-void getPCAmode()
+void read_PCA_reg(uint8_t reg,uint8_t len) {
+	uint8_t read_data[len];
+	i2c_write_blocking(PICO_i2c1, pca_addr,reg , 1, true);
+	i2c_read_blocking(PICO_i2c1, pca_addr,read_data , len, false);
+
+	for(int i=0;i<=len-1;i++)
+	printf("reg:%02x / %d = %02x \r\n",reg,i,read_data[i]);
+}
+
+void write_PCA_reg(uint8_t reg,uint8_t rx){
+	uint8_t rxbuf[2];
+
+	rxbuf[0]=reg;
+	rxbuf[1]=rx;
+	i2c_write_blocking(PICO_i2c1, pca_addr,rxbuf , 2, false);
+	printf("reg:%02x, rx:%02x",reg,rx);
+}
+/*
+* PCA mode1 기본상태 = 0x10 으로 데이터시트상 슬립모드이다
+* 0x00값을 씀으로 슬립모드를 해제하여 사용해야한다.
+*
+*/
+void getPCAmode(uint8_t setPCA)
 {
 	uint8_t ret;
-	uint8_t rxdata[8];
-	uint8_t txdata;
-	uint8_t addr = PCA_ADDR ||
-	txdata=0x00;
-	i2c_write_blocking(PICO_i2c1, PCA_ADDR,txdata , 1, true);
-	i2c_read_blocking(PICO_i2c1, PCA_ADDR,&rxdata , 1, false);
-	// printf("rx hex : %.2x %.2x %.2x %.2x %.2x %.2x %.2x %.2x \r\n",rxdata[0],rxdata[1],rxdata[2],rxdata[3],rxdata[4],rxdata[5],rxdata[6],rxdata[7]);
+	uint8_t rxdata,setData[2]={PCA9685_MODE1,setPCA}; // sleep 상태에서 wake 상태로 변경
+	// i2c_write_blocking(PICO_i2c1, pca_addr,setData , 2, false); // 설정 변경 확인됨
+	i2c_bus_scan();	
+
+	i2c_write_blocking(PICO_i2c1, pca_addr,setData , 2, false); // mode0에 0x00값 입력
 	
-	printf("rx hex : %02x\r\n",rxdata);
+	i2c_write_blocking(PICO_i2c1, pca_addr,PCA9685_MODE1 , 1, true);
+	ret = i2c_read_blocking(PICO_i2c1, 0x40,rxdata , 1, false);
+	printf("0x40 : %02x\r\n",ret);
+	printf("mode1 : %02x \r\n",rxdata);
+
+
+	// 모든 출력 OFF값 0x0000로 설정
+	setData[0]=PWMALL_OFF_L;
+	setData[1]=0x00;
+	i2c_write_blocking(PICO_i2c1,pca_addr,setData,2,false);
+	setData[0]=PWMALL_OFF_H;
+	setData[1]=0x00;
+	i2c_write_blocking(PICO_i2c1,pca_addr,setData,2,false);
+	
 }
-// int pca9685Setup(const int pinBase, const int i2cAddress, float freq)
-// {
-// 	// Create a node with 16 pins [0..15] + [16] for all
-// 	struct wiringPiNodeStruct *node = wiringPiNewNode(pinBase, PIN_ALL + 1);
-
-// 	// Check if pinBase is available
-// 	if (!node)
-// 		return -1;
-
-// 	// Check i2c address
-// 	int fd = wiringPiI2CSetup(i2cAddress);
-// 	if (fd < 0)
-// 		return fd;
-
-// 	// Setup the chip. Enable auto-increment of registers.
-// 	int settings = wiringPiI2CReadReg8(fd, PCA9685_MODE1) & 0x7F;
-// 	int autoInc = settings | 0x20;
-
-// 	wiringPiI2CWriteReg8(fd, PCA9685_MODE1, autoInc);
-	
-// 	// Set frequency of PWM signals. Also ends sleep mode and starts PWM output.
-// 	if (freq > 0)
-// 		pca9685PWMFreq(fd, freq);
-	
-
-// 	node->fd			= fd;
-// 	node->pwmWrite		= myPwmWrite;
-// 	node->digitalWrite	= myOnOffWrite;
-// 	node->digitalRead	= myOffRead;
-// 	node->analogRead	= myOnRead;
-
-// 	return fd;
-// }
-
-// /**
-//  * Sets the frequency of PWM signals.
-//  * Frequency will be capped to range [40..1000] Hertz. Try 50 for servos.
-//  */
-// void pca9685PWMFreq(int fd, float freq)
-// {
-// 	// Cap at min and max
-// 	freq = (freq > 1000 ? 1000 : (freq < 40 ? 40 : freq));
-
-// 	// To set pwm frequency we have to set the prescale register. The formula is:
-// 	// prescale = round(osc_clock / (4096 * frequency))) - 1 where osc_clock = 25 MHz
-// 	// Further info here: http://www.nxp.com/documents/data_sheet/PCA9685.pdf Page 24
-// 	int prescale = (int)(25000000.0f / (4096 * freq) - 0.5f);
-
-// 	// Get settings and calc bytes for the different states.
-// 	int settings = wiringPiI2CReadReg8(fd, PCA9685_MODE1) & 0x7F;	// Set restart bit to 0
-// 	int sleep	= settings | 0x10;									// Set sleep bit to 1
-// 	int wake 	= settings & 0xEF;									// Set sleep bit to 0
-// 	int restart = wake | 0x80;										// Set restart bit to 1
-
-// // 	// Go to sleep, set prescale and wake up again.
-// 	wiringPiI2CWriteReg8(fd, PCA9685_MODE1, sleep);
-// 	wiringPiI2CWriteReg8(fd, PCA9685_PRESCALE, prescale);
-// 	wiringPiI2CWriteReg8(fd, PCA9685_MODE1, wake);
-
-// // 	// Now wait a millisecond until oscillator finished stabilizing and restart PWM.
-// 	delay(1);
-// 	wiringPiI2CWriteReg8(fd, PCA9685_MODE1, restart);
-// }
-
-// /**
-//  * Set all leds back to default values (: fullOff = 1)
-//  */
-// void pca9685PWMReset(int fd)
-// {
-// 	wiringPiI2CWriteReg16(fd, LEDALL_ON_L	 , 0x0);
-// 	wiringPiI2CWriteReg16(fd, LEDALL_ON_L + 2, 0x1000);
-// }
-
-// /**
-//  * Write on and off ticks manually to a pin
-//  * (Deactivates any full-on and full-off)
-//  */
-// void pca9685PWMWrite(int fd, int pin, int on, int off)
-// {
-// 	int reg = baseReg(pin);
-
-// 	// Write to on and off registers and mask the 12 lowest bits of data to overwrite full-on and off
-// 	wiringPiI2CWriteReg16(fd, reg	 , on  & 0x0FFF);
-// 	wiringPiI2CWriteReg16(fd, reg + 2, off & 0x0FFF);
-// }
-
-// /**
-//  * Reads both on and off registers as 16 bit of data
-//  * To get PWM: mask each value with 0xFFF
-//  * To get full-on or off bit: mask with 0x1000
-//  * Note: ALL_LED pin will always return 0
-//  */
-// void pca9685PWMRead(int fd, int pin, int *on, int *off)
-// {
-// 	int reg = baseReg(pin);
-
-// 	if (on)
-// 		*on  = wiringPiI2CReadReg16(fd, reg);
-// 	if (off)
-// 		*off = wiringPiI2CReadReg16(fd, reg + 2);
-// }
-
-// /**
-//  * Enables or deactivates full-on
-//  * tf = true: full-on
-//  * tf = false: according to PWM
-//  */
-// void pca9685FullOn(int fd, int pin, int tf)
-// {
-// 	int reg = baseReg(pin) + 1;		// LEDX_ON_H
-// 	int state = wiringPiI2CReadReg8(fd, reg);
-
-// 	// Set bit 4 to 1 or 0 accordingly
-// 	state = tf ? (state | 0x10) : (state & 0xEF);
-
-// 	wiringPiI2CWriteReg8(fd, reg, state);
-
-// 	// For simplicity, we set full-off to 0 because it has priority over full-on
-// 	if (tf)
-// 		pca9685FullOff(fd, pin, 0);
-// }
-
-// /**
-//  * Enables or deactivates full-off
-//  * tf = true: full-off
-//  * tf = false: according to PWM or full-on
-//  */
-// void pca9685FullOff(int fd, int pin, int tf)
-// {
-// 	int reg = baseReg(pin) + 3;		// LEDX_OFF_H
-// 	int state = wiringPiI2CReadReg8(fd, reg);
-
-// 	// Set bit 4 to 1 or 0 accordingly
-// 	state = tf ? (state | 0x10) : (state & 0xEF);
-
-// 	wiringPiI2CWriteReg8(fd, reg, state);
-// }
-
-// /**
-//  * Helper function to get to register
-//  */
-// int baseReg(int pin)
-// {
-// 	return (pin >= PIN_ALL ? LEDALL_ON_L : LED0_ON_L + 4 * pin);
-// }
-
-
-
-
-// //------------------------------------------------------------------------------------------------------------------
-// //
-// //	WiringPi functions
-// //
-// //------------------------------------------------------------------------------------------------------------------
-
-
-
-
-// /**
-//  * Simple PWM control which sets on-tick to 0 and off-tick to value.
-//  * If value is <= 0, full-off will be enabled
-//  * If value is >= 4096, full-on will be enabled
-//  * Every value in between enables PWM output
-//  */
-// static void myPwmWrite(struct wiringPiNodeStruct *node, int pin, int value)
-// {
-// 	int fd   = node->fd;
-// 	int ipin = pin - node->pinBase;
-
-// 	if (value >= 4096)
-// 		pca9685FullOn(fd, ipin, 1);
-// 	else if (value > 0)
-// 		pca9685PWMWrite(fd, ipin, 0, value);	// (Deactivates full-on and off by itself)
-// 	else
-// 		pca9685FullOff(fd, ipin, 1);
-// }
-
-// /**
-//  * Simple full-on and full-off control
-//  * If value is 0, full-off will be enabled
-//  * If value is not 0, full-on will be enabled
-//  */
-// static void myOnOffWrite(struct wiringPiNodeStruct *node, int pin, int value)
-// {
-// 	int fd   = node->fd;
-// 	int ipin = pin - node->pinBase;
-
-// 	if (value)
-// 		pca9685FullOn(fd, ipin, 1);
-// 	else
-// 		pca9685FullOff(fd, ipin, 1);
-// }
-
-// /**
-//  * Reads off registers as 16 bit of data
-//  * To get PWM: mask with 0xFFF
-//  * To get full-off bit: mask with 0x1000
-//  * Note: ALL_LED pin will always return 0
-//  */
-// static int myOffRead(struct wiringPiNodeStruct *node, int pin)
-// {
-// 	int fd   = node->fd;
-// 	int ipin = pin - node->pinBase;
-
-// 	int off;
-// 	pca9685PWMRead(fd, ipin, 0, &off);
-
-// 	return off;
-// }
-
-// /**
-//  * Reads on registers as 16 bit of data
-//  * To get PWM: mask with 0xFFF
-//  * To get full-on bit: mask with 0x1000
-//  * Note: ALL_LED pin will always return 0
-//  */
-// static int myOnRead(struct wiringPiNodeStruct *node, int pin)
-// {
-// 	int fd   = node->fd;
-// 	int ipin = pin - node->pinBase;
-
-// 	int on;
-// 	pca9685PWMRead(fd, ipin, &on, 0);
-
-// 	return on;
-// }
-
-
-
 
 
 

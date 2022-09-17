@@ -20,6 +20,7 @@ add_executable(
   lib/PCA9685/pca9685.c
   
   
+  
 
 )
 
@@ -30,6 +31,7 @@ target_include_directories(${PRJ_NAME} PUBLIC
     lib/lcd
     lib/sdcard
     lib/pca9685
+    
     view
 )
 
