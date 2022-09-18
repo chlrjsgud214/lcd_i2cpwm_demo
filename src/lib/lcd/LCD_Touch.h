@@ -70,6 +70,7 @@ void TP_gessensor(void);
 void TP_gessensor_pwm(void);
 void TP_gessensor_pwm_bar(void);
 void TP_Bmp_view(uint8_t Xpoz, uint8_t Ypoz,const char* Bmpname );
+void TP_start_view(uint8_t pagenum);
 
 #endif
  

@@ -210,7 +210,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/gitprj/lcd_i2cpwm_demo/src/lib/pca9685/pca9685.c" "src/CMakeFiles/lcd_i2cpwm_demo.dir/lib/pca9685/pca9685.c.obj" "gcc" "src/CMakeFiles/lcd_i2cpwm_demo.dir/lib/pca9685/pca9685.c.obj.d"
   "C:/gitprj/lcd_i2cpwm_demo/src/lib/sdcard/MMC_SD.c" "src/CMakeFiles/lcd_i2cpwm_demo.dir/lib/sdcard/MMC_SD.c.obj" "gcc" "src/CMakeFiles/lcd_i2cpwm_demo.dir/lib/sdcard/MMC_SD.c.obj.d"
   "C:/gitprj/lcd_i2cpwm_demo/src/main.c" "src/CMakeFiles/lcd_i2cpwm_demo.dir/main.c.obj" "gcc" "src/CMakeFiles/lcd_i2cpwm_demo.dir/main.c.obj.d"
-  "C:/gitprj/lcd_i2cpwm_demo/src/view/lcd_test.c" "src/CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_test.c.obj" "gcc" "src/CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_test.c.obj.d"
+  "C:/gitprj/lcd_i2cpwm_demo/src/view/lcd_run.c" "src/CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_run.c.obj" "gcc" "src/CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_run.c.obj.d"
   "D:/pico/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp" "src/CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp.obj" "gcc" "src/CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_standard_link/new_delete.cpp.obj.d"
   )
 

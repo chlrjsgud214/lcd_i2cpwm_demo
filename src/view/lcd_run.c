@@ -35,39 +35,23 @@
 #include "fatfs_storage.h"
 #include "pca9685.h"
 
-int lcd_test(void)
+int lcd_run(void)
 {
-	//uint8_t counter = 0;
-   	// bspInit(); // USB COM Port 활성화 
-	System_Init();
-	SD_Init();
-	DEV_PWM_Init();
-	// Driver_Delay_ms(200);
-	pca_i2c_init();
-	i2c_bus_scan();
-	LCD_SCAN_DIR  lcd_scan_dir = SCAN_DIR_DFT;
-	LCD_Init(lcd_scan_dir,800);
-	TP_Init(lcd_scan_dir);
+	System_Init(); // USB Serial , SPI , default GPIO set
+	SENSOR_GPIO_Init(); // 포토센서 In pin GPIO set
+	SD_Init(); // SD Pin set , SD card 확인
+	pca_i2c_init(); // i2c PWM 16ch 확인
+	i2c_bus_scan(); // PCA addr 확인
+	LCD_SCAN_DIR  lcd_scan_dir = SCAN_DIR_DFT; // 화면 방향
+	LCD_Init(lcd_scan_dir,800); // LCD 활성화 및 기본설정 SET
+	TP_Init(lcd_scan_dir); // 터치 활성화
 	
-
-	// GUI_Show();	
-	// LCD_SCAN_DIR bmp_scan_dir = SCAN_DIR_DFT;
-	// LCD_Show_bmp(bmp_scan_dir,lcd_scan_dir);
-	// LCD_SetGramScanWay( 7 ); // BMP용 각도로 변경
-	// Storage_OpenReadFile(0, 0, "main.bmp");
-	// Storage_OpenReadFile(0, 0, "cat2.bmp");
-	// LCD_SetGramScanWay( lcd_scan_dir ); // 터치용 각도로 변경	
 	TP_GetAdFac(); // 터치 캘리브레이션
-	//TP_Dialog();
-	LCD_Clear(LCD_BACKGROUND);
-	TP_gesmain();
-	// TP_gesvallist();
-	//Driver_Delay_ms(50);
+	LCD_Clear(LCD_BACKGROUND); 
+	TP_gesmain(); // 메인화면 표현
 	
 	while(1){		
-		TP_DrawBoard(); 
-		//on_uart_rx();
-		//printf("test\r\n");
+		TP_DrawBoard(); // 터치 감지시 동작 이외엔 대기
 	}
 	return 0;
 }

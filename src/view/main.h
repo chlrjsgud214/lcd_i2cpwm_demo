@@ -34,6 +34,6 @@
 #include <stdlib.h>
 
 
-int lcd_test(void);
+int lcd_run(void);
 
 #endif

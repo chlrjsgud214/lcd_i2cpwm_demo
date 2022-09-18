@@ -20,7 +20,9 @@ static TP_DEV sTP_DEV;
 static TP_DRAW sTP_Draw;
 static DEV_TIME settime;
 bool main_status =true;
-uint16_t pagestatus=0;
+bool pagechange=true;
+bool main_pagechange=true;
+uint16_t pagestatus=7;
 bool pwmstatus=false;
 bool ox_sensing=false;
 bool sstart=false;
@@ -93,7 +95,7 @@ static uint16_t TP_Read_ADC_Average(uint8_t Channel_Cmd)
 		Driver_Delay_us(200);
 	}
     //LCD SPI speed = 18 MHz
-    spi_set_baudrate(SPI_PORT,18000000);
+    spi_set_baudrate(SPI_PORT,50*1000*1000);
     //Sort from small to large
     for (i = 0; i < READ_TIMES  -  1; i ++) {
         for (j = i + 1; j < READ_TIMES; j ++) {
@@ -610,198 +612,74 @@ void TP_GetAdFac(void)
 function:
 		Paint the Delete key and paint color choose area
 *******************************************************************************/
-void TP_gesmain(void){ // 가로 X축 , 세로 Y축
-    
-    if(main_status){
-    TP_Bmp_view(0,0,"b_main1.bmp");
-    
-    }else if(!main_status){
-    TP_Bmp_view(0,0,"b_main2.bmp");
-    }
+void TP_gesmain(void)
+{ // 가로 X축 , 세로 Y축
 
-    if(main_status){
-        main_status=false;
-    }else {
+    if(pagestatus>=1 && pagestatus<=7){
         main_status=true;
+        pagestatus=0;      
+    }else if((pagestatus>=8 && pagestatus<=12) || pagestatus==0){
+        main_status=false;
+        pagestatus=7;      
+    }else{
+        
     }
 
-    // TP_Bmp_view(0,0,"b_main2.bmp");
+    if(main_status){
+        TP_Bmp_view(0,0,"b_main1.bmp");
+        pagestatus=0;
+        main_pagechange=true;
+        return 0;    
+    }else if(!main_status){
+        TP_Bmp_view(0,0,"b_main2.bmp");
+        pagestatus=7;
+        main_pagechange=true;
+        return 0;
+    }else{}
     
-    printf("next\r\n");
 }
 
-// void TP_gesvallist(void)
-// {
-
-// }
-
-// void TP_gessensor(void)
-// {
-//     //LCD_Clear(LCD_BACKGROUND);
-//     GUI_DrawRectangle(53, 0, 267, 50, GBLUE, DRAW_FULL, DOT_PIXEL_1X1); // 상단바 BACK TIME LOGO
-//     // GUI_DrawRectangle(0, 0, 50, 49, BLACK, 0, 2);
-//     // GUI_DrawRectangle(270, 0, 320, 49, BLACK, 0, 2);
-//     GUI_DrawLine(0,50,320,50,BLACK,0,1);
-//     GUI_DisString_EN(5,15,"BACK",&Font16,GBLUE,BLACK);
-//     // GUI_DisString_EN(275,15,"LOGO",&Font16,GBLUE,BLACK);
-//     GUI_DisString_EN(70,15,"Sensor Check",&Font20,GBLUE,BLACK); //시간
-//     GUI_DrawRectangle(0, 51, 320, 240, WHITE, DRAW_FULL, DOT_PIXEL_1X1);
+void TP_start_view(uint8_t pagenum)
+{    
     
-//     GUI_DrawRectangle(20, 70, 139, 129, WHITE, 1, 1); // PWM START
-//     GUI_DrawRectangle(20, 70, 140, 130, BLACK, 0, 1);
-//     GUI_DisString_EN(40,90,"START",&Font24,WHITE,BLACK);
-
-//     GUI_DrawRectangle(180 , 70, 299, 129, GBLUE, 1, 1); // PWM STOP
-//     GUI_DrawRectangle(180 , 70, 300, 130, BLACK, 0, 1);
-//     GUI_DisString_EN(205,90,"STOP",&Font24,GBLUE,BLACK);
-
-//     GUI_DrawRectangle(20,165,299,219,GRAY,1,1); //20, 155, 140, 215, pwm 조절바
-//     GUI_DrawRectangle(20,165,300,220,BLACK,0,1);
-
-// }
-
-
-// void TP_gessensor_pwm()
-// {
-//     if(pwmstatus){ // START
-//         if(!sstart){ // 시작으로 바뀌었을때만 사용
-            
-//             GUI_DrawRectangle(20, 70, 139, 129, GBLUE, 1, 1); // PWM START
-//             GUI_DisString_EN(40,90,"START",&Font24,GBLUE,BLACK);
-//             GUI_DrawRectangle(180 , 70, 299, 129, WHITE, 1, 1); // PWM STOP
-//             GUI_DisString_EN(205,90,"STOP",&Font24,WHITE,BLACK);
-//             GUI_DrawRectangle(20,165,300-1,220-1,WHITE,1,1);
-
-//         setPWM(1,1); 
-//         setPWM(3,512); 
-//         setPWM(5,1024); 
-//         setPWM(7,2048);  
-//         setPWM(9,3060);  
-//         setPWM(11,4096); 
-            
+        switch (pagenum)
+        {
+            case 1 :
+            TP_Bmp_view(0,0,"sample_s.bmp");
+                break;
+            case 2 :
+            TP_Bmp_view(0,0,"sample_c.bmp");
+                break;
+            case 3 :
+            TP_Bmp_view(0,0,"h2o2_s.bmp");
+                break;
+            case 4 :
+            TP_Bmp_view(0,0,"h2o2_c.bmp");
+                break;
+            case 5 :
+            TP_Bmp_view(0,0,"nai_s.bmp");
+                break;
+            case 6 :
+            TP_Bmp_view(0,0,"nai_c.bmp");
+                break;
+            case 8 :
+                break;
+            case 9 :
+                break;
+            case 10 :
+                break;
+            case 11 :
+                break;
+            case 12 :
+                break;
+            default:
+                break;
+        }
         
-//         }
-//         // GUI_DrawRectangle(20,165,pwmgui+21,220,GBLUE,1,1); //20, 155, 140, 215, pwm 조절바
-//         // GUI_DisString_EN(70,185,pwmout,&Font24,WHITE,BLACK);
-//     }
-    
-//     if(!pwmstatus){ // STOP
-        
-//         if(!sstop){
-//             GUI_DrawRectangle(20, 70, 139, 129, WHITE, 1, 1); // PWM START
-//             GUI_DisString_EN(40,90,"START",&Font24,WHITE,BLACK);
-//             GUI_DrawRectangle(180 , 70, 299, 129, GBLUE, 1, 1); // PWM STOP
-//             GUI_DisString_EN(205,90,"STOP",&Font24,GBLUE,BLACK);
-//             GUI_DrawRectangle(20,165,300-1,220-1,GRAY,1,1);
-            
-//         setPWM(1,0);
-//         setPWM(3,0);
-//         setPWM(5,0);
-//         setPWM(7,0);
-//         setPWM(9,0);
-//         setPWM(11,0);
-//         }
-//         // PWMOFF();
-//     }
-// }
+}
 
-// void TP_gessensor_pwm_bar(){
-
-
-//     GUI_DrawRectangle(20,165,sTP_Draw.Xpoint,220-1,GBLUE,1,1); //프로그레스 바 업다운
-//     GUI_DrawRectangle(sTP_Draw.Xpoint,165,299,220-1,WHITE,1,1);
-
-// }
-
-// void TP_gessetting(void)
-// {
-//     //LCD_Clear(LCD_BACKGROUND);
-//     // TP_Bmp_view(0,0,2);
-//     // TP_Bmp_view(0,0,"cat2.bmp");
-//     GUI_DrawRectangle(53, 0, 267, 50, GBLUE, DRAW_FULL, DOT_PIXEL_1X1); // 상단바 BACK TIME LOGO
-//     // GUI_DrawRectangle(0, 0, 50, 49, BLACK, 0, 2);
-//     // GUI_DrawRectangle(270, 0, 320, 49, BLACK, 0, 2);
-//     GUI_DrawLine(0,50,320,50,BLACK,0,1);
-//     GUI_DisString_EN(3,15,"BACK",&Font16,GBLUE,BLACK);
-
-//     GUI_DisString_EN(275,15,"LOGO",&Font16,GBLUE,BLACK);
-//     GUI_DisString_EN(110,15,"SETTING",&Font20,GBLUE,BLACK); //시간
-//     GUI_DrawRectangle(0, 51, 320, 240, WHITE, DRAW_FULL, DOT_PIXEL_1X1);
-
-//     GUI_DrawRectangle(10, 60, 100, 140, GBLUE, 1, 1); // 시간변경
-//     GUI_DrawRectangle(10, 60, 100, 140, BLACK, 0, 1);
-//     GUI_DisString_EN(30,90,"START",&Font16,GBLUE,BLACK);
-
-//     GUI_DrawRectangle(15+100, 60, 105+100, 140, GBLUE, 1, 1); // 단위 변경
-//     GUI_DrawRectangle(15+100, 60, 105+100, 140, BLACK, 0, 1);
-//     GUI_DisString_EN(128,90,"RESULT",&Font16,GBLUE,BLACK);
-
-//     GUI_DrawRectangle(20+100+100, 60, 110+100+100, 140, GBLUE, 1, 1); // 메모리
-//     GUI_DrawRectangle(20+100+100, 60, 110+100+100, 140, BLACK, 0, 1);
-//     GUI_DisString_EN(233,90,"SENSOR",&Font16,GBLUE,BLACK);
-    
-//     GUI_DrawRectangle(10, 150, 100, 230, GBLUE, 1, 1); // 시간변경
-//     GUI_DrawRectangle(10, 150, 100, 230, BLACK, 0, 1);
-//     GUI_DisString_EN(30,185,"Blue",&Font16,GBLUE,BLACK);
-
-//     GUI_DrawRectangle(15+100, 150, 105+100, 230, GBLUE, 1, 1); // 단위 변경
-//     GUI_DrawRectangle(15+100, 150, 105+100, 230, BLACK, 0, 1);
-//     GUI_DisString_EN(145,185,"Log",&Font16,GBLUE,BLACK);
-
-//     GUI_DrawRectangle(20+100+100, 150, 110+100+100, 230, GBLUE, 1, 1); // 메모리
-//     GUI_DrawRectangle(20+100+100, 150, 110+100+100, 230, BLACK, 0, 1);
-//     GUI_DisString_EN(225,185,"HW info",&Font16,GBLUE,BLACK);
-    
-
-// }
-
-// void TP_gesmpresultstart(void){
-    
-//         switch(start_status){
-//             case 1:
-//                 TP_Bmp_view(0,0,"start01.bmp");
-//                 break;
-//             case 2:
-//                 TP_Bmp_view(0,0,"start01b.bmp");
-//                 break;
-//             case 3:
-//                 TP_Bmp_view(0,0,"start02.bmp");
-//                 break;
-//             case 4:
-//                 TP_Bmp_view(0,0,"start03.bmp");
-                
-//                 break;
-//             case 5:
-//                 start_status=0;
-//                 pagestatus=0;
-//                 TP_gesmain();
-//                 break;
-            
-//         }
-    
-//     //LCD_Clear(LCD_BACKGROUND);
-//     // GUI_DrawRectangle(53, 0, 267, 50, GBLUE, DRAW_FULL, DOT_PIXEL_1X1); // 상단바 BACK TIME LOGO
-//     // // GUI_DrawRectangle(0, 0, 50, 49, BLACK, 0, 2);
-//     // // GUI_DrawRectangle(270, 0, 320, 49, BLACK, 0, 2);
-//     // GUI_DrawLine(0,50,320,50,BLACK,0,1);
-//     // GUI_DisString_EN(3,15,"BACK",&Font16,GBLUE,BLACK);
-//     // GUI_DisString_EN(120,15,"START",&Font20,GBLUE,BLACK); //시간
-//     // GUI_DrawRectangle(0, 51, 320, 240, WHITE, DRAW_FULL, DOT_PIXEL_1X1);
-
-//     // GUI_DisString_EN(25,90,"Please Set Frist mL",&Font20,WHITE,BLACK);
-//     // GUI_DrawRectangle(103, 130, 103+17, 130+24, BLACK, 0, 1);
-//     // GUI_DrawRectangle(103+(17*1), 130, 103+(17*2), 130+24, BLACK, 0, 1);
-//     // GUI_DrawRectangle(103+(17*2), 130, 103+(17*3), 130+24, BLACK, 0, 1);
-//     // GUI_DrawRectangle(103+(17*3), 130, 103+(17*4), 130+24, BLACK, 0, 1);
-//     // GUI_DisString_EN(105,132,"0000 mL",&Font24,WHITE,BLACK);
-
-//     // GUI_DrawRectangle(55, 175, 65+(17*12), 195+24, GBLUE, DRAW_FULL, 2);
-//     // GUI_DisString_EN(70,185,"Micro START",&Font24,GBLUE,BLACK);
-//     // GUI_DrawRectangle(55, 175, 65+(17*12), 195+24, BLACK, 0, 2);
-
-// }
-
-void TP_Bmp_view(uint8_t Xpoz, uint8_t Ypoz,const char* Bmpname){
+void TP_Bmp_view(uint8_t Xpoz, uint8_t Ypoz,const char* Bmpname)
+{
     LCD_SetGramScanWay( 7 ); // BMP용 각도로 변경
 	Storage_OpenReadFile(Xpoz,Ypoz,Bmpname);
 	LCD_SetGramScanWay( 4 ); // 터치용 각도로 변경
@@ -809,59 +687,6 @@ void TP_Bmp_view(uint8_t Xpoz, uint8_t Ypoz,const char* Bmpname){
 
 }
 
-void TP_Dialog(void)
-{
-	LCD_Clear(LCD_BACKGROUND);
-	if(LCD_2_8==id){
-			GUI_DisString_EN(sLCD_DIS.LCD_Dis_Column - 60, 0,
-							 "CLEAR", &Font16, RED, BLUE);
-			GUI_DisString_EN(sLCD_DIS.LCD_Dis_Column - 120, 0,
-							 "AD", &Font16, RED, BLUE);
-			GUI_DrawRectangle(0, 0, 15, 15, BLUE, DRAW_FULL, DOT_PIXEL_1X1);
-			GUI_DrawRectangle(20, 0, 35, 15, GREEN, DRAW_FULL, DOT_PIXEL_1X1);
-			GUI_DrawRectangle(40, 0, 55, 15, RED, DRAW_FULL, DOT_PIXEL_1X1);
-			GUI_DrawRectangle(60, 0, 75, 15, YELLOW, DRAW_FULL, DOT_PIXEL_1X1);
-			GUI_DrawRectangle(80, 0, 95, 15, BLACK, DRAW_FULL, DOT_PIXEL_1X1);
-	}else{
-		
-		//Horizontal screen display
-		if(sLCD_DIS.LCD_Dis_Column > sLCD_DIS.LCD_Dis_Page) {
-			//Clear screen
-			GUI_DisString_EN(sLCD_DIS.LCD_Dis_Column - 60, 0,
-							 "CLEAR", &Font16, RED, BLUE);
-			//adjustment
-			GUI_DisString_EN(sLCD_DIS.LCD_Dis_Column - 120, 0,
-							 "AD", &Font16, RED, BLUE);
-			//choose the color
-			GUI_DrawRectangle(sLCD_DIS.LCD_Dis_Column - 50, 20,
-							  sLCD_DIS.LCD_Dis_Column, 70,
-							  BLUE, DRAW_FULL, DOT_PIXEL_1X1);
-			GUI_DrawRectangle(sLCD_DIS.LCD_Dis_Column - 50, 80,
-							  sLCD_DIS.LCD_Dis_Column, 130,
-							  GREEN, DRAW_FULL, DOT_PIXEL_1X1);
-			GUI_DrawRectangle(sLCD_DIS.LCD_Dis_Column - 50, 140,
-							  sLCD_DIS.LCD_Dis_Column, 190,
-							  RED, DRAW_FULL, DOT_PIXEL_1X1);
-			GUI_DrawRectangle(sLCD_DIS.LCD_Dis_Column - 50, 200,
-							  sLCD_DIS.LCD_Dis_Column, 250,
-							  YELLOW, DRAW_FULL, DOT_PIXEL_1X1);
-			GUI_DrawRectangle(sLCD_DIS.LCD_Dis_Column - 50, 260,
-							  sLCD_DIS.LCD_Dis_Column, 310,
-							  BLACK, DRAW_FULL, DOT_PIXEL_1X1);
-
-		} else { //Vertical screen display
-			GUI_DisString_EN(sLCD_DIS.LCD_Dis_Column - 60, 0,
-							 "CLEAR", &Font16, RED, BLUE);
-			GUI_DisString_EN(sLCD_DIS.LCD_Dis_Column - 120, 0,
-							 "AD", &Font24, RED, BLUE);
-			GUI_DrawRectangle(20, 20, 70, 70, BLUE, DRAW_FULL, DOT_PIXEL_1X1);
-			GUI_DrawRectangle(80, 20, 130, 70, GREEN, DRAW_FULL, DOT_PIXEL_1X1);
-			GUI_DrawRectangle(140, 20, 190, 70, RED, DRAW_FULL, DOT_PIXEL_1X1);
-			GUI_DrawRectangle(200, 20, 250, 70, YELLOW, DRAW_FULL, DOT_PIXEL_1X1);
-			GUI_DrawRectangle(260, 20, 310, 70, BLACK, DRAW_FULL, DOT_PIXEL_1X1);
-		}
-	}
-}
 
 /*******************************************************************************
 function:
@@ -877,105 +702,72 @@ void TP_DrawBoard(void)
         if (sTP_Draw.Xpoint < sLCD_DIS.LCD_Dis_Column &&
             //Dete/rmine whether the law is legal
             sTP_Draw.Ypoint < sLCD_DIS.LCD_Dis_Page) {
+                // printf("\n x:%d,y:%d \r\n",sTP_Draw.Xpoint,sTP_Draw.Ypoint);
 
-                if (((sTP_Draw.Xpoint > 0 && sTP_Draw.Xpoint < 50 ) &&  //이전
-				    (sTP_Draw.Ypoint  > 0 && sTP_Draw.Ypoint < 50)) ){ 
-                    TP_gesmain();      
-                    // pagestatus=0;
-                    // ox_sensing=false;
-                    // start_status=0;
-                    // if(sstart){
-                    //     PWMOFF();
-                    //     sstart=false;
-                    //     sstop=true;
+                // 특정 위치 선택시 기능동작
+                if ((sTP_Draw.Xpoint > 0 && sTP_Draw.Xpoint < 50  &&  //이전
+				    sTP_Draw.Ypoint  > 0 && sTP_Draw.Ypoint < 50) && pagestatus<=7){
+                    TP_gesmain();
+
                     // 시료부 10,52 97 132 / 과산화수소 114,51 203,132 /nai 218,51 307 132 /시세 8,149 97,230 과세척 113,149 203,230 / n세척 218,150 307,230
-                }else if(((sTP_Draw.Xpoint > 10 && sTP_Draw.Xpoint < 97 ) &&  //시료부
-				        (sTP_Draw.Ypoint  > 52 && sTP_Draw.Ypoint < 132)) && (pagestatus==0)){ 
-                        // TP_gesvallist();
-                        TP_Bmp_view(0,0,"main.bmp");
-                        pagestatus=1; //시작
-                }else if(((sTP_Draw.Xpoint > 10 && sTP_Draw.Xpoint < 97 ) &&  //시료부 세척
-				        (sTP_Draw.Ypoint  > 149 && sTP_Draw.Ypoint < 230)) && (pagestatus==0)){
-                        // TP_gesmpresultstart();
-                        // ox_sensing=true;         
-                        // start_status=1;               
+                }else if((sTP_Draw.Xpoint > 10 && sTP_Draw.Xpoint < 97  &&  //시료부
+				        sTP_Draw.Ypoint  > 52 && sTP_Draw.Ypoint < 132) && pagestatus==0){                         
+                        pagestatus=1; 
+                        pagechange=true;
+                        TP_start_view(pagestatus);
+                        
+                }else if((sTP_Draw.Xpoint > 10 && sTP_Draw.Xpoint < 97  &&  //시료부 세척
+				        sTP_Draw.Ypoint  > 149 && sTP_Draw.Ypoint < 230) && (pagestatus==0)){
+                                     
                         pagestatus=2;
-                }else if(((sTP_Draw.Xpoint > 114 && sTP_Draw.Xpoint < 203 ) &&  //과산화수소
-				        (sTP_Draw.Ypoint  > 51 && sTP_Draw.Ypoint < 132) )&& (pagestatus==0)){
-                        // TP_gessensor();
-                        // pwmgui=0;
-                        pagestatus=3; //PWM 상태
+                        pagechange=true;
+                        TP_start_view(pagestatus);
+                }else if((sTP_Draw.Xpoint > 114 && sTP_Draw.Xpoint < 203 &&  //과산화수소
+				        sTP_Draw.Ypoint  > 51 && sTP_Draw.Ypoint < 132 )&& (pagestatus==0)){
+                        
+                        pagestatus=3; 
+                        pagechange=true;
+                        TP_start_view(pagestatus);
                 }else if(sTP_Draw.Xpoint > 113 && sTP_Draw.Xpoint < 203  &&  //과산화수소 세척
 				        sTP_Draw.Ypoint  > 149 && sTP_Draw.Ypoint < 230 && pagestatus==0){
                         // TP_gessetting();
                         // getPCAmode(0x00);
                         // read_PCA_reg(0xfe,1);
                         pagestatus=4;
-                }else if(((sTP_Draw.Xpoint > 218 && sTP_Draw.Xpoint < 307 ) &&  // nai
-				        (sTP_Draw.Ypoint  > 51 && sTP_Draw.Ypoint < 132)) && (pagestatus==0)){
-                        // pwmstatus=1;
-                        // // pwmgui=0;
-                        // TP_gessensor_pwm(); 
-                        // sstop=false;
-                        // sstart=true;
+                        pagechange=true;
+                        TP_start_view(pagestatus);
+                }else if((sTP_Draw.Xpoint > 218 && sTP_Draw.Xpoint < 307  &&  // nai
+				        sTP_Draw.Ypoint  > 51 && sTP_Draw.Ypoint < 132) && pagestatus==0){
+                        
                         pagestatus=5;
+                        pagechange=true;
+                        TP_start_view(pagestatus);
                 }else if(((sTP_Draw.Xpoint > 218 && sTP_Draw.Xpoint < 307 ) &&  // nai 세척
-				        (sTP_Draw.Ypoint  > 150 && sTP_Draw.Ypoint < 230)) && (pagestatus==0)){
-                        // pwmstatus=0;                        
-                        // TP_gessensor_pwm();
-                        // PWMOFF();
-                        // pwmgui=0;                            
-                        // sstop=true;
-                        // sstart=false;
+				        (sTP_Draw.Ypoint  > 150 && sTP_Draw.Ypoint < 230)) && pagestatus==0){
+                        
                         pagestatus=6;
-                }else if(((sTP_Draw.Xpoint > 273 && sTP_Draw.Xpoint < 318 ) &&  // 다음 273,1 318,40 --------------------------------
-				        (sTP_Draw.Ypoint  > 0 && sTP_Draw.Ypoint < 40))){
+                        pagechange=true;
+                        TP_start_view(pagestatus);
+                }else if((sTP_Draw.Xpoint > 273 && sTP_Draw.Xpoint < 320 &&  // 다음 273,1 318,40 --------------------------------
+				        sTP_Draw.Ypoint  > 0 && sTP_Draw.Ypoint < 40) && pagestatus==0 && pagestatus==7){
+                        
                         TP_gesmain();
                         
-                }else if(((sTP_Draw.Xpoint > 218 && sTP_Draw.Xpoint < 307 ) &&  // nai 세척
-				        (sTP_Draw.Ypoint  > 150 && sTP_Draw.Ypoint < 230)) && (pagestatus==7)){
-                        
-                        pagestatus=6;
-                }else if(((sTP_Draw.Xpoint > 218 && sTP_Draw.Xpoint < 307 ) &&  // nai 세척
-				        (sTP_Draw.Ypoint  > 150 && sTP_Draw.Ypoint < 230)) && (pagestatus==7)){
-                        
-                        pagestatus=6;
-                }else if(((sTP_Draw.Xpoint > 218 && sTP_Draw.Xpoint < 307 ) &&  // nai 세척
-				        (sTP_Draw.Ypoint  > 150 && sTP_Draw.Ypoint < 230)) && (pagestatus==7)){
-                        
-                        pagestatus=6;
+                }else if((sTP_Draw.Xpoint > 218 && sTP_Draw.Xpoint < 307  &&  // nai 세척
+				        sTP_Draw.Ypoint  > 150 && sTP_Draw.Ypoint < 230) && pagestatus==7){                        
+                        // pagestatus=8;
+                }else if((sTP_Draw.Xpoint > 218 && sTP_Draw.Xpoint < 307  &&  // nai 세척
+				        sTP_Draw.Ypoint  > 150 && sTP_Draw.Ypoint < 230) && pagestatus==7){                        
+                        // pagestatus=9;
+                }else if((sTP_Draw.Xpoint > 218 && sTP_Draw.Xpoint < 307  &&  // nai 세척
+				        sTP_Draw.Ypoint  > 150 && sTP_Draw.Ypoint < 230) && pagestatus==7){                        
+                        // pagestatus=10;
                 }   
-
-			//  if(LCD_2_8 == id){
-				
-			// 	if (sTP_Draw.Xpoint > (sLCD_DIS.LCD_Dis_Column - 60) &&
-			// 			sTP_Draw.Ypoint < 16) {//Clear Board
-			// 			TP_Dialog();
-			// 	} else if(sTP_Draw.Xpoint > (sLCD_DIS.LCD_Dis_Column - 120) &&
-			// 			  sTP_Draw.Xpoint < (sLCD_DIS.LCD_Dis_Column - 80) &&
-			// 			  sTP_Draw.Ypoint < 16) { //afresh adjustment
-			// 		TP_Adjust();
-			// 		TP_Dialog();
-			// 	} else if(sTP_Draw.Xpoint > 0 && sTP_Draw.Xpoint < 15 &&
-			// 			  sTP_Draw.Ypoint > 0 && sTP_Draw.Ypoint < 15) {
-			// 		sTP_Draw.Color = BLUE;
-			// 	} else if(sTP_Draw.Xpoint > 20 && sTP_Draw.Xpoint < 35 &&
-			// 			  sTP_Draw.Ypoint > 0 && sTP_Draw.Ypoint < 15) {
-			// 		sTP_Draw.Color = GREEN;
-			// 	} else if(sTP_Draw.Xpoint > 40 && sTP_Draw.Xpoint < 55 &&
-			// 			  sTP_Draw.Ypoint > 0 && sTP_Draw.Ypoint < 15) {
-			// 		sTP_Draw.Color = RED;
-			// 	} else if(sTP_Draw.Xpoint > 60 && sTP_Draw.Xpoint < 75 &&
-			// 			  sTP_Draw.Ypoint > 0 && sTP_Draw.Ypoint < 15) {
-			// 		sTP_Draw.Color = YELLOW;
-			// 	} else if(sTP_Draw.Xpoint > 80 && sTP_Draw.Xpoint < 95 &&
-			// 			  sTP_Draw.Ypoint > 0 && sTP_Draw.Ypoint < 15) {
-			// 		sTP_Draw.Color = BLACK;
-			// 	} else {
-			// 		GUI_DrawPoint(sTP_Draw.Xpoint, sTP_Draw.Ypoint,
-			// 			  sTP_Draw.Color , DOT_PIXEL_1X1, DOT_FILL_RIGHTUP);
-			// 	 }
-			// }
+                
+             
+            // 오동작으로 다른페이지로 넘어가지 않도록 안쓰는 좌표값으로 변경
+            sTP_Draw.Xpoint = 160;
+            sTP_Draw.Ypoint = 1;
         }
     }
 

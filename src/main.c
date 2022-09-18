@@ -3,7 +3,7 @@
 int main()
 {
     while(1) {
-        lcd_test();
+        lcd_run();
     }
     return 0;
 }

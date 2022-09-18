@@ -83,19 +83,19 @@ src/CMakeFiles/lcd_i2cpwm_demo.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lcd_i2cpwm_demo.dir/main.c.s"
 	cd C:/gitprj/lcd_i2cpwm_demo/build/src && D:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:/gitprj/lcd_i2cpwm_demo/src/main.c -o CMakeFiles/lcd_i2cpwm_demo.dir/main.c.s
 
-src/CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_test.c.obj: src/CMakeFiles/lcd_i2cpwm_demo.dir/flags.make
-src/CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_test.c.obj: C:/gitprj/lcd_i2cpwm_demo/src/view/lcd_test.c
-src/CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_test.c.obj: src/CMakeFiles/lcd_i2cpwm_demo.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:/gitprj/lcd_i2cpwm_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object src/CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_test.c.obj"
-	cd C:/gitprj/lcd_i2cpwm_demo/build/src && D:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_test.c.obj -MF CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_test.c.obj.d -o CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_test.c.obj -c C:/gitprj/lcd_i2cpwm_demo/src/view/lcd_test.c
+src/CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_run.c.obj: src/CMakeFiles/lcd_i2cpwm_demo.dir/flags.make
+src/CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_run.c.obj: C:/gitprj/lcd_i2cpwm_demo/src/view/lcd_run.c
+src/CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_run.c.obj: src/CMakeFiles/lcd_i2cpwm_demo.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:/gitprj/lcd_i2cpwm_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object src/CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_run.c.obj"
+	cd C:/gitprj/lcd_i2cpwm_demo/build/src && D:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT src/CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_run.c.obj -MF CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_run.c.obj.d -o CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_run.c.obj -c C:/gitprj/lcd_i2cpwm_demo/src/view/lcd_run.c
 
-src/CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_test.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_test.c.i"
-	cd C:/gitprj/lcd_i2cpwm_demo/build/src && D:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:/gitprj/lcd_i2cpwm_demo/src/view/lcd_test.c > CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_test.c.i
+src/CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_run.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_run.c.i"
+	cd C:/gitprj/lcd_i2cpwm_demo/build/src && D:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:/gitprj/lcd_i2cpwm_demo/src/view/lcd_run.c > CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_run.c.i
 
-src/CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_test.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_test.c.s"
-	cd C:/gitprj/lcd_i2cpwm_demo/build/src && D:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:/gitprj/lcd_i2cpwm_demo/src/view/lcd_test.c -o CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_test.c.s
+src/CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_run.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_run.c.s"
+	cd C:/gitprj/lcd_i2cpwm_demo/build/src && D:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:/gitprj/lcd_i2cpwm_demo/src/view/lcd_run.c -o CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_run.c.s
 
 src/CMakeFiles/lcd_i2cpwm_demo.dir/lib/config/DEV_Config.c.obj: src/CMakeFiles/lcd_i2cpwm_demo.dir/flags.make
 src/CMakeFiles/lcd_i2cpwm_demo.dir/lib/config/DEV_Config.c.obj: C:/gitprj/lcd_i2cpwm_demo/src/lib/config/DEV_Config.c
@@ -1321,7 +1321,7 @@ src/CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_pio/
 # Object files for target lcd_i2cpwm_demo
 lcd_i2cpwm_demo_OBJECTS = \
 "CMakeFiles/lcd_i2cpwm_demo.dir/main.c.obj" \
-"CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_test.c.obj" \
+"CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_run.c.obj" \
 "CMakeFiles/lcd_i2cpwm_demo.dir/lib/config/DEV_Config.c.obj" \
 "CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/diskio.c.obj" \
 "CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/fatfs_storage.c.obj" \
@@ -1415,7 +1415,7 @@ lcd_i2cpwm_demo_OBJECTS = \
 lcd_i2cpwm_demo_EXTERNAL_OBJECTS =
 
 src/lcd_i2cpwm_demo.elf: src/CMakeFiles/lcd_i2cpwm_demo.dir/main.c.obj
-src/lcd_i2cpwm_demo.elf: src/CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_test.c.obj
+src/lcd_i2cpwm_demo.elf: src/CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_run.c.obj
 src/lcd_i2cpwm_demo.elf: src/CMakeFiles/lcd_i2cpwm_demo.dir/lib/config/DEV_Config.c.obj
 src/lcd_i2cpwm_demo.elf: src/CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/diskio.c.obj
 src/lcd_i2cpwm_demo.elf: src/CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/fatfs_storage.c.obj

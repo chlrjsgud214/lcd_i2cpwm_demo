@@ -37,6 +37,11 @@
 #define PWM_CH0         0
 #define PWM_CH1         1
 #define PWM_CH2         2
+#define SENSOR_IN0       0
+#define SENSOR_IN1       1
+#define SENSOR_IN2       2
+#define SENSOR_IN3       3
+#define SENSOR_IN4       4
 
 #define SPI_PORT		spi1
 #define  MAX_BMP_FILES  25 

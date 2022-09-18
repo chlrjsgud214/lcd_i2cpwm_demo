@@ -60,6 +60,23 @@ void DEV_GPIO_Init(void)
     DEV_Digital_Write(SD_CS_PIN, 1);
 }
 
+void SENSOR_GPIO_Init(void)
+{
+  DEV_GPIO_Mode(SENSOR_IN0,GPIO_IN);
+  DEV_GPIO_Mode(SENSOR_IN1,GPIO_IN);
+  DEV_GPIO_Mode(SENSOR_IN2,GPIO_IN);
+  DEV_GPIO_Mode(SENSOR_IN3,GPIO_IN);
+  DEV_GPIO_Mode(SENSOR_IN4,GPIO_IN);
+
+  gpio_set_pulls(SENSOR_IN0,true,false);
+  gpio_set_pulls(SENSOR_IN1,true,false);
+  gpio_set_pulls(SENSOR_IN2,true,false);
+  gpio_set_pulls(SENSOR_IN3,true,false);
+  gpio_set_pulls(SENSOR_IN4,true,false);
+
+  return 0;
+}
+
 /********************************************************************************
 function:	PWM Init
 note:

@@ -2104,29 +2104,29 @@ main.c.s:
 	cd C:/gitprj/lcd_i2cpwm_demo/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/lcd_i2cpwm_demo.dir/build.make src/CMakeFiles/lcd_i2cpwm_demo.dir/main.c.s
 .PHONY : main.c.s
 
-view/lcd_test.obj: view/lcd_test.c.obj
-.PHONY : view/lcd_test.obj
+view/lcd_run.obj: view/lcd_run.c.obj
+.PHONY : view/lcd_run.obj
 
 # target to build an object file
-view/lcd_test.c.obj:
-	cd C:/gitprj/lcd_i2cpwm_demo/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/lcd_i2cpwm_demo.dir/build.make src/CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_test.c.obj
-.PHONY : view/lcd_test.c.obj
+view/lcd_run.c.obj:
+	cd C:/gitprj/lcd_i2cpwm_demo/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/lcd_i2cpwm_demo.dir/build.make src/CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_run.c.obj
+.PHONY : view/lcd_run.c.obj
 
-view/lcd_test.i: view/lcd_test.c.i
-.PHONY : view/lcd_test.i
+view/lcd_run.i: view/lcd_run.c.i
+.PHONY : view/lcd_run.i
 
 # target to preprocess a source file
-view/lcd_test.c.i:
-	cd C:/gitprj/lcd_i2cpwm_demo/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/lcd_i2cpwm_demo.dir/build.make src/CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_test.c.i
-.PHONY : view/lcd_test.c.i
+view/lcd_run.c.i:
+	cd C:/gitprj/lcd_i2cpwm_demo/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/lcd_i2cpwm_demo.dir/build.make src/CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_run.c.i
+.PHONY : view/lcd_run.c.i
 
-view/lcd_test.s: view/lcd_test.c.s
-.PHONY : view/lcd_test.s
+view/lcd_run.s: view/lcd_run.c.s
+.PHONY : view/lcd_run.s
 
 # target to generate assembly for a file
-view/lcd_test.c.s:
-	cd C:/gitprj/lcd_i2cpwm_demo/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/lcd_i2cpwm_demo.dir/build.make src/CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_test.c.s
-.PHONY : view/lcd_test.c.s
+view/lcd_run.c.s:
+	cd C:/gitprj/lcd_i2cpwm_demo/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/lcd_i2cpwm_demo.dir/build.make src/CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_run.c.s
+.PHONY : view/lcd_run.c.s
 
 # Help Target
 help:
@@ -2383,9 +2383,9 @@ help:
 	@echo "... main.obj"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... view/lcd_test.obj"
-	@echo "... view/lcd_test.i"
-	@echo "... view/lcd_test.s"
+	@echo "... view/lcd_run.obj"
+	@echo "... view/lcd_run.i"
+	@echo "... view/lcd_run.s"
 .PHONY : help
 
 

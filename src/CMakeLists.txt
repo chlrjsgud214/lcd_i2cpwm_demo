@@ -2,7 +2,7 @@ add_executable(
   ${PRJ_NAME}
   
   main.c
-  view/lcd_test.c
+  view/lcd_run.c
   lib/config/DEV_config.c
   lib/fatfs/diskio.c
   lib/fatfs/fatfs_storage.c
