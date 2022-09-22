@@ -19,10 +19,13 @@ extern uint8_t id;
 static TP_DEV sTP_DEV;
 static TP_DRAW sTP_Draw;
 static DEV_TIME settime;
-bool main_status =true;
-bool pagechange=true;
-bool main_pagechange=true;
 uint16_t pagestatus=7;
+
+bool main1=true;
+bool main2=false;
+bool main3=false;
+
+bool valve_view=false;
 bool pwmstatus=false;
 bool ox_sensing=false;
 bool sstart=false;
@@ -615,27 +618,38 @@ function:
 void TP_gesmain(void)
 { // 가로 X축 , 세로 Y축
 
-    if(pagestatus>=1 && pagestatus<=7){
-        main_status=true;
-        pagestatus=0;      
-    }else if((pagestatus>=8 && pagestatus<=12) || pagestatus==0){
-        main_status=false;
-        pagestatus=7;      
+    if(pagestatus>=1 && pagestatus<=6 || pagestatus==7 || (pagestatus==14 && !valve_view)){
+        main1=true;
+        main2=false;
+        main3=false;
+    }else if(pagestatus>=8 && pagestatus<=13 || pagestatus==0 || (pagestatus==14 && !valve_view)){
+        main1=false;
+        main2=true;
+        main3=false;
+    }
+    
+    if(valve_view){
+        main1=false;
+        main2=false;
+        main3=true;
+        valve_view=false;
+    }
+
+    if(main1){
+        TP_Bmp_view(0,0,"b_main1.bmp");        
+        pagestatus=0;
+        return 0;
+    }else if(main2){
+        TP_Bmp_view(0,0,"b_main2.bmp");
+        pagestatus=7;
+        return 0;    
+    }else if(main3){
+        TP_Bmp_view(0,0,"b_main3.bmp");
+        pagestatus=14;
+        return 0;
     }else{
         
     }
-
-    if(main_status){
-        TP_Bmp_view(0,0,"b_main1.bmp");
-        pagestatus=0;
-        main_pagechange=true;
-        return 0;    
-    }else if(!main_status){
-        TP_Bmp_view(0,0,"b_main2.bmp");
-        pagestatus=7;
-        main_pagechange=true;
-        return 0;
-    }else{}
     
 }
 
@@ -644,11 +658,11 @@ void TP_start_view(uint8_t pagenum)
     
         switch (pagenum)
         {
-            case 1 :
-            TP_Bmp_view(0,0,"sample_s.bmp");
+            case 1 : // 전처리 테스트 인식 글자수 최대 14
+            TP_Bmp_view(0,0,"sp_s.bmp");
                 break;
             case 2 :
-            TP_Bmp_view(0,0,"sample_c.bmp");
+            TP_Bmp_view(0,0,"sp_c.bmp");
                 break;
             case 3 :
             TP_Bmp_view(0,0,"h2o2_s.bmp");
@@ -662,17 +676,44 @@ void TP_start_view(uint8_t pagenum)
             case 6 :
             TP_Bmp_view(0,0,"nai_c.bmp");
                 break;
-            case 8 :
+            case 8 : // 전처리 설정
+            TP_Bmp_view(0,0,"sp_s_p.bmp");
                 break;
             case 9 :
+            TP_Bmp_view(0,0,"sp_c_p.bmp");
                 break;
             case 10 :
+            TP_Bmp_view(0,0,"h2o2_s_p.bmp");
                 break;
             case 11 :
+            TP_Bmp_view(0,0,"h2o2_c_p.bmp");
                 break;
             case 12 :
+            TP_Bmp_view(0,0,"nai_s_p.bmp");
+                break;
+            case 13 :
+            TP_Bmp_view(0,0,"nai_c_p.bmp");
+                break;
+            case 14 : // 밸브
+            TP_Bmp_view(0,0,"nai_c_p.bmp");
+                break;
+            case 15 :
+            TP_Bmp_view(0,0,"nai_c_p.bmp");
+                break;
+            case 16 :
+            TP_Bmp_view(0,0,"nai_c_p.bmp");
+                break;
+            case 17 :
+            TP_Bmp_view(0,0,"nai_c_p.bmp");
+                break;
+            case 18 :
+            TP_Bmp_view(0,0,"nai_c_p.bmp");
+                break;
+            case 19 :
+            TP_Bmp_view(0,0,"nai_c_p.bmp");
                 break;
             default:
+            
                 break;
         }
         
@@ -702,31 +743,26 @@ void TP_DrawBoard(void)
         if (sTP_Draw.Xpoint < sLCD_DIS.LCD_Dis_Column &&
             //Dete/rmine whether the law is legal
             sTP_Draw.Ypoint < sLCD_DIS.LCD_Dis_Page) {
-                // printf("\n x:%d,y:%d \r\n",sTP_Draw.Xpoint,sTP_Draw.Ypoint);
+                printf("\n x:%d,y:%d \r\n",sTP_Draw.Xpoint,sTP_Draw.Ypoint);
 
                 // 특정 위치 선택시 기능동작
                 if ((sTP_Draw.Xpoint > 0 && sTP_Draw.Xpoint < 50  &&  //이전
-				    sTP_Draw.Ypoint  > 0 && sTP_Draw.Ypoint < 50) && pagestatus<=7){
-                    TP_gesmain();
+				    sTP_Draw.Ypoint  > 0 && sTP_Draw.Ypoint < 50) && pagestatus<=14){
+                        TP_gesmain();
 
                     // 시료부 10,52 97 132 / 과산화수소 114,51 203,132 /nai 218,51 307 132 /시세 8,149 97,230 과세척 113,149 203,230 / n세척 218,150 307,230
                 }else if((sTP_Draw.Xpoint > 10 && sTP_Draw.Xpoint < 97  &&  //시료부
 				        sTP_Draw.Ypoint  > 52 && sTP_Draw.Ypoint < 132) && pagestatus==0){                         
                         pagestatus=1; 
-                        pagechange=true;
                         TP_start_view(pagestatus);
                         
                 }else if((sTP_Draw.Xpoint > 10 && sTP_Draw.Xpoint < 97  &&  //시료부 세척
 				        sTP_Draw.Ypoint  > 149 && sTP_Draw.Ypoint < 230) && (pagestatus==0)){
-                                     
                         pagestatus=2;
-                        pagechange=true;
                         TP_start_view(pagestatus);
                 }else if((sTP_Draw.Xpoint > 114 && sTP_Draw.Xpoint < 203 &&  //과산화수소
 				        sTP_Draw.Ypoint  > 51 && sTP_Draw.Ypoint < 132 )&& (pagestatus==0)){
-                        
                         pagestatus=3; 
-                        pagechange=true;
                         TP_start_view(pagestatus);
                 }else if(sTP_Draw.Xpoint > 113 && sTP_Draw.Xpoint < 203  &&  //과산화수소 세척
 				        sTP_Draw.Ypoint  > 149 && sTP_Draw.Ypoint < 230 && pagestatus==0){
@@ -734,37 +770,53 @@ void TP_DrawBoard(void)
                         // getPCAmode(0x00);
                         // read_PCA_reg(0xfe,1);
                         pagestatus=4;
-                        pagechange=true;
                         TP_start_view(pagestatus);
                 }else if((sTP_Draw.Xpoint > 218 && sTP_Draw.Xpoint < 307  &&  // nai
 				        sTP_Draw.Ypoint  > 51 && sTP_Draw.Ypoint < 132) && pagestatus==0){
-                        
                         pagestatus=5;
-                        pagechange=true;
                         TP_start_view(pagestatus);
                 }else if(((sTP_Draw.Xpoint > 218 && sTP_Draw.Xpoint < 307 ) &&  // nai 세척
 				        (sTP_Draw.Ypoint  > 150 && sTP_Draw.Ypoint < 230)) && pagestatus==0){
-                        
                         pagestatus=6;
-                        pagechange=true;
                         TP_start_view(pagestatus);
-                }else if((sTP_Draw.Xpoint > 273 && sTP_Draw.Xpoint < 320 &&  // 다음 273,1 318,40 --------------------------------
-				        sTP_Draw.Ypoint  > 0 && sTP_Draw.Ypoint < 40) && pagestatus==0 && pagestatus==7){
-                        
+                }else if((sTP_Draw.Xpoint > 273 && sTP_Draw.Xpoint < 320 &&  // 밸브 273,1 318,40 --------------------------------
+				        sTP_Draw.Ypoint  > 0 && sTP_Draw.Ypoint < 40) && (pagestatus==0 || pagestatus==7)){
+                        valve_view=true;
+                        printf("valve\r\n");
                         TP_gesmain();
                         
-                }else if((sTP_Draw.Xpoint > 218 && sTP_Draw.Xpoint < 307  &&  // nai 세척
-				        sTP_Draw.Ypoint  > 150 && sTP_Draw.Ypoint < 230) && pagestatus==7){                        
-                        // pagestatus=8;
-                }else if((sTP_Draw.Xpoint > 218 && sTP_Draw.Xpoint < 307  &&  // nai 세척
-				        sTP_Draw.Ypoint  > 150 && sTP_Draw.Ypoint < 230) && pagestatus==7){                        
-                        // pagestatus=9;
-                }else if((sTP_Draw.Xpoint > 218 && sTP_Draw.Xpoint < 307  &&  // nai 세척
-				        sTP_Draw.Ypoint  > 150 && sTP_Draw.Ypoint < 230) && pagestatus==7){                        
-                        // pagestatus=10;
-                }   
-                
-             
+                }else if((sTP_Draw.Xpoint > 10 && sTP_Draw.Xpoint < 97  &&  //시료부
+				        sTP_Draw.Ypoint  > 52 && sTP_Draw.Ypoint < 132) && pagestatus==7){                         
+                        pagestatus=8; 
+                        TP_start_view(pagestatus);                        
+                }else if((sTP_Draw.Xpoint > 10 && sTP_Draw.Xpoint < 97  &&  //시료부 세척
+				        sTP_Draw.Ypoint  > 149 && sTP_Draw.Ypoint < 230) && (pagestatus==7)){                                     
+                        pagestatus=9;
+                        TP_start_view(pagestatus);
+                }else if((sTP_Draw.Xpoint > 114 && sTP_Draw.Xpoint < 203 &&  //과산화수소
+				        sTP_Draw.Ypoint  > 51 && sTP_Draw.Ypoint < 132 )&& (pagestatus==7)){                        
+                        pagestatus=10; 
+                        TP_start_view(pagestatus);
+                }else if(sTP_Draw.Xpoint > 113 && sTP_Draw.Xpoint < 203  &&  //과산화수소 세척
+				        sTP_Draw.Ypoint  > 149 && sTP_Draw.Ypoint < 230 && pagestatus==7){
+                        pagestatus=11;
+                        TP_start_view(pagestatus);
+                }else if((sTP_Draw.Xpoint > 218 && sTP_Draw.Xpoint < 307  &&  // nai
+				        sTP_Draw.Ypoint  > 51 && sTP_Draw.Ypoint < 132) && pagestatus==7){                        
+                        pagestatus=12;
+                        TP_start_view(pagestatus);
+                }else if(((sTP_Draw.Xpoint > 218 && sTP_Draw.Xpoint < 307 ) &&  // nai 세척
+				        (sTP_Draw.Ypoint  > 150 && sTP_Draw.Ypoint < 230)) && pagestatus==7){                        
+                        pagestatus=13;
+                        TP_start_view(pagestatus);
+                }else if((sTP_Draw.Xpoint > 273 && sTP_Draw.Xpoint < 320 &&  // 밸브 273,1 318,40 --------------------------------
+				        sTP_Draw.Ypoint  > 0 && sTP_Draw.Ypoint < 40) && pagestatus==14){
+                        pagestatus=13;
+                        TP_gesmain();
+                        
+                }
+                printf("pagestatus : %d\r\n",pagestatus);
+            
             // 오동작으로 다른페이지로 넘어가지 않도록 안쓰는 좌표값으로 변경
             sTP_Draw.Xpoint = 160;
             sTP_Draw.Ypoint = 1;
