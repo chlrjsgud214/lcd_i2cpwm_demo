@@ -24,6 +24,8 @@ d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../.
                               d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libc.a(lib_a-realloc.o) (_realloc_r)
 d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libc.a(lib_a-sbrkr.o)
                               d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libc.a(lib_a-mallocr.o) (_sbrk_r)
+d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libc.a(lib_a-strcmp.o)
+                              CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/fatfs_storage.c.obj (strcmp)
 d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libc.a(lib_a-strlen-stub.o)
                               CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/fatfs_storage.c.obj (strlen)
 d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libc.a(lib_a-freer.o)
@@ -89,6 +91,8 @@ Discarded input sections
                 0x00000000      0x154 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/fatfs_storage.c.obj
  .text.Buffercmp
                 0x00000000       0x28 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/fatfs_storage.c.obj
+ .bss.BytesRead_b
+                0x00000000        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/fatfs_storage.c.obj
  .bss.BytesWritten
                 0x00000000        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/fatfs_storage.c.obj
  .bss.MyDirectory
@@ -195,8 +199,6 @@ Discarded input sections
                 0x00000000       0x44 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Driver.c.obj
  .text.LCD_SetColor
                 0x00000000       0x40 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Driver.c.obj
- .text.LCD_SetArealColor
-                0x00000000       0x64 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Driver.c.obj
  .text.LCD_Read_Id
                 0x00000000       0x44 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Driver.c.obj
  .text          0x00000000        0x0 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_GUI.c.obj
@@ -206,10 +208,6 @@ Discarded input sections
                 0x00000000       0xdc CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_GUI.c.obj
  .text.GUI_DrawCircle.part.0.constprop.0
                 0x00000000      0x3d4 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_GUI.c.obj
- .text.GUI_DrawLine.part.0
-                0x00000000      0x1b4 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_GUI.c.obj
- .text.GUI_DrawRectangle.part.0
-                0x00000000       0xd8 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_GUI.c.obj
  .text.GUI_DrawCircle.part.0
                 0x00000000      0x69c CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_GUI.c.obj
  .text.GUI_Swop
@@ -222,8 +220,6 @@ Discarded input sections
                 0x00000000       0xb0 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_GUI.c.obj
  .text.GUI_DrawLine
                 0x00000000       0x3c CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_GUI.c.obj
- .text.GUI_DrawRectangle
-                0x00000000       0x48 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_GUI.c.obj
  .text.GUI_DrawCircle
                 0x00000000       0x2c CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_GUI.c.obj
  .text.GUI_DisChar
@@ -256,9 +252,11 @@ Discarded input sections
  .text.TP_Adjust
                 0x00000000      0xac4 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
  .text.TP_start_view
-                0x00000000       0xc8 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
+                0x00000000      0x10c CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
  .rodata.TP_start_view
                 0x00000000       0x50 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
+ .text.TP_Bmp_button
+                0x00000000       0x24 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
  .rodata.str1.4
                 0x00000000       0xa1 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
  .bss.i2c_writebuf
@@ -1457,9 +1455,9 @@ Discarded input sections
  .comment       0x00000000       0x4a CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_pio/pio.c.obj
  .ARM.attributes
                 0x00000000       0x2c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_pio/pio.c.obj
- .text          0x00000000        0x0 C:\Users\chl_4\AppData\Local\Temp\cc0rARZp.o
- .data          0x00000000        0x0 C:\Users\chl_4\AppData\Local\Temp\cc0rARZp.o
- .bss           0x00000000        0x0 C:\Users\chl_4\AppData\Local\Temp\cc0rARZp.o
+ .text          0x00000000        0x0 C:\Users\chl_4\AppData\Local\Temp\cc2QIrAD.o
+ .data          0x00000000        0x0 C:\Users\chl_4\AppData\Local\Temp\cc2QIrAD.o
+ .bss           0x00000000        0x0 C:\Users\chl_4\AppData\Local\Temp\cc2QIrAD.o
  .data          0x00000000        0x0 d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp\libgcc.a(_dvmd_tls.o)
  .bss           0x00000000        0x0 d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp\libgcc.a(_dvmd_tls.o)
  .text          0x00000000        0x0 d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libc.a(lib_a-calloc.o)
@@ -1565,6 +1563,8 @@ Discarded input sections
  .debug_frame   0x00000000       0x2c d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libc.a(lib_a-sbrkr.o)
  .ARM.attributes
                 0x00000000       0x2c d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libc.a(lib_a-sbrkr.o)
+ .data          0x00000000        0x0 d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libc.a(lib_a-strcmp.o)
+ .bss           0x00000000        0x0 d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libc.a(lib_a-strcmp.o)
  .text          0x00000000        0x0 d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libc.a(lib_a-strlen-stub.o)
  .data          0x00000000        0x0 d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libc.a(lib_a-strlen-stub.o)
  .bss           0x00000000        0x0 d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libc.a(lib_a-strlen-stub.o)
@@ -1675,11 +1675,11 @@ LOAD d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1
 .boot2          0x10000000      0x100
                 0x10000000                __boot2_start__ = .
  *(.boot2)
- .boot2         0x10000000      0x100 C:\Users\chl_4\AppData\Local\Temp\cc0rARZp.o
+ .boot2         0x10000000      0x100 C:\Users\chl_4\AppData\Local\Temp\cc2QIrAD.o
                 0x10000100                __boot2_end__ = .
                 0x00000001                ASSERT (((__boot2_end__ - __boot2_start__) == 0x100), ERROR: Pico second stage bootloader must be 256 bytes in size)
 
-.text           0x10000100     0xc490
+.text           0x10000100     0xcad8
                 0x10000100                __logical_binary_start = .
  *(.vectors)
  .vectors       0x10000100       0xd4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_standard_link/crt0.S.obj
@@ -1744,780 +1744,802 @@ LOAD d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1
  .text.startup.main
                 0x1000030c        0x8 CMakeFiles/lcd_i2cpwm_demo.dir/main.c.obj
                 0x1000030c                main
- .text.lcd_run  0x10000314       0x3c CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_run.c.obj
+ .text.lcd_run  0x10000314       0x94 CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_run.c.obj
                 0x10000314                lcd_run
  .text.DEV_Digital_Write
-                0x10000350       0x14 CMakeFiles/lcd_i2cpwm_demo.dir/lib/config/DEV_Config.c.obj
-                0x10000350                DEV_Digital_Write
+                0x100003a8       0x14 CMakeFiles/lcd_i2cpwm_demo.dir/lib/config/DEV_Config.c.obj
+                0x100003a8                DEV_Digital_Write
  .text.DEV_Digital_Read
-                0x10000364       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/lib/config/DEV_Config.c.obj
-                0x10000364                DEV_Digital_Read
+                0x100003bc       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/lib/config/DEV_Config.c.obj
+                0x100003bc                DEV_Digital_Read
  .text.SENSOR_GPIO_Init
-                0x10000374       0x6c CMakeFiles/lcd_i2cpwm_demo.dir/lib/config/DEV_Config.c.obj
-                0x10000374                SENSOR_GPIO_Init
+                0x100003cc       0x6c CMakeFiles/lcd_i2cpwm_demo.dir/lib/config/DEV_Config.c.obj
+                0x100003cc                SENSOR_GPIO_Init
  .text.System_Init
-                0x100003e0       0xd8 CMakeFiles/lcd_i2cpwm_demo.dir/lib/config/DEV_Config.c.obj
-                0x100003e0                System_Init
+                0x10000438       0xd8 CMakeFiles/lcd_i2cpwm_demo.dir/lib/config/DEV_Config.c.obj
+                0x10000438                System_Init
  .text.SPI4W_Write_Byte
-                0x100004b8       0x24 CMakeFiles/lcd_i2cpwm_demo.dir/lib/config/DEV_Config.c.obj
-                0x100004b8                SPI4W_Write_Byte
+                0x10000510       0x24 CMakeFiles/lcd_i2cpwm_demo.dir/lib/config/DEV_Config.c.obj
+                0x10000510                SPI4W_Write_Byte
  .text.SPI4W_Read_Byte
-                0x100004dc       0x20 CMakeFiles/lcd_i2cpwm_demo.dir/lib/config/DEV_Config.c.obj
-                0x100004dc                SPI4W_Read_Byte
+                0x10000534       0x20 CMakeFiles/lcd_i2cpwm_demo.dir/lib/config/DEV_Config.c.obj
+                0x10000534                SPI4W_Read_Byte
  .text.Driver_Delay_ms
-                0x100004fc        0x8 CMakeFiles/lcd_i2cpwm_demo.dir/lib/config/DEV_Config.c.obj
-                0x100004fc                Driver_Delay_ms
+                0x10000554        0x8 CMakeFiles/lcd_i2cpwm_demo.dir/lib/config/DEV_Config.c.obj
+                0x10000554                Driver_Delay_ms
  .text.Driver_Delay_us
-                0x10000504        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/lib/config/DEV_Config.c.obj
-                0x10000504                Driver_Delay_us
+                0x1000055c        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/lib/config/DEV_Config.c.obj
+                0x1000055c                Driver_Delay_us
  .text.disk_initialize
-                0x10000508       0x28 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/diskio.c.obj
-                0x10000508                disk_initialize
+                0x10000560       0x28 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/diskio.c.obj
+                0x10000560                disk_initialize
  .text.disk_status
-                0x10000530        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/diskio.c.obj
-                0x10000530                disk_status
+                0x10000588        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/diskio.c.obj
+                0x10000588                disk_status
  .text.disk_read
-                0x10000534       0x34 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/diskio.c.obj
-                0x10000534                disk_read
+                0x1000058c       0x34 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/diskio.c.obj
+                0x1000058c                disk_read
  .text.disk_write
-                0x10000568       0x28 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/diskio.c.obj
-                0x10000568                disk_write
+                0x100005c0       0x28 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/diskio.c.obj
+                0x100005c0                disk_write
  .text.disk_ioctl
-                0x10000590       0x54 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/diskio.c.obj
-                0x10000590                disk_ioctl
+                0x100005e8       0x54 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/diskio.c.obj
+                0x100005e8                disk_ioctl
  .text.get_fattime
-                0x100005e4        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/diskio.c.obj
-                0x100005e4                get_fattime
+                0x1000063c        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/diskio.c.obj
+                0x1000063c                get_fattime
+ .text.show_button
+                0x10000640       0x78 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/fatfs_storage.c.obj
+                0x10000640                show_button
+ .text.show_num
+                0x100006b8      0x11c CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/fatfs_storage.c.obj
+                0x100006b8                show_num
  .text.Storage_OpenReadFile
-                0x100005e8      0x1d8 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/fatfs_storage.c.obj
-                0x100005e8                Storage_OpenReadFile
+                0x100007d4      0x1f4 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/fatfs_storage.c.obj
+                0x100007d4                Storage_OpenReadFile
  .text.check_fs
-                0x100007c0       0x80 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
+                0x100009c8       0x80 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
  .text.move_window
-                0x10000840       0x80 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
+                0x10000a48       0x80 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
  .text.find_volume
-                0x100008c0      0x3ac CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
+                0x10000ac8      0x3ac CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
  .text.get_fat.part.0
-                0x10000c6c       0xd8 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
+                0x10000e74       0xd8 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
  .text.f_read.part.0
-                0x10000d44      0x250 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
+                0x10000f4c      0x250 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
  .text.put_fat.part.0
-                0x10000f94      0x12c CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
- .text.sync_fs  0x100010c0       0xc4 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
+                0x1000119c      0x12c CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
+ .text.sync_fs  0x100012c8       0xc4 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
  .text.create_chain
-                0x10001184      0x1c4 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
- .text.dir_sdi  0x10001348      0x1a4 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
+                0x1000138c      0x1c4 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
+ .text.dir_sdi  0x10001550      0x1a4 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
  .text.follow_path
-                0x100014ec      0x37c CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
+                0x100016f4      0x37c CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
  .text.remove_chain.part.0
-                0x10001868      0x154 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
+                0x10001a70      0x154 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
  .text.dir_register
-                0x100019bc      0x308 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
- .text.f_mount  0x10001cc4       0x5c CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
-                0x10001cc4                f_mount
- .text.f_open   0x10001d20      0x194 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
-                0x10001d20                f_open
- .text.f_read   0x10001eb4       0x5c CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
-                0x10001eb4                f_read
- .text.f_close  0x10001f10       0xd8 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
-                0x10001f10                f_close
- .text.SD_Init  0x10001fe8       0x6c CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Bmp.c.obj
-                0x10001fe8                SD_Init
+                0x10001bc4      0x308 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
+ .text.f_mount  0x10001ecc       0x5c CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
+                0x10001ecc                f_mount
+ .text.f_open   0x10001f28      0x194 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
+                0x10001f28                f_open
+ .text.f_read   0x100020bc       0x5c CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
+                0x100020bc                f_read
+ .text.f_close  0x10002118       0xd8 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
+                0x10002118                f_close
+ .text.SD_Init  0x100021f0       0x6c CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Bmp.c.obj
+                0x100021f0                SD_Init
  .text.LCD_SetGramScanWay
-                0x10002054       0xa4 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Driver.c.obj
-                0x10002054                LCD_SetGramScanWay
+                0x1000225c       0xa4 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Driver.c.obj
+                0x1000225c                LCD_SetGramScanWay
  .text.LCD_Init
-                0x100020f8     0x17b8 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Driver.c.obj
-                0x100020f8                LCD_Init
+                0x10002300     0x17b8 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Driver.c.obj
+                0x10002300                LCD_Init
  .text.LCD_SetWindow
-                0x100038b0      0x260 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Driver.c.obj
-                0x100038b0                LCD_SetWindow
+                0x10003ab8      0x260 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Driver.c.obj
+                0x10003ab8                LCD_SetWindow
  .text.LCD_SetCursor
-                0x10003b10      0x244 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Driver.c.obj
-                0x10003b10                LCD_SetCursor
+                0x10003d18      0x244 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Driver.c.obj
+                0x10003d18                LCD_SetCursor
  .text.LCD_SetPointlColor
-                0x10003d54       0x48 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Driver.c.obj
-                0x10003d54                LCD_SetPointlColor
+                0x10003f5c       0x48 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Driver.c.obj
+                0x10003f5c                LCD_SetPointlColor
+ .text.LCD_SetArealColor
+                0x10003fa4       0x64 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Driver.c.obj
+                0x10003fa4                LCD_SetArealColor
  .text.LCD_Clear
-                0x10003d9c       0x58 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Driver.c.obj
-                0x10003d9c                LCD_Clear
+                0x10004008       0x58 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Driver.c.obj
+                0x10004008                LCD_Clear
  .text.GUI_DisChar.part.0
-                0x10003df4      0x120 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_GUI.c.obj
+                0x10004060      0x120 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_GUI.c.obj
+ .text.GUI_DrawLine.part.0
+                0x10004180      0x1b4 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_GUI.c.obj
+ .text.GUI_DrawRectangle.part.0
+                0x10004334       0xd8 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_GUI.c.obj
+ .text.GUI_DrawRectangle
+                0x1000440c       0x48 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_GUI.c.obj
+                0x1000440c                GUI_DrawRectangle
  .text.GUI_DisString_EN
-                0x10003f14       0xa4 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_GUI.c.obj
-                0x10003f14                GUI_DisString_EN
+                0x10004454       0xa4 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_GUI.c.obj
+                0x10004454                GUI_DisString_EN
  .text.TP_Read_ADC_Average
-                0x10003fb8      0x108 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
+                0x100044f8      0x108 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
  .text.TP_Read_TwiceADC.constprop.0
-                0x100040c0       0x84 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
+                0x10004600       0x84 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
  .text.TP_GetAdFac
-                0x10004144       0xec CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
-                0x10004144                TP_GetAdFac
+                0x10004684       0xec CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
+                0x10004684                TP_GetAdFac
  .text.TP_gesmain
-                0x10004230      0x10c CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
-                0x10004230                TP_gesmain
+                0x10004770      0x10c CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
+                0x10004770                TP_gesmain
  .text.TP_Bmp_view
-                0x1000433c       0x20 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
-                0x1000433c                TP_Bmp_view
+                0x1000487c       0x20 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
+                0x1000487c                TP_Bmp_view
+ .text.TP_Bmp_num
+                0x1000489c       0x24 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
+                0x1000489c                TP_Bmp_num
  .text.TP_DrawBoard
-                0x1000435c      0x4d0 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
-                0x1000435c                TP_DrawBoard
- .text.TP_Init  0x1000482c       0x28 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
-                0x1000482c                TP_Init
+                0x100048c0      0x528 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
+                0x100048c0                TP_DrawBoard
+ .text.TP_Init  0x10004de8       0x28 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
+                0x10004de8                TP_Init
  .text.SD_SendCmd.constprop.0
-                0x10004854       0x90 CMakeFiles/lcd_i2cpwm_demo.dir/lib/sdcard/MMC_SD.c.obj
+                0x10004e10       0x90 CMakeFiles/lcd_i2cpwm_demo.dir/lib/sdcard/MMC_SD.c.obj
  .text.SD_SPI_ReadWriteByte
-                0x100048e4        0x8 CMakeFiles/lcd_i2cpwm_demo.dir/lib/sdcard/MMC_SD.c.obj
-                0x100048e4                SD_SPI_ReadWriteByte
+                0x10004ea0        0x8 CMakeFiles/lcd_i2cpwm_demo.dir/lib/sdcard/MMC_SD.c.obj
+                0x10004ea0                SD_SPI_ReadWriteByte
  .text.SD_SPI_SpeedLow
-                0x100048ec        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/lib/sdcard/MMC_SD.c.obj
-                0x100048ec                SD_SPI_SpeedLow
+                0x10004ea8        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/lib/sdcard/MMC_SD.c.obj
+                0x10004ea8                SD_SPI_SpeedLow
  .text.SD_SPI_SpeedHigh
-                0x100048f0        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/lib/sdcard/MMC_SD.c.obj
-                0x100048f0                SD_SPI_SpeedHigh
+                0x10004eac        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/lib/sdcard/MMC_SD.c.obj
+                0x10004eac                SD_SPI_SpeedHigh
  .text.SD_WaitReady
-                0x100048f4       0x24 CMakeFiles/lcd_i2cpwm_demo.dir/lib/sdcard/MMC_SD.c.obj
-                0x100048f4                SD_WaitReady
+                0x10004eb0       0x24 CMakeFiles/lcd_i2cpwm_demo.dir/lib/sdcard/MMC_SD.c.obj
+                0x10004eb0                SD_WaitReady
  .text.SD_SendCmd
-                0x10004918       0x98 CMakeFiles/lcd_i2cpwm_demo.dir/lib/sdcard/MMC_SD.c.obj
-                0x10004918                SD_SendCmd
+                0x10004ed4       0x98 CMakeFiles/lcd_i2cpwm_demo.dir/lib/sdcard/MMC_SD.c.obj
+                0x10004ed4                SD_SendCmd
  .text.SD_GetCSD
-                0x100049b0       0x70 CMakeFiles/lcd_i2cpwm_demo.dir/lib/sdcard/MMC_SD.c.obj
-                0x100049b0                SD_GetCSD
+                0x10004f6c       0x70 CMakeFiles/lcd_i2cpwm_demo.dir/lib/sdcard/MMC_SD.c.obj
+                0x10004f6c                SD_GetCSD
  .text.SD_GetSectorCount
-                0x10004a20       0x70 CMakeFiles/lcd_i2cpwm_demo.dir/lib/sdcard/MMC_SD.c.obj
-                0x10004a20                SD_GetSectorCount
+                0x10004fdc       0x70 CMakeFiles/lcd_i2cpwm_demo.dir/lib/sdcard/MMC_SD.c.obj
+                0x10004fdc                SD_GetSectorCount
  .text.SD_Initialize
-                0x10004a90      0x1bc CMakeFiles/lcd_i2cpwm_demo.dir/lib/sdcard/MMC_SD.c.obj
-                0x10004a90                SD_Initialize
+                0x1000504c      0x1bc CMakeFiles/lcd_i2cpwm_demo.dir/lib/sdcard/MMC_SD.c.obj
+                0x1000504c                SD_Initialize
  .text.SD_ReadDisk
-                0x10004c4c       0xe0 CMakeFiles/lcd_i2cpwm_demo.dir/lib/sdcard/MMC_SD.c.obj
-                0x10004c4c                SD_ReadDisk
+                0x10005208       0xe0 CMakeFiles/lcd_i2cpwm_demo.dir/lib/sdcard/MMC_SD.c.obj
+                0x10005208                SD_ReadDisk
  .text.SD_WriteDisk
-                0x10004d2c      0x154 CMakeFiles/lcd_i2cpwm_demo.dir/lib/sdcard/MMC_SD.c.obj
-                0x10004d2c                SD_WriteDisk
+                0x100052e8      0x154 CMakeFiles/lcd_i2cpwm_demo.dir/lib/sdcard/MMC_SD.c.obj
+                0x100052e8                SD_WriteDisk
  .text.i2c_bus_scan
-                0x10004e80       0xac CMakeFiles/lcd_i2cpwm_demo.dir/lib/pca9685/pca9685.c.obj
-                0x10004e80                i2c_bus_scan
+                0x1000543c       0xac CMakeFiles/lcd_i2cpwm_demo.dir/lib/pca9685/pca9685.c.obj
+                0x1000543c                i2c_bus_scan
  .text.getPCAmode
-                0x10004f2c       0x84 CMakeFiles/lcd_i2cpwm_demo.dir/lib/pca9685/pca9685.c.obj
-                0x10004f2c                getPCAmode
+                0x100054e8       0x84 CMakeFiles/lcd_i2cpwm_demo.dir/lib/pca9685/pca9685.c.obj
+                0x100054e8                getPCAmode
  .text.pca_i2c_init
-                0x10004fb0       0x40 CMakeFiles/lcd_i2cpwm_demo.dir/lib/pca9685/pca9685.c.obj
-                0x10004fb0                pca_i2c_init
+                0x1000556c       0x40 CMakeFiles/lcd_i2cpwm_demo.dir/lib/pca9685/pca9685.c.obj
+                0x1000556c                pca_i2c_init
  .text.startup.SystemInit
-                0x10004ff0       0x14 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/cmsis/stub/CMSIS/Device/RaspberryPi/RP2040/Source/system_RP2040.c.obj
-                0x10004ff0                SystemInit
+                0x100055ac       0x14 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/cmsis/stub/CMSIS/Device/RaspberryPi/RP2040/Source/system_RP2040.c.obj
+                0x100055ac                SystemInit
  .text.clock_configure
-                0x10005004      0x114 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
-                0x10005004                clock_configure
+                0x100055c0      0x114 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
+                0x100055c0                clock_configure
  .text.clocks_init
-                0x10005118      0x2bc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
-                0x10005118                clocks_init
+                0x100056d4      0x2bc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
+                0x100056d4                clocks_init
  .text.clock_get_hz
-                0x100053d4        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
-                0x100053d4                clock_get_hz
+                0x10005990        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
+                0x10005990                clock_get_hz
  .text.hw_claim_or_assert
-                0x100053e0       0x44 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj
-                0x100053e0                hw_claim_or_assert
+                0x1000599c       0x44 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj
+                0x1000599c                hw_claim_or_assert
  .text.hw_claim_unused_from_range
-                0x10005424       0x9c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj
-                0x10005424                hw_claim_unused_from_range
+                0x100059e0       0x9c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj
+                0x100059e0                hw_claim_unused_from_range
  .text.running_on_fpga
-                0x100054c0       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_platform/platform.c.obj
-                0x100054c0                running_on_fpga
+                0x10005a7c       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_platform/platform.c.obj
+                0x10005a7c                running_on_fpga
  .text.spin_locks_reset
-                0x100054d0       0x1c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
-                0x100054d0                spin_locks_reset
+                0x10005a8c       0x1c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+                0x10005a8c                spin_locks_reset
  .text.next_striped_spin_lock_num
-                0x100054ec       0x18 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
-                0x100054ec                next_striped_spin_lock_num
+                0x10005aa8       0x18 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+                0x10005aa8                next_striped_spin_lock_num
  .text.spin_lock_claim_unused
-                0x10005504       0x20 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
-                0x10005504                spin_lock_claim_unused
+                0x10005ac0       0x20 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+                0x10005ac0                spin_lock_claim_unused
  .text.gpio_set_function
-                0x10005524       0x30 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
-                0x10005524                gpio_set_function
+                0x10005ae0       0x30 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
+                0x10005ae0                gpio_set_function
  .text.gpio_set_pulls
-                0x10005554       0x30 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
-                0x10005554                gpio_set_pulls
+                0x10005b10       0x30 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
+                0x10005b10                gpio_set_pulls
  .text.gpio_init
-                0x10005584       0x3c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
-                0x10005584                gpio_init
+                0x10005b40       0x3c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
+                0x10005b40                gpio_init
  .text.irq_set_enabled
-                0x100055c0       0x24 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x100055c0                irq_set_enabled
+                0x10005b7c       0x24 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x10005b7c                irq_set_enabled
  .text.irq_set_pending
-                0x100055e4       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x100055e4                irq_set_pending
+                0x10005ba0       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x10005ba0                irq_set_pending
  .text.irq_has_shared_handler
-                0x100055f4       0x2c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x100055f4                irq_has_shared_handler
+                0x10005bb0       0x2c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x10005bb0                irq_has_shared_handler
  .text.irq_get_vtable_handler
-                0x10005620       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x10005620                irq_get_vtable_handler
+                0x10005bdc       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x10005bdc                irq_get_vtable_handler
  .text.irq_set_exclusive_handler
-                0x10005630       0x54 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x10005630                irq_set_exclusive_handler
+                0x10005bec       0x54 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x10005bec                irq_set_exclusive_handler
  .text.irq_add_shared_handler
-                0x10005684      0x1e4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x10005684                irq_add_shared_handler
+                0x10005c40      0x1e4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x10005c40                irq_add_shared_handler
  .text.irq_remove_handler
-                0x10005868      0x1b4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x10005868                irq_remove_handler
+                0x10005e24      0x1b4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x10005e24                irq_remove_handler
  .text.irq_add_tail_to_free_list
-                0x10005a1c       0xb4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x10005a1c                irq_add_tail_to_free_list
+                0x10005fd8       0xb4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x10005fd8                irq_add_tail_to_free_list
  .text.irq_init_priorities
-                0x10005ad0       0x24 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x10005ad0                irq_init_priorities
+                0x1000608c       0x24 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x1000608c                irq_init_priorities
  .text.user_irq_claim_unused
-                0x10005af4       0x30 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x10005af4                user_irq_claim_unused
+                0x100060b0       0x30 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x100060b0                user_irq_claim_unused
  .text.lock_init
-                0x10005b24       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_sync/lock_core.c.obj
-                0x10005b24                lock_init
+                0x100060e0       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_sync/lock_core.c.obj
+                0x100060e0                lock_init
  .text.timer_pool_entry_comparator
-                0x10005b34       0x34 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_time/time.c.obj
-                0x10005b34                timer_pool_entry_comparator
+                0x100060f0       0x34 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x100060f0                timer_pool_entry_comparator
  .text.sleep_until_callback
-                0x10005b68       0x30 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x10006124       0x30 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_time/time.c.obj
  .text.add_alarm_under_lock.isra.0
-                0x10005b98      0x100 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x10006154      0x100 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_time/time.c.obj
  .text.alarm_pool_alarm_callback
-                0x10005c98      0x1c8 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x10006254      0x1c8 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_time/time.c.obj
  .text.alarm_pool_add_alarm_at.constprop.0
-                0x10005e60      0x11c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x1000641c      0x11c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_time/time.c.obj
  .text.alarm_pool_init_default
-                0x10005f7c       0x64 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_time/time.c.obj
-                0x10005f7c                alarm_pool_init_default
+                0x10006538       0x64 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x10006538                alarm_pool_init_default
  .text.alarm_pool_get_default
-                0x10005fe0        0x8 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_time/time.c.obj
-                0x10005fe0                alarm_pool_get_default
+                0x1000659c        0x8 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x1000659c                alarm_pool_get_default
  .text.alarm_pool_add_alarm_at
-                0x10005fe8      0x194 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_time/time.c.obj
-                0x10005fe8                alarm_pool_add_alarm_at
+                0x100065a4      0x194 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x100065a4                alarm_pool_add_alarm_at
  .text.sleep_until
-                0x1000617c       0xac CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_time/time.c.obj
-                0x1000617c                sleep_until
+                0x10006738       0xac CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x10006738                sleep_until
  .text.sleep_ms
-                0x10006228       0x38 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_time/time.c.obj
-                0x10006228                sleep_ms
+                0x100067e4       0x38 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x100067e4                sleep_ms
  .text.best_effort_wfe_or_timeout
-                0x10006260       0xd4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_time/time.c.obj
-                0x10006260                best_effort_wfe_or_timeout
+                0x1000681c       0xd4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x1000681c                best_effort_wfe_or_timeout
  .text.hardware_alarm_irq_handler
-                0x10006334       0xb8 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x100068f0       0xb8 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
  .text.hardware_alarm_claim
-                0x100063ec       0x18 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x100063ec                hardware_alarm_claim
+                0x100069a8       0x18 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x100069a8                hardware_alarm_claim
  .text.time_us_64
-                0x10006404       0x14 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x10006404                time_us_64
+                0x100069c0       0x14 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x100069c0                time_us_64
  .text.busy_wait_until
-                0x10006418       0x20 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x10006418                busy_wait_until
+                0x100069d4       0x20 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x100069d4                busy_wait_until
  .text.hardware_alarm_set_callback
-                0x10006438       0x8c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x10006438                hardware_alarm_set_callback
+                0x100069f4       0x8c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x100069f4                hardware_alarm_set_callback
  .text.hardware_alarm_set_target
-                0x100064c4       0xe0 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x100064c4                hardware_alarm_set_target
+                0x10006a80       0xe0 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x10006a80                hardware_alarm_set_target
  .text.hardware_alarm_cancel
-                0x100065a4       0x3c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x100065a4                hardware_alarm_cancel
+                0x10006b60       0x3c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x10006b60                hardware_alarm_cancel
  .text.ph_merge_nodes
-                0x100065e0       0x68 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x10006b9c       0x68 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_util/pheap.c.obj
  .text.ph_post_alloc_init
-                0x10006648       0x3c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_util/pheap.c.obj
-                0x10006648                ph_post_alloc_init
+                0x10006c04       0x3c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x10006c04                ph_post_alloc_init
  .text.ph_merge_two_pass
-                0x10006684       0x90 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_util/pheap.c.obj
-                0x10006684                ph_merge_two_pass
+                0x10006c40       0x90 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x10006c40                ph_merge_two_pass
  .text.ph_remove_any_head
-                0x10006714       0xf8 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x10006cd0       0xf8 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_util/pheap.c.obj
  .text.ph_remove_head
-                0x1000680c       0xfc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_util/pheap.c.obj
-                0x1000680c                ph_remove_head
+                0x10006dc8       0xfc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x10006dc8                ph_remove_head
  .text.ph_remove_and_free_node
-                0x10006908       0x7c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_util/pheap.c.obj
-                0x10006908                ph_remove_and_free_node
+                0x10006ec4       0x7c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x10006ec4                ph_remove_and_free_node
  .text.mutex_init
-                0x10006984       0x1c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_sync/mutex.c.obj
-                0x10006984                mutex_init
+                0x10006f40       0x1c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_sync/mutex.c.obj
+                0x10006f40                mutex_init
  .text.recursive_mutex_init
-                0x100069a0       0x1c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_sync/mutex.c.obj
-                0x100069a0                recursive_mutex_init
+                0x10006f5c       0x1c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_sync/mutex.c.obj
+                0x10006f5c                recursive_mutex_init
  .text.critical_section_init
-                0x100069bc       0x20 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_sync/critical_section.c.obj
-                0x100069bc                critical_section_init
+                0x10006f78       0x20 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_sync/critical_section.c.obj
+                0x10006f78                critical_section_init
  .text.pll_init
-                0x100069dc       0xb0 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
-                0x100069dc                pll_init
+                0x10006f98       0xb0 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
+                0x10006f98                pll_init
  .text.watchdog_start_tick
-                0x10006a8c       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
-                0x10006a8c                watchdog_start_tick
+                0x10007048       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
+                0x10007048                watchdog_start_tick
  .text.watchdog_reboot
-                0x10006a9c       0x98 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
-                0x10006a9c                watchdog_reboot
+                0x10007058       0x98 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
+                0x10007058                watchdog_reboot
  .text.xosc_init
-                0x10006b34       0x28 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
-                0x10006b34                xosc_init
+                0x100070f0       0x28 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
+                0x100070f0                xosc_init
  .text.set_sys_clock_pll
-                0x10006b5c       0x78 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.obj
-                0x10006b5c                set_sys_clock_pll
+                0x10007118       0x78 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.obj
+                0x10007118                set_sys_clock_pll
  .text.check_sys_clock_khz
-                0x10006bd4      0x178 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.obj
-                0x10006bd4                check_sys_clock_khz
+                0x10007190      0x178 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdlib/stdlib.c.obj
+                0x10007190                check_sys_clock_khz
  .text.runtime_init
-                0x10006d4c       0xf0 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
-                0x10006d4c                runtime_init
- .text.exit     0x10006e3c        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
-                0x10006e3c                exit
- .text.panic    0x10006e40       0x30 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
-                0x10006e40                panic
+                0x10007308       0xf0 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x10007308                runtime_init
+ .text.exit     0x100073f8        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x100073f8                exit
+ .text.panic    0x100073fc       0x30 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x100073fc                panic
  .text.hard_assertion_failure
-                0x10006e70        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
-                0x10006e70                hard_assertion_failure
+                0x1000742c        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x1000742c                hard_assertion_failure
  .text._out_null
-                0x10006e7c        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x10007438        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .text._out_rev
-                0x10006e80       0x9c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x1000743c       0x9c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .text._ntoa_format
-                0x10006f1c      0x1cc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x100074d8      0x1cc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .text._out_char
-                0x100070e8       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x100076a4       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .text._out_fct
-                0x100070f8       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
- .text._etoa    0x10007108      0x44c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
- .text._ftoa    0x10007554      0x398 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x100076b4       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+ .text._etoa    0x100076c4      0x44c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+ .text._ftoa    0x10007b10      0x398 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .text._vsnprintf
-                0x100078ec      0xb04 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x10007ea8      0xb04 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .text.vfctprintf
-                0x100083f0       0x20 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
-                0x100083f0                vfctprintf
+                0x100089ac       0x20 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x100089ac                vfctprintf
  .text.weak_raw_vprintf
-                0x10008410       0x30 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
-                0x10008410                weak_raw_vprintf
- .text          0x10008440       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
+                0x100089cc       0x30 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x100089cc                weak_raw_vprintf
+ .text          0x100089fc       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
  .text.rom_func_lookup
-                0x10008450       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
-                0x10008450                rom_func_lookup
+                0x10008a0c       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
+                0x10008a0c                rom_func_lookup
  .text.rom_data_lookup
-                0x10008460       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
-                0x10008460                rom_data_lookup
+                0x10008a1c       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
+                0x10008a1c                rom_data_lookup
  .text.rom_funcs_lookup
-                0x10008470       0x44 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
-                0x10008470                rom_funcs_lookup
+                0x10008a2c       0x44 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
+                0x10008a2c                rom_funcs_lookup
  .text.__wrap___aeabi_idiv
-                0x100084b4       0x50 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
-                0x100084b4                __wrap___aeabi_idivmod
-                0x100084b4                divmod_s32s32
-                0x100084b4                div_s32s32
-                0x100084b4                __wrap___aeabi_idiv
-                0x100084bc                divmod_s32s32_unsafe
-                0x100084e8                divmod_s32s32_savestate
+                0x10008a70       0x50 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
+                0x10008a70                __wrap___aeabi_idivmod
+                0x10008a70                divmod_s32s32
+                0x10008a70                div_s32s32
+                0x10008a70                __wrap___aeabi_idiv
+                0x10008a78                divmod_s32s32_unsafe
+                0x10008aa4                divmod_s32s32_savestate
  .text.__wrap___aeabi_uidiv
-                0x10008504       0x4c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
-                0x10008504                __wrap___aeabi_uidiv
-                0x10008504                __wrap___aeabi_uidivmod
-                0x10008504                div_u32u32
-                0x10008504                divmod_u32u32
-                0x1000850c                divmod_u32u32_unsafe
-                0x10008534                divmod_u32u32_savestate
+                0x10008ac0       0x4c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
+                0x10008ac0                __wrap___aeabi_uidiv
+                0x10008ac0                __wrap___aeabi_uidivmod
+                0x10008ac0                div_u32u32
+                0x10008ac0                divmod_u32u32
+                0x10008ac8                divmod_u32u32_unsafe
+                0x10008af0                divmod_u32u32_savestate
  .text.__wrap___aeabi_ldiv
-                0x10008550      0x434 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
-                0x10008550                div_s64s64
-                0x10008550                divmod_s64s64
-                0x10008550                __wrap___aeabi_ldivmod
-                0x10008588                divmod_u64u64
-                0x10008588                div_u64u64
-                0x10008588                __wrap___aeabi_uldivmod
-                0x10008598                divmod_u64u64_savestate
-                0x100085c0                divmod_s64s64_unsafe
-                0x10008648                divmod_u64u64_unsafe
+                0x10008b0c      0x434 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
+                0x10008b0c                div_s64s64
+                0x10008b0c                divmod_s64s64
+                0x10008b0c                __wrap___aeabi_ldivmod
+                0x10008b44                divmod_u64u64
+                0x10008b44                div_u64u64
+                0x10008b44                __wrap___aeabi_uldivmod
+                0x10008b54                divmod_u64u64_savestate
+                0x10008b7c                divmod_s64s64_unsafe
+                0x10008c04                divmod_u64u64_unsafe
  .text.__wrap___aeabi_darithmetic
-                0x10008984       0x80 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x10008984                __wrap___aeabi_drsub
-                0x1000898a                __wrap___aeabi_dsub
-                0x1000899c                __wrap___aeabi_dadd
-                0x100089ae                __wrap___aeabi_ddiv
-                0x100089ea                __wrap___aeabi_dmul
+                0x10008f40       0x80 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x10008f40                __wrap___aeabi_drsub
+                0x10008f46                __wrap___aeabi_dsub
+                0x10008f58                __wrap___aeabi_dadd
+                0x10008f6a                __wrap___aeabi_ddiv
+                0x10008fa6                __wrap___aeabi_dmul
  .text.__wrap___aeabi_cdcmple
-                0x10008a04       0x6c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x10008a04                __wrap___aeabi_cdrcmple
-                0x10008a14                __wrap___aeabi_cdcmpeq
-                0x10008a14                __wrap___aeabi_cdcmple
+                0x10008fc0       0x6c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x10008fc0                __wrap___aeabi_cdrcmple
+                0x10008fd0                __wrap___aeabi_cdcmpeq
+                0x10008fd0                __wrap___aeabi_cdcmple
  .text.__wrap___aeabi_dcmplt
-                0x10008a70        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x10008a70                __wrap___aeabi_dcmplt
+                0x1000902c        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x1000902c                __wrap___aeabi_dcmplt
  .text.__wrap___aeabi_dcmple
-                0x10008a7c       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x10008a7c                __wrap___aeabi_dcmple
+                0x10009038       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x10009038                __wrap___aeabi_dcmple
  .text.__wrap___aeabi_dcmpge
-                0x10008a8c       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x10008a8c                __wrap___aeabi_dcmpge
+                0x10009048       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x10009048                __wrap___aeabi_dcmpge
  .text.__wrap___aeabi_dcmpgt
-                0x10008a9c        0xa CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x10008a9c                __wrap___aeabi_dcmpgt
+                0x10009058        0xa CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x10009058                __wrap___aeabi_dcmpgt
  .text.__wrap___aeabi_dcmpun
-                0x10008aa6       0x1c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x10008aa6                __wrap___aeabi_dcmpun
- *fill*         0x10008ac2        0x2 
+                0x10009062       0x1c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x10009062                __wrap___aeabi_dcmpun
+ *fill*         0x1000907e        0x2 
  .text.__wrap___aeabi_i2d
-                0x10008ac4       0x38 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x10008ac4                __wrap___aeabi_ui2d
-                0x10008acc                __wrap___aeabi_i2d
+                0x10009080       0x38 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x10009080                __wrap___aeabi_ui2d
+                0x10009088                __wrap___aeabi_i2d
  .text.__wrap___aeabi_d2iz
-                0x10008afc       0x48 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x10008afc                double2int_z
-                0x10008afc                __wrap___aeabi_d2iz
+                0x100090b8       0x48 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x100090b8                double2int_z
+                0x100090b8                __wrap___aeabi_d2iz
  .text.__wrap___aeabi_d2uiz
-                0x10008b44       0x18 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x10008b44                __wrap___aeabi_d2uiz
-                0x10008b44                double2uint
+                0x10009100       0x18 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x10009100                __wrap___aeabi_d2uiz
+                0x10009100                double2uint
  .text.__aeabi_double_init
-                0x10008b5c       0x94 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
-                0x10008b5c                __aeabi_double_init
+                0x10009118       0x94 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
+                0x10009118                __aeabi_double_init
  .text.double_table_shim_on_use_helper
-                0x10008bf0       0x2c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x10008bf0                double_table_shim_on_use_helper
+                0x100091ac       0x2c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x100091ac                double_table_shim_on_use_helper
  .text.__wrap___aeabi_dsub
-                0x10008c1c       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x10008c1c                drsub_shim
-                0x10008c22                dsub_shim
+                0x100091d8       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x100091d8                drsub_shim
+                0x100091de                dsub_shim
  .text.dadd_shim
-                0x10008c2c      0x15c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x10008c2c                dadd_shim
+                0x100091e8      0x15c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x100091e8                dadd_shim
  .text.dmul_shim
-                0x10008d88      0x15c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x10008d88                dmul_shim
+                0x10009344      0x15c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x10009344                dmul_shim
  .text.ddiv_shim
-                0x10008ee4      0x1b0 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x10008ee4                ddiv_shim
+                0x100094a0      0x1b0 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x100094a0                ddiv_shim
  .text.double2uint_shim
-                0x10009094        0xe CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x10009094                double2uint_shim
-                0x10009096                double2ufix_shim
- *fill*         0x100090a2        0x2 
+                0x10009650        0xe CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x10009650                double2uint_shim
+                0x10009652                double2ufix_shim
+ *fill*         0x1000965e        0x2 
  .text.double2uint64_shim
-                0x100090a4       0x70 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x100090a4                double2uint64_shim
-                0x100090a6                double2ufix64_shim
-                0x100090c6                d2fix_a
+                0x10009660       0x70 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x10009660                double2uint64_shim
+                0x10009662                double2ufix64_shim
+                0x10009682                d2fix_a
  .text.dunpacks
-                0x10009114       0x3c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x10009114                dunpacks
+                0x100096d0       0x3c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x100096d0                dunpacks
  .text.__aeabi_lmul
-                0x10009150       0x32 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
-                0x10009150                __wrap___aeabi_lmul
- *fill*         0x10009182        0x2 
+                0x1000970c       0x32 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
+                0x1000970c                __wrap___aeabi_lmul
+ *fill*         0x1000973e        0x2 
  .text.__wrap___aeabi_farithmetic
-                0x10009184       0x48 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_float/float_aeabi.S.obj
-                0x10009184                __wrap___aeabi_frsub
-                0x1000918a                __wrap___aeabi_fsub
-                0x10009190                __wrap___aeabi_fadd
-                0x10009196                __wrap___aeabi_fdiv
-                0x100091be                __wrap___aeabi_fmul
+                0x10009740       0x48 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_float/float_aeabi.S.obj
+                0x10009740                __wrap___aeabi_frsub
+                0x10009746                __wrap___aeabi_fsub
+                0x1000974c                __wrap___aeabi_fadd
+                0x10009752                __wrap___aeabi_fdiv
+                0x1000977a                __wrap___aeabi_fmul
  .text.__wrap___aeabi_i2f
-                0x100091cc       0x44 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_float/float_aeabi.S.obj
-                0x100091cc                __wrap___aeabi_i2f
+                0x10009788       0x44 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_float/float_aeabi.S.obj
+                0x10009788                __wrap___aeabi_i2f
  .text.__wrap___aeabi_f2uiz
-                0x10009210        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_float/float_aeabi.S.obj
-                0x10009210                __wrap___aeabi_f2uiz
+                0x100097cc        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_float/float_aeabi.S.obj
+                0x100097cc                __wrap___aeabi_f2uiz
  .text.__aeabi_float_init
-                0x1000921c       0x64 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.obj
-                0x1000921c                __aeabi_float_init
+                0x100097d8       0x64 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.obj
+                0x100097d8                __aeabi_float_init
  .text.float_table_shim_on_use_helper
-                0x10009280       0x2c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim.S.obj
-                0x10009280                float_table_shim_on_use_helper
- .text          0x100092ac       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
-                0x100092ac                __aeabi_mem_init
- .text.memset   0x100092bc        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
-                0x100092bc                __wrap_memset
- .text.memcpy   0x100092c8        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
-                0x100092c8                __wrap_memcpy
-                0x100092c8                __wrap___aeabi_memcpy
+                0x1000983c       0x2c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim.S.obj
+                0x1000983c                float_table_shim_on_use_helper
+ .text          0x10009868       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+                0x10009868                __aeabi_mem_init
+ .text.memset   0x10009878        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+                0x10009878                __wrap_memset
+ .text.memcpy   0x10009884        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+                0x10009884                __wrap_memcpy
+                0x10009884                __wrap___aeabi_memcpy
  .text.stdio_out_chars_no_crlf
-                0x100092d4       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x10009890       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
  .text.stdio_out_chars_crlf
-                0x100092e4       0xb4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x100098a0       0xb4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
  .text.stdio_buffered_printer
-                0x10009398       0x64 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x10009954       0x64 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
  .text.stdio_put_string.isra.0
-                0x100093fc       0xfc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x100099b8       0xfc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
  .text.__wrap_putchar
-                0x100094f8       0xa0 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x100094f8                __wrap_putchar
+                0x10009ab4       0xa0 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x10009ab4                __wrap_putchar
  .text.__wrap_puts
-                0x10009598       0x3c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x10009598                __wrap_puts
+                0x10009b54       0x3c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x10009b54                __wrap_puts
  .text.stdio_set_driver_enabled
-                0x100095d4       0x30 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x100095d4                stdio_set_driver_enabled
+                0x10009b90       0x30 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x10009b90                stdio_set_driver_enabled
  .text.__wrap_vprintf
-                0x10009604       0xd8 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x10009604                __wrap_vprintf
+                0x10009bc0       0xd8 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x10009bc0                __wrap_vprintf
  .text.__wrap_printf
-                0x100096dc       0x18 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x100096dc                __wrap_printf
+                0x10009c98       0x18 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x10009c98                __wrap_printf
  .text.stdio_init_all
-                0x100096f4        0x8 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x100096f4                stdio_init_all
+                0x10009cb0        0x8 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x10009cb0                stdio_init_all
  .text.resetd_init
-                0x100096fc        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x10009cb8        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
  .text.resetd_reset
-                0x10009700        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x10009cbc        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
  .text.resetd_open
-                0x1000970c       0x28 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x10009cc8       0x28 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
  .text.resetd_xfer_cb
-                0x10009734        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x10009cf0        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
  .text.resetd_control_xfer_cb
-                0x10009738       0x64 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x10009cf4       0x64 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
  .text.usbd_app_driver_get_cb
-                0x1000979c        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
-                0x1000979c                usbd_app_driver_get_cb
+                0x10009d58        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x10009d58                usbd_app_driver_get_cb
  .text.tud_cdc_line_coding_cb
-                0x100097a8       0x34 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
-                0x100097a8                tud_cdc_line_coding_cb
+                0x10009d64       0x34 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x10009d64                tud_cdc_line_coding_cb
  .text.stdio_usb_in_chars
-                0x100097dc       0x68 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
-                0x100097dc                stdio_usb_in_chars
+                0x10009d98       0x68 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x10009d98                stdio_usb_in_chars
  .text.stdio_usb_out_chars
-                0x10009844       0xe4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x10009e00       0xe4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
  .text.timer_task
-                0x10009928       0x18 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
- .text.usb_irq  0x10009940       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x10009ee4       0x18 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+ .text.usb_irq  0x10009efc       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
  .text.low_priority_worker_irq
-                0x10009950       0x24 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x10009f0c       0x24 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
  .text.stdio_usb_init
-                0x10009974       0xb0 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
-                0x10009974                stdio_usb_init
+                0x10009f30       0xb0 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x10009f30                stdio_usb_init
  .text.tud_descriptor_device_cb
-                0x10009a24        0x8 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
-                0x10009a24                tud_descriptor_device_cb
+                0x10009fe0        0x8 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+                0x10009fe0                tud_descriptor_device_cb
  .text.tud_descriptor_configuration_cb
-                0x10009a2c        0x8 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
-                0x10009a2c                tud_descriptor_configuration_cb
+                0x10009fe8        0x8 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+                0x10009fe8                tud_descriptor_configuration_cb
  .text.tud_descriptor_string_cb
-                0x10009a34       0x74 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
-                0x10009a34                tud_descriptor_string_cb
+                0x10009ff0       0x74 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+                0x10009ff0                tud_descriptor_string_cb
  .text.dcd_rp2040_irq
-                0x10009aa8      0x21c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x1000a064      0x21c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
  .text.dcd_int_enable
-                0x10009cc4        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x10009cc4                dcd_int_enable
+                0x1000a280        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x1000a280                dcd_int_enable
  .text.dcd_set_address
-                0x10009cd0       0x14 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x10009cd0                dcd_set_address
+                0x1000a28c       0x14 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x1000a28c                dcd_set_address
  .text.dcd_connect
-                0x10009ce4       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x10009ce4                dcd_connect
+                0x1000a2a0       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x1000a2a0                dcd_connect
  .text.dcd_init
-                0x10009cf4      0x144 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x10009cf4                dcd_init
+                0x1000a2b0      0x144 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x1000a2b0                dcd_init
  .text.dcd_edpt0_status_complete
-                0x10009e38       0x1c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x10009e38                dcd_edpt0_status_complete
+                0x1000a3f4       0x1c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x1000a3f4                dcd_edpt0_status_complete
  .text.dcd_edpt_open
-                0x10009e54       0xf0 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x10009e54                dcd_edpt_open
+                0x1000a410       0xf0 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x1000a410                dcd_edpt_open
  .text.dcd_edpt_close_all
-                0x10009f44       0xbc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x10009f44                dcd_edpt_close_all
+                0x1000a500       0xbc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x1000a500                dcd_edpt_close_all
  .text.dcd_edpt_xfer
-                0x1000a000       0x24 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x1000a000                dcd_edpt_xfer
+                0x1000a5bc       0x24 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x1000a5bc                dcd_edpt_xfer
  .text.dcd_edpt_stall
-                0x1000a024       0x38 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x1000a024                dcd_edpt_stall
+                0x1000a5e0       0x38 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x1000a5e0                dcd_edpt_stall
  .text.dcd_edpt_clear_stall
-                0x1000a05c       0x30 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x1000a05c                dcd_edpt_clear_stall
+                0x1000a618       0x30 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x1000a618                dcd_edpt_clear_stall
  .text._hw_endpoint_buffer_control_update32.part.0.isra.0
-                0x1000a08c       0x1c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+                0x1000a648       0x1c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
  .text.rp2040_usb_init
-                0x1000a0a8       0x4c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
-                0x1000a0a8                rp2040_usb_init
+                0x1000a664       0x4c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+                0x1000a664                rp2040_usb_init
  .text.hw_endpoint_reset_transfer
-                0x1000a0f4        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
-                0x1000a0f4                hw_endpoint_reset_transfer
+                0x1000a6b0        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+                0x1000a6b0                hw_endpoint_reset_transfer
  .text._hw_endpoint_buffer_control_update32
-                0x1000a100       0x44 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
-                0x1000a100                _hw_endpoint_buffer_control_update32
+                0x1000a6bc       0x44 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+                0x1000a6bc                _hw_endpoint_buffer_control_update32
  .text.hw_endpoint_xfer_start
-                0x1000a144      0x138 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
-                0x1000a144                hw_endpoint_xfer_start
+                0x1000a700      0x138 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+                0x1000a700                hw_endpoint_xfer_start
  .text.hw_endpoint_xfer_continue
-                0x1000a27c      0x1e4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
-                0x1000a27c                hw_endpoint_xfer_continue
+                0x1000a838      0x1e4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+                0x1000a838                hw_endpoint_xfer_continue
  .text.tud_mounted
-                0x1000a460       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x1000a460                tud_mounted
+                0x1000aa1c       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x1000aa1c                tud_mounted
  .text.tud_suspended
-                0x1000a470       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x1000a470                tud_suspended
+                0x1000aa2c       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x1000aa2c                tud_suspended
  .text.tud_inited
-                0x1000a480        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x1000a480                tud_inited
+                0x1000aa3c        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x1000aa3c                tud_inited
  .text.tud_init
-                0x1000a48c       0xd8 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x1000a48c                tud_init
+                0x1000aa48       0xd8 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x1000aa48                tud_init
  .text.tud_task
-                0x1000a564      0x8ec CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x1000a564                tud_task
+                0x1000ab20      0x8ec CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x1000ab20                tud_task
  .text.dcd_event_bus_signal
-                0x1000ae50      0x120 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x1000ae50                dcd_event_bus_signal
+                0x1000b40c      0x120 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x1000b40c                dcd_event_bus_signal
  .text.dcd_event_bus_reset
-                0x1000af70       0x54 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x1000af70                dcd_event_bus_reset
+                0x1000b52c       0x54 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x1000b52c                dcd_event_bus_reset
  .text.dcd_event_setup_received
-                0x1000afc4       0x50 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x1000afc4                dcd_event_setup_received
+                0x1000b580       0x50 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x1000b580                dcd_event_setup_received
  .text.dcd_event_xfer_complete
-                0x1000b014       0x68 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x1000b014                dcd_event_xfer_complete
+                0x1000b5d0       0x68 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x1000b5d0                dcd_event_xfer_complete
  .text.usbd_open_edpt_pair
-                0x1000b07c       0x80 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x1000b07c                usbd_open_edpt_pair
+                0x1000b638       0x80 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x1000b638                usbd_open_edpt_pair
  .text.usbd_edpt_open
-                0x1000b0fc       0x30 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x1000b0fc                usbd_edpt_open
+                0x1000b6b8       0x30 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x1000b6b8                usbd_edpt_open
  .text.usbd_edpt_claim
-                0x1000b12c       0x64 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x1000b12c                usbd_edpt_claim
+                0x1000b6e8       0x64 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x1000b6e8                usbd_edpt_claim
  .text.usbd_edpt_release
-                0x1000b190       0x4c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x1000b190                usbd_edpt_release
+                0x1000b74c       0x4c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x1000b74c                usbd_edpt_release
  .text.usbd_edpt_xfer
-                0x1000b1dc       0x48 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x1000b1dc                usbd_edpt_xfer
+                0x1000b798       0x48 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x1000b798                usbd_edpt_xfer
  .text.tud_control_status
-                0x1000b224       0x30 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
-                0x1000b224                tud_control_status
+                0x1000b7e0       0x30 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x1000b7e0                tud_control_status
  .text.tud_control_xfer
-                0x1000b254       0xbc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
-                0x1000b254                tud_control_xfer
+                0x1000b810       0xbc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x1000b810                tud_control_xfer
  .text.usbd_control_reset
-                0x1000b310       0x14 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
-                0x1000b310                usbd_control_reset
+                0x1000b8cc       0x14 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x1000b8cc                usbd_control_reset
  .text.usbd_control_set_complete_callback
-                0x1000b324        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
-                0x1000b324                usbd_control_set_complete_callback
+                0x1000b8e0        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x1000b8e0                usbd_control_set_complete_callback
  .text.usbd_control_set_request
-                0x1000b330       0x1c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
-                0x1000b330                usbd_control_set_request
+                0x1000b8ec       0x1c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x1000b8ec                usbd_control_set_request
  .text.usbd_control_xfer_cb
-                0x1000b34c       0xfc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
-                0x1000b34c                usbd_control_xfer_cb
+                0x1000b908       0xfc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x1000b908                usbd_control_xfer_cb
  .text.tud_cdc_n_connected
-                0x1000b448       0x30 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x1000b448                tud_cdc_n_connected
+                0x1000ba04       0x30 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x1000ba04                tud_cdc_n_connected
  .text.tud_cdc_n_available
-                0x1000b478       0x18 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x1000b478                tud_cdc_n_available
+                0x1000ba34       0x18 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x1000ba34                tud_cdc_n_available
  .text.tud_cdc_n_read
-                0x1000b490       0x70 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x1000b490                tud_cdc_n_read
+                0x1000ba4c       0x70 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x1000ba4c                tud_cdc_n_read
  .text.tud_cdc_n_write_flush
-                0x1000b500       0x78 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x1000b500                tud_cdc_n_write_flush
+                0x1000babc       0x78 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x1000babc                tud_cdc_n_write_flush
  .text.tud_cdc_n_write
-                0x1000b578       0x34 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x1000b578                tud_cdc_n_write
+                0x1000bb34       0x34 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x1000bb34                tud_cdc_n_write
  .text.tud_cdc_n_write_available
-                0x1000b5ac       0x18 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x1000b5ac                tud_cdc_n_write_available
+                0x1000bb68       0x18 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x1000bb68                tud_cdc_n_write_available
  .text.cdcd_init
-                0x1000b5c4       0x7c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x1000b5c4                cdcd_init
+                0x1000bb80       0x7c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x1000bb80                cdcd_init
  .text.cdcd_reset
-                0x1000b640       0x2c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x1000b640                cdcd_reset
+                0x1000bbfc       0x2c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x1000bbfc                cdcd_reset
  .text.cdcd_open
-                0x1000b66c       0xe4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x1000b66c                cdcd_open
+                0x1000bc28       0xe4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x1000bc28                cdcd_open
  .text.cdcd_control_xfer_cb
-                0x1000b750       0xe4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x1000b750                cdcd_control_xfer_cb
+                0x1000bd0c       0xe4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x1000bd0c                cdcd_control_xfer_cb
  .text.cdcd_xfer_cb
-                0x1000b834      0x148 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x1000b834                cdcd_xfer_cb
+                0x1000bdf0      0x148 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x1000bdf0                cdcd_xfer_cb
  .text.tusb_init
-                0x1000b97c        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/tusb.c.obj
-                0x1000b97c                tusb_init
+                0x1000bf38        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/tusb.c.obj
+                0x1000bf38                tusb_init
  .text.tusb_inited
-                0x1000b988        0x8 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/tusb.c.obj
-                0x1000b988                tusb_inited
+                0x1000bf44        0x8 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/tusb.c.obj
+                0x1000bf44                tusb_inited
  .text.tu_edpt_validate
-                0x1000b990       0x78 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/tusb.c.obj
-                0x1000b990                tu_edpt_validate
+                0x1000bf4c       0x78 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/tusb.c.obj
+                0x1000bf4c                tu_edpt_validate
  .text.tu_edpt_bind_driver
-                0x1000ba08       0x2c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/tusb.c.obj
-                0x1000ba08                tu_edpt_bind_driver
+                0x1000bfc4       0x2c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/tusb.c.obj
+                0x1000bfc4                tu_edpt_bind_driver
  .text.tu_fifo_config
-                0x1000ba34       0x78 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x1000ba34                tu_fifo_config
+                0x1000bff0       0x78 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x1000bff0                tu_fifo_config
  .text.tu_fifo_count
-                0x1000baac       0x20 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x1000baac                tu_fifo_count
+                0x1000c068       0x20 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x1000c068                tu_fifo_count
  .text.tu_fifo_empty
-                0x1000bacc       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x1000bacc                tu_fifo_empty
+                0x1000c088       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x1000c088                tu_fifo_empty
  .text.tu_fifo_remaining
-                0x1000badc       0x1c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x1000badc                tu_fifo_remaining
+                0x1000c098       0x1c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x1000c098                tu_fifo_remaining
  .text.tu_fifo_read
-                0x1000baf8       0x9c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x1000baf8                tu_fifo_read
+                0x1000c0b4       0x9c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x1000c0b4                tu_fifo_read
  .text.tu_fifo_read_n
-                0x1000bb94      0x100 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x1000bb94                tu_fifo_read_n
+                0x1000c150      0x100 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x1000c150                tu_fifo_read_n
  .text.tu_fifo_write
-                0x1000bc94       0x7c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x1000bc94                tu_fifo_write
+                0x1000c250       0x7c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x1000c250                tu_fifo_write
  .text.tu_fifo_write_n
-                0x1000bd10      0x100 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x1000bd10                tu_fifo_write_n
+                0x1000c2cc      0x100 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x1000c2cc                tu_fifo_write_n
  .text.tu_fifo_clear
-                0x1000be10       0x4c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x1000be10                tu_fifo_clear
+                0x1000c3cc       0x4c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x1000c3cc                tu_fifo_clear
  .text.tu_fifo_set_overwritable
-                0x1000be5c       0x3c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x1000be5c                tu_fifo_set_overwritable
+                0x1000c418       0x3c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x1000c418                tu_fifo_set_overwritable
  .text.startup._retrieve_unique_id_on_boot
-                0x1000be98       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
+                0x1000c454       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
  .text.pico_get_unique_board_id_string
-                0x1000bea8      0x1a8 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
-                0x1000bea8                pico_get_unique_board_id_string
+                0x1000c464      0x1a8 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
+                0x1000c464                pico_get_unique_board_id_string
  .text.flash_get_unique_id
-                0x1000c050       0x40 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_flash/flash.c.obj
-                0x1000c050                flash_get_unique_id
+                0x1000c60c       0x40 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_flash/flash.c.obj
+                0x1000c60c                flash_get_unique_id
  .text.spi_init
-                0x1000c090       0xf8 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_spi/spi.c.obj
-                0x1000c090                spi_init
+                0x1000c64c       0xf8 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_spi/spi.c.obj
+                0x1000c64c                spi_init
  .text.spi_set_baudrate
-                0x1000c188       0x94 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_spi/spi.c.obj
-                0x1000c188                spi_set_baudrate
+                0x1000c744       0x94 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_spi/spi.c.obj
+                0x1000c744                spi_set_baudrate
  .text.i2c_set_baudrate
-                0x1000c21c       0xc4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
-                0x1000c21c                i2c_set_baudrate
+                0x1000c7d8       0xc4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+                0x1000c7d8                i2c_set_baudrate
  .text.i2c_init
-                0x1000c2e0       0x54 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
-                0x1000c2e0                i2c_init
+                0x1000c89c       0x54 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+                0x1000c89c                i2c_init
  .text.i2c_write_blocking
-                0x1000c334       0xd0 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
-                0x1000c334                i2c_write_blocking
+                0x1000c8f0       0xd0 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+                0x1000c8f0                i2c_write_blocking
  .text.i2c_read_blocking
-                0x1000c404       0xac CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
-                0x1000c404                i2c_read_blocking
- .text.strlen   0x1000c4b0       0x5c d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libc.a(lib_a-strlen-stub.o)
-                0x1000c4b0                strlen
+                0x1000c9c0       0xac CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
+                0x1000c9c0                i2c_read_blocking
+ .text          0x1000ca6c       0x88 d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libc.a(lib_a-strcmp.o)
+                0x1000ca6c                strcmp
+ .text.strlen   0x1000caf4       0x5c d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libc.a(lib_a-strlen-stub.o)
+                0x1000caf4                strlen
  *(.fini)
- .fini          0x1000c50c        0x4 d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crti.o
-                0x1000c50c                _fini
- .fini.__stub   0x1000c510       0x80 linker stubs
+ .fini          0x1000cb50        0x4 d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crti.o
+                0x1000cb50                _fini
+ *fill*         0x1000cb54        0x4 
+ .fini.__stub   0x1000cb58       0x80 linker stubs
  *crtbegin.o(.ctors)
  *crtbegin?.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o *crtend?.o) .ctors)
@@ -2529,168 +2551,171 @@ LOAD d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1
  *(SORT_BY_NAME(.dtors.*))
  *(.dtors)
  *(.eh_frame*)
- .eh_frame      0x1000c590        0x0 d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crtbegin.o
-                0x1000c590                . = ALIGN (0x4)
+ .eh_frame      0x1000cbd8        0x0 d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crtbegin.o
+                0x1000cbd8                . = ALIGN (0x4)
 
-.glue_7         0x1000c590        0x0
- .glue_7        0x1000c590        0x0 linker stubs
+.glue_7         0x1000cbd8        0x0
+ .glue_7        0x1000cbd8        0x0 linker stubs
 
-.glue_7t        0x1000c590        0x0
- .glue_7t       0x1000c590        0x0 linker stubs
+.glue_7t        0x1000cbd8        0x0
+ .glue_7t       0x1000cbd8        0x0 linker stubs
 
-.vfp11_veneer   0x1000c590        0x0
- .vfp11_veneer  0x1000c590        0x0 linker stubs
+.vfp11_veneer   0x1000cbd8        0x0
+ .vfp11_veneer  0x1000cbd8        0x0 linker stubs
 
-.v4_bx          0x1000c590        0x0
- .v4_bx         0x1000c590        0x0 linker stubs
+.v4_bx          0x1000cbd8        0x0
+ .v4_bx         0x1000cbd8        0x0 linker stubs
 
-.iplt           0x1000c590        0x0
- .iplt          0x1000c590        0x0 d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crtbegin.o
+.iplt           0x1000cbd8        0x0
+ .iplt          0x1000cbd8        0x0 d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crtbegin.o
 
-.rodata         0x1000c590     0x1434
+.rodata         0x1000cbd8     0x147c
  *(EXCLUDE_FILE(*libm.a: *libc.a:*lib_a-mem*.o *libgcc.a:) .rodata*)
+ .rodata.lcd_run.str1.4
+                0x1000cbd8       0x18 CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_run.c.obj
  .rodata.System_Init.str1.4
-                0x1000c590       0x32 CMakeFiles/lcd_i2cpwm_demo.dir/lib/config/DEV_Config.c.obj
- *fill*         0x1000c5c2        0x2 
+                0x1000cbf0       0x32 CMakeFiles/lcd_i2cpwm_demo.dir/lib/config/DEV_Config.c.obj
+ *fill*         0x1000cc22        0x2 
  .rodata.Storage_OpenReadFile.str1.4
-                0x1000c5c4       0x4e CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/fatfs_storage.c.obj
- *fill*         0x1000c612        0x2 
+                0x1000cc24       0x7e CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/fatfs_storage.c.obj
+                                 0x98 (size before relaxing)
+ *fill*         0x1000cca2        0x2 
  .rodata.follow_path.str1.4
-                0x1000c614        0xf CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
- *fill*         0x1000c623        0x1 
- .rodata.ExCvt  0x1000c624       0x80 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
+                0x1000cca4        0xf CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
+ *fill*         0x1000ccb3        0x1 
+ .rodata.ExCvt  0x1000ccb4       0x80 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
  .rodata.Font16_Table
-                0x1000c6a4      0xbe0 CMakeFiles/lcd_i2cpwm_demo.dir/lib/font/font16.c.obj
-                0x1000c6a4                Font16_Table
+                0x1000cd34      0xbe0 CMakeFiles/lcd_i2cpwm_demo.dir/lib/font/font16.c.obj
+                0x1000cd34                Font16_Table
  .rodata.SD_Init.str1.4
-                0x1000d284       0x62 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Bmp.c.obj
- *fill*         0x1000d2e6        0x2 
+                0x1000d914       0x62 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Bmp.c.obj
+ *fill*         0x1000d976        0x2 
  .rodata.CSWTCH.9
-                0x1000d2e8        0xe CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Driver.c.obj
- *fill*         0x1000d2f6        0x2 
+                0x1000d978        0xe CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Driver.c.obj
+ *fill*         0x1000d986        0x2 
  .rodata.TP_GetAdFac.str1.4
-                0x1000d2f8       0x43 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
- *fill*         0x1000d33b        0x1 
+                0x1000d988       0x43 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
+ *fill*         0x1000d9cb        0x1 
  .rodata.TP_gesmain.str1.4
-                0x1000d33c       0x24 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
+                0x1000d9cc       0x24 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
  .rodata.TP_start_view.str1.4
-                0x1000d360       0x98 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
+                0x1000d9f0       0x98 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
  .rodata.TP_DrawBoard.str1.4
-                0x1000d3f8       0x2a CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
- *fill*         0x1000d422        0x2 
+                0x1000da88       0x2a CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
+ *fill*         0x1000dab2        0x2 
  .rodata.i2c_bus_scan.str1.4
-                0x1000d424       0x5a CMakeFiles/lcd_i2cpwm_demo.dir/lib/pca9685/pca9685.c.obj
+                0x1000dab4       0x5a CMakeFiles/lcd_i2cpwm_demo.dir/lib/pca9685/pca9685.c.obj
                                  0x5e (size before relaxing)
- *fill*         0x1000d47e        0x2 
+ *fill*         0x1000db0e        0x2 
  .rodata.getPCAmode.str1.4
-                0x1000d480       0x20 CMakeFiles/lcd_i2cpwm_demo.dir/lib/pca9685/pca9685.c.obj
+                0x1000db10       0x20 CMakeFiles/lcd_i2cpwm_demo.dir/lib/pca9685/pca9685.c.obj
  .rodata.__bi_53.0
-                0x1000d4a0        0x8 CMakeFiles/lcd_i2cpwm_demo.dir/lib/pca9685/pca9685.c.obj
+                0x1000db30        0x8 CMakeFiles/lcd_i2cpwm_demo.dir/lib/pca9685/pca9685.c.obj
  .rodata.spin_lock_claim_unused.str1.4
-                0x1000d4a8       0x1b CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
- *fill*         0x1000d4c3        0x1 
+                0x1000db38       0x1b CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+ *fill*         0x1000db53        0x1 
  .rodata.user_irq_claim_unused.str1.4
-                0x1000d4c4       0x1b CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
- *fill*         0x1000d4df        0x1 
+                0x1000db54       0x1b CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+ *fill*         0x1000db6f        0x1 
  .rodata.hardware_alarm_claim.str1.4
-                0x1000d4e0       0x22 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
- *fill*         0x1000d502        0x2 
+                0x1000db70       0x22 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+ *fill*         0x1000db92        0x2 
  .rodata.panic.str1.4
-                0x1000d504       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x1000db94       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
                                  0x12 (size before relaxing)
  .rodata.hard_assertion_failure.str1.4
-                0x1000d514        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x1000dba4        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
  .rodata._ftoa.str1.4
-                0x1000d520       0x15 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
- *fill*         0x1000d535        0x3 
+                0x1000dbb0       0x15 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+ *fill*         0x1000dbc5        0x3 
  .rodata._vsnprintf
-                0x1000d538      0x1e0 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x1000dbc8      0x1e0 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .rodata.pow10.0
-                0x1000d718       0x50 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x1000dda8       0x50 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .rodata.str1.4
-                0x1000d768       0x44 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x1000ddf8       0x44 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .rodata.__bi_44
-                0x1000d7ac        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x1000de3c        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .rodata.__bi_75
-                0x1000d7b8        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x1000de48        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .rodata.__bi_81
-                0x1000d7c4        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x1000de54        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .rodata.crlf_str.0
-                0x1000d7d0        0x2 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
- *fill*         0x1000d7d2        0x2 
+                0x1000de60        0x2 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+ *fill*         0x1000de62        0x2 
  .rodata._resetd_driver
-                0x1000d7d4       0x18 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x1000de64       0x18 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
  .rodata.str1.4
-                0x1000d7ec       0x13 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
- *fill*         0x1000d7ff        0x1 
+                0x1000de7c       0x13 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+ *fill*         0x1000de8f        0x1 
  .rodata.__bi_118.0
-                0x1000d800        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x1000de90        0xc CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
  .rodata.str1.4
-                0x1000d80c       0x2a CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
- *fill*         0x1000d836        0x2 
+                0x1000de9c       0x2a CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+ *fill*         0x1000dec6        0x2 
  .rodata.usbd_desc_cfg
-                0x1000d838       0x54 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+                0x1000dec8       0x54 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
  .rodata.usbd_desc_device
-                0x1000d88c       0x12 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
- *fill*         0x1000d89e        0x2 
+                0x1000df1c       0x12 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+ *fill*         0x1000df2e        0x2 
  .rodata.usbd_desc_str
-                0x1000d8a0       0x18 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+                0x1000df30       0x18 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
  .rodata.dcd_rp2040_irq.str1.4
-                0x1000d8b8       0x14 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x1000df48       0x14 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
  .rodata._hw_endpoint_buffer_control_update32.part.0.isra.0.str1.4
-                0x1000d8cc       0x1f CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
- *fill*         0x1000d8eb        0x1 
+                0x1000df5c       0x1f CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+ *fill*         0x1000df7b        0x1 
  .rodata.hw_endpoint_xfer_continue.str1.4
-                0x1000d8ec       0x29 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
- *fill*         0x1000d915        0x3 
+                0x1000df7c       0x29 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+ *fill*         0x1000dfa5        0x3 
  .rodata.str1.4
-                0x1000d918        0x7 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
- *fill*         0x1000d91f        0x1 
+                0x1000dfa8        0x7 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+ *fill*         0x1000dfaf        0x1 
  .rodata.tud_task
-                0x1000d920       0x8c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x1000dfb0       0x8c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
  .rodata._usbd_driver
-                0x1000d9ac       0x18 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x1000d9c4                . = ALIGN (0x4)
+                0x1000e03c       0x18 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x1000e054                . = ALIGN (0x4)
  *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.flashdata*)))
-                0x1000d9c4                . = ALIGN (0x4)
+                0x1000e054                . = ALIGN (0x4)
 
-.rel.dyn        0x1000d9c4        0x0
- .rel.iplt      0x1000d9c4        0x0 d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crtbegin.o
+.rel.dyn        0x1000e054        0x0
+ .rel.iplt      0x1000e054        0x0 d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crtbegin.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x1000d9c4                __exidx_start = .
+                0x1000e054                __exidx_start = .
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x1000d9c4                __exidx_end = .
-                0x1000d9c4                . = ALIGN (0x4)
-                0x1000d9c4                __binary_info_start = .
+                0x1000e054                __exidx_end = .
+                0x1000e054                . = ALIGN (0x4)
+                0x1000e054                __binary_info_start = .
 
-.binary_info    0x1000d9c4       0x24
+.binary_info    0x1000e054       0x24
  *(.binary_info.keep.*)
  .binary_info.keep.__bi_ptr53
-                0x1000d9c4        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/lib/pca9685/pca9685.c.obj
+                0x1000e054        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/lib/pca9685/pca9685.c.obj
  .binary_info.keep.__bi_ptr22
-                0x1000d9c8        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x1000e058        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr30
-                0x1000d9cc        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x1000e05c        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr38
-                0x1000d9d0        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x1000e060        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr44
-                0x1000d9d4        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x1000e064        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr50
-                0x1000d9d8        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x1000e068        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr75
-                0x1000d9dc        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x1000e06c        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr81
-                0x1000d9e0        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x1000e070        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  *(.binary_info.*)
  .binary_info.__bi_ptr118
-                0x1000d9e4        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
-                0x1000d9e8                __binary_info_end = .
-                0x1000d9e8                . = ALIGN (0x4)
-                0x1000d9e8                __etext = .
+                0x1000e074        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x1000e078                __binary_info_end = .
+                0x1000e078                . = ALIGN (0x4)
+                0x1000e078                __etext = .
 
 .ram_vector_table
                 0x20000000       0xc0
@@ -2699,7 +2724,7 @@ LOAD d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1
                 0x20000000       0xc0 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
                 0x20000000                ram_vector_table
 
-.data           0x200000c0      0x454 load address 0x1000d9e8
+.data           0x200000c0      0x454 load address 0x1000e078
                 0x200000c0                __data_start__ = .
  *(vtable)
  *(.time_critical*)
@@ -2818,29 +2843,29 @@ LOAD d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1
                 0x20000514                . = ALIGN (0x4)
                 0x20000514                __data_end__ = .
 
-.igot.plt       0x20000514        0x0 load address 0x1000de3c
+.igot.plt       0x20000514        0x0 load address 0x1000e4cc
  .igot.plt      0x20000514        0x0 d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crtbegin.o
 
 .uninitialized_data
-                0x20000514        0x0 load address 0x1000de3c
+                0x20000514        0x0 load address 0x1000e4cc
                 0x20000514                . = ALIGN (0x4)
  *(.uninitialized_data*)
 
-.scratch_x      0x20040000        0x0 load address 0x1000de3c
+.scratch_x      0x20040000        0x0 load address 0x1000e4cc
                 0x20040000                __scratch_x_start__ = .
  *(.scratch_x.*)
                 0x20040000                . = ALIGN (0x4)
                 0x20040000                __scratch_x_end__ = .
-                0x1000de3c                __scratch_x_source__ = LOADADDR (.scratch_x)
+                0x1000e4cc                __scratch_x_source__ = LOADADDR (.scratch_x)
 
-.scratch_y      0x20041000        0x0 load address 0x1000de3c
+.scratch_y      0x20041000        0x0 load address 0x1000e4cc
                 0x20041000                __scratch_y_start__ = .
  *(.scratch_y.*)
                 0x20041000                . = ALIGN (0x4)
                 0x20041000                __scratch_y_end__ = .
-                0x1000de3c                __scratch_y_source__ = LOADADDR (.scratch_y)
+                0x1000e4cc                __scratch_y_source__ = LOADADDR (.scratch_y)
 
-.bss            0x20000518    0x26c44
+.bss            0x20000518    0x2c144
                 0x20000518                . = ALIGN (0x4)
                 0x20000518                __bss_start__ = .
  *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.bss*)))
@@ -2899,81 +2924,86 @@ LOAD d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1
                 0x20001114                file_name
  *fill*         0x20001227        0x1 
  .bss.filter    0x20001228        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+ .bss.han_in_button
+                0x2000122c     0x3200 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/fatfs_storage.c.obj
+                0x2000122c                han_in_button
  .bss.hw_endpoints
-                0x2000122c      0x400 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x2000442c      0x400 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
  .bss.lazy_vsnprintf
-                0x2000162c        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x2000482c        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .bss.load_value
-                0x20001630        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
+                0x20004830        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
  .bss.microSDFatFs
-                0x20001634      0x230 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Bmp.c.obj
-                0x20001634                microSDFatFs
+                0x20004834      0x230 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Bmp.c.obj
+                0x20004834                microSDFatFs
  .bss.next_buffer_ptr
-                0x20001864        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x20004a64        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+ .bss.num_in    0x20004a68     0x2300 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/fatfs_storage.c.obj
+                0x20004a68                num_in
  .bss.pDirectoryFiles
-                0x20001868       0x64 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Bmp.c.obj
-                0x20001868                pDirectoryFiles
- .bss.pic       0x200018cc    0x25800 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/fatfs_storage.c.obj
-                0x200018cc                pic
- .bss.pools     0x200270cc       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x20006d68       0x64 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Bmp.c.obj
+                0x20006d68                pDirectoryFiles
+ .bss.pic       0x20006dcc    0x25800 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/fatfs_storage.c.obj
+                0x20006dcc                pic
+ .bss.pools     0x2002c5cc       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_time/time.c.obj
  .bss.retrieved_id
-                0x200270dc        0x8 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
- .bss.sLCD_DIS  0x200270e4        0xa CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Driver.c.obj
-                0x200270e4                sLCD_DIS
- *fill*         0x200270ee        0x2 
- .bss.sTP_DEV   0x200270f0       0x1c CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
- .bss.sTP_Draw  0x2002710c        0x8 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
+                0x2002c5dc        0x8 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
+ .bss.sLCD_DIS  0x2002c5e4        0xa CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Driver.c.obj
+                0x2002c5e4                sLCD_DIS
+ *fill*         0x2002c5ee        0x2 
+ .bss.sTP_DEV   0x2002c5f0       0x1c CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
+ .bss.sTP_Draw  0x2002c60c        0x8 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
  .bss.sf_clz_func
-                0x20027114        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
-                0x20027114                sf_clz_func
+                0x2002c614        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
+                0x2002c614                sf_clz_func
  .bss.sleep_notifier
-                0x20027118        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x2002c618        0x4 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/common/pico_time/time.c.obj
  .bss.stdio_usb_mutex
-                0x2002711c        0x8 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x2002c61c        0x8 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
  .bss.target_hi
-                0x20027124       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x2002c624       0x10 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
  .bss.usbd_serial_str
-                0x20027134       0x11 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
- *fill*         0x20027145        0x3 
+                0x2002c634       0x11 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+ *fill*         0x2002c645        0x3 
  .bss.user_irq_claimed
-                0x20027148        0x2 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
- .bss.Fsid      0x2002714a        0x2 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
- .bss.SD_Type   0x2002714c        0x1 CMakeFiles/lcd_i2cpwm_demo.dir/lib/sdcard/MMC_SD.c.obj
-                0x2002714c                SD_Type
+                0x2002c648        0x2 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+ .bss.Fsid      0x2002c64a        0x2 CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/ff.c.obj
+ .bss.SD_Type   0x2002c64c        0x1 CMakeFiles/lcd_i2cpwm_demo.dir/lib/sdcard/MMC_SD.c.obj
+                0x2002c64c                SD_Type
  .bss._app_driver_count
-                0x2002714d        0x1 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x2002c64d        0x1 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
  .bss._usbd_initialized
-                0x2002714e        0x1 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x2002c64e        0x1 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
  .bss.boot2_copyout_valid
-                0x2002714f        0x1 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_flash/flash.c.obj
- .bss.claimed   0x20027150        0x1 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
- .bss.f_res     0x20027151        0x1 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Bmp.c.obj
-                0x20027151                f_res
+                0x2002c64f        0x1 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_flash/flash.c.obj
+ .bss.claimed   0x2002c650        0x1 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+ .bss.f_res     0x2002c651        0x1 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Bmp.c.obj
+                0x2002c651                f_res
  .bss.irq_hander_chain_free_slot_head
-                0x20027152        0x1 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
- .bss.itf_num   0x20027153        0x1 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x2002c652        0x1 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+ .bss.itf_num   0x2002c653        0x1 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
  .bss.low_priority_irq_num
-                0x20027154        0x1 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
- .bss.main2     0x20027155        0x1 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
-                0x20027155                main2
- .bss.main3     0x20027156        0x1 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
-                0x20027156                main3
+                0x2002c654        0x1 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+ .bss.main2     0x2002c655        0x1 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
+                0x2002c655                main2
+ .bss.main3     0x2002c656        0x1 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
+                0x2002c656                main3
  .bss.timer_callbacks_pending
-                0x20027157        0x1 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x2002c657        0x1 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
  .bss.valve_view
-                0x20027158        0x1 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
-                0x20027158                valve_view
+                0x2002c658        0x1 CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj
+                0x2002c658                valve_view
  *(COMMON)
-                0x2002715c                . = ALIGN (0x4)
- *fill*         0x20027159        0x3 
-                0x2002715c                __bss_end__ = .
+                0x2002c65c                . = ALIGN (0x4)
+ *fill*         0x2002c659        0x3 
+                0x2002c65c                __bss_end__ = .
 
-.heap           0x2002715c      0x800
-                0x2002715c                __end__ = .
-                0x2002715c                end = __end__
+.heap           0x2002c65c      0x800
+                0x2002c65c                __end__ = .
+                0x2002c65c                end = __end__
  *(.heap*)
- .heap          0x2002715c      0x800 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_standard_link/crt0.S.obj
-                0x2002795c                __HeapLimit = .
+ .heap          0x2002c65c      0x800 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_standard_link/crt0.S.obj
+                0x2002ce5c                __HeapLimit = .
 
 .stack1_dummy   0x20040000        0x0
  *(.stack1*)
@@ -2982,8 +3012,8 @@ LOAD d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1
  *(.stack*)
  .stack         0x20041000      0x800 CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/pico_standard_link/crt0.S.obj
 
-.flash_end      0x1000de3c        0x0
-                0x1000de3c                __flash_binary_end = .
+.flash_end      0x1000e4cc        0x0
+                0x1000e4cc                __flash_binary_end = .
                 0x20040000                __StackLimit = (ORIGIN (RAM) + LENGTH (RAM))
                 0x20041000                __StackOneTop = (ORIGIN (SCRATCH_X) + LENGTH (SCRATCH_X))
                 0x20042000                __StackTop = (ORIGIN (SCRATCH_Y) + LENGTH (SCRATCH_Y))
@@ -3082,7 +3112,7 @@ LOAD CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_spi
 LOAD CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj
 LOAD CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
 LOAD CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_pio/pio.c.obj
-LOAD C:\Users\chl_4\AppData\Local\Temp\cc0rARZp.o
+LOAD C:\Users\chl_4\AppData\Local\Temp\cc2QIrAD.o
 LOAD d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libstdc++.a
 LOAD d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libm.a
 START GROUP
@@ -3228,11 +3258,13 @@ LOAD linker stubs
  .ARM.attributes
                 0x00000a36       0x2c CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
  .ARM.attributes
-                0x00000a62       0x22 C:\Users\chl_4\AppData\Local\Temp\cc0rARZp.o
+                0x00000a62       0x22 C:\Users\chl_4\AppData\Local\Temp\cc2QIrAD.o
  .ARM.attributes
                 0x00000a84       0x1e d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp\libgcc.a(_dvmd_tls.o)
  .ARM.attributes
-                0x00000aa2       0x2c d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libc.a(lib_a-strlen-stub.o)
+                0x00000aa2       0x1b d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libc.a(lib_a-strcmp.o)
+ .ARM.attributes
+                0x00000abd       0x2c d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libc.a(lib_a-strlen-stub.o)
 
 .comment        0x00000000       0x49
  .comment       0x00000000       0x49 CMakeFiles/lcd_i2cpwm_demo.dir/main.c.obj
@@ -3288,5 +3320,6 @@ LOAD linker stubs
  .comment       0x00000049       0x4a CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_spi/spi.c.obj
  .comment       0x00000049       0x4a CMakeFiles/lcd_i2cpwm_demo.dir/D_/pico/pico-sdk/src/rp2_common/hardware_i2c/i2c.c.obj
 
-.debug_frame    0x00000000       0x28
- .debug_frame   0x00000000       0x28 d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libc.a(lib_a-strlen-stub.o)
+.debug_frame    0x00000000       0x48
+ .debug_frame   0x00000000       0x20 d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libc.a(lib_a-strcmp.o)
+ .debug_frame   0x00000020       0x28 d:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v6-m/nofp\libc.a(lib_a-strlen-stub.o)

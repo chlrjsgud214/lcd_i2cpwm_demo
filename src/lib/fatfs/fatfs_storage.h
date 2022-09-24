@@ -43,7 +43,9 @@ extern uint32_t Storage_GetDirectoryBitmapFiles (const char* DirName, char* File
 extern uint32_t Storage_CheckBitmapFile(const char* BmpName, uint32_t *FileLen);
 extern uint8_t Buffercmp(uint8_t* pBuffer1, uint8_t* pBuffer2, uint16_t BufferLength);
 
-extern void Storage_showfile(uint8_t Xpoz, uint16_t Ypoz,uint8_t Page_num);
+extern uint32_t button_read(const char *BmpName);
+extern void show_button(uint16_t Xpoz, uint16_t Ypoz,uint8_t ButtonNum);
+extern void show_num(uint16_t Xpoz, uint16_t Ypoz, uint8_t Num);
 
 static void P_main(void);
 static void P_cat(void);
