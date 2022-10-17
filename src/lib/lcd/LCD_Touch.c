@@ -21,7 +21,8 @@ static TP_DRAW sTP_Draw;
 static DEV_TIME settime;
 uint16_t pagestatus = 7;
 uint8_t sample_run = 0, h2o2_run = 0, nai_run = 0;
-uint64_t clock_start1=0,clock_end1=0;
+absolute_time_t clock_start1 = 0; 
+uint64_t clock_end1 = 0;
 
 bool main1 = true;
 bool main2 = false;
@@ -988,7 +989,6 @@ void Run_clear()
 
 void Run_stop()
 {
-    
 }
 void Run_page_func(uint8_t page_num)
 {
@@ -1063,14 +1063,15 @@ void Run_page(uint8_t page_num)
             if (sample_run == 0)
             {
                 sample_run = 1;
-                clock_start1=time_us_64();
-                printf("%d",clock_start1);
+
                 GUI_DrawRectangle(245, 155, 302, 220, WHITE, 1, 1); // 정지 바탕색
                 TP_Bmp_button(256, 177, 4);                         // 정지 표현
 
                 GUI_DrawRectangle(20, 155, 77, 220, BLACK, 1, 1); // 투입 바탕색
                 TP_Bmp_button(30, 177, 5);                        // 투입 글씨
             }
+            to_ms_since_boot(clock_start1);            
+            printf("time2 : %.5d\r\n", clock_start1);
         }
         else if ((sTP_Draw.Xpoint > 93 && sTP_Draw.Xpoint < 157 && // 시료부 배수
                   sTP_Draw.Ypoint > 150 && sTP_Draw.Ypoint < 223))
