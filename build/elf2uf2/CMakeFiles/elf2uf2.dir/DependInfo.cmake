@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "D:/pico/pico-sdk/tools/elf2uf2/main.cpp" "CMakeFiles/elf2uf2.dir/main.cpp.obj" "gcc" "CMakeFiles/elf2uf2.dir/main.cpp.obj.d"
+  "C:/pico/pico-sdk/tools/elf2uf2/main.cpp" "CMakeFiles/elf2uf2.dir/main.cpp.obj" "gcc" "CMakeFiles/elf2uf2.dir/main.cpp.obj.d"
   )
 
 # Targets to which this target links.

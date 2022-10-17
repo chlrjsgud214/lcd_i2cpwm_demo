@@ -53,10 +53,10 @@ RM = "C:/Program Files/CMake/bin/cmake.exe" -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:/gitprj/lcd_i2cpwm_demo
+CMAKE_SOURCE_DIR = C:/gitprj/gitnas/lcd_i2cpwm_demo
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:/gitprj/lcd_i2cpwm_demo/build
+CMAKE_BINARY_DIR = C:/gitprj/gitnas/lcd_i2cpwm_demo/build
 
 # Utility rule file for cyw43_firmware_package.
 
@@ -68,9 +68,9 @@ include pico-sdk/src/rp2_common/cyw43_driver/CMakeFiles/cyw43_firmware_package.d
 
 pico-sdk/src/rp2_common/cyw43_driver/CMakeFiles/cyw43_firmware_package: pico-sdk/src/rp2_common/cyw43_driver/cyw43_resource.o
 
-pico-sdk/src/rp2_common/cyw43_driver/cyw43_resource.o: D:/pico/pico-sdk/lib/cyw43-driver/firmware/43439A0-7.95.49.00.combined
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=C:/gitprj/lcd_i2cpwm_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating cyw43_resource.o"
-	cd D:/pico/pico-sdk/lib/cyw43-driver/firmware && D:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-objcopy.exe -I binary -O elf32-littlearm -B arm --readonly-text --rename-section .data=.big_const,contents,alloc,load,readonly,data --redefine-sym _binary_43439A0_7_95_49_00_combined_start=fw_43439A0_7_95_49_00_start --redefine-sym _binary_43439A0_7_95_49_00_combined_end=fw_43439A0_7_95_49_00_end --redefine-sym _binary_43439A0_7_95_49_00_combined_size=fw_43439A0_7_95_49_00_size 43439A0-7.95.49.00.combined C:/gitprj/lcd_i2cpwm_demo/build/pico-sdk/src/rp2_common/cyw43_driver/cyw43_resource.o
+pico-sdk/src/rp2_common/cyw43_driver/cyw43_resource.o: C:/pico/pico-sdk/lib/cyw43-driver/firmware/43439A0-7.95.49.00.combined
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=C:/gitprj/gitnas/lcd_i2cpwm_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating cyw43_resource.o"
+	cd C:/pico/pico-sdk/lib/cyw43-driver/firmware && C:/tools/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-objcopy.exe -I binary -O elf32-littlearm -B arm --readonly-text --rename-section .data=.big_const,contents,alloc,load,readonly,data --redefine-sym _binary_43439A0_7_95_49_00_combined_start=fw_43439A0_7_95_49_00_start --redefine-sym _binary_43439A0_7_95_49_00_combined_end=fw_43439A0_7_95_49_00_end --redefine-sym _binary_43439A0_7_95_49_00_combined_size=fw_43439A0_7_95_49_00_size 43439A0-7.95.49.00.combined C:/gitprj/gitnas/lcd_i2cpwm_demo/build/pico-sdk/src/rp2_common/cyw43_driver/cyw43_resource.o
 
 cyw43_firmware_package: pico-sdk/src/rp2_common/cyw43_driver/CMakeFiles/cyw43_firmware_package
 cyw43_firmware_package: pico-sdk/src/rp2_common/cyw43_driver/cyw43_resource.o
@@ -82,10 +82,10 @@ pico-sdk/src/rp2_common/cyw43_driver/CMakeFiles/cyw43_firmware_package.dir/build
 .PHONY : pico-sdk/src/rp2_common/cyw43_driver/CMakeFiles/cyw43_firmware_package.dir/build
 
 pico-sdk/src/rp2_common/cyw43_driver/CMakeFiles/cyw43_firmware_package.dir/clean:
-	cd C:/gitprj/lcd_i2cpwm_demo/build/pico-sdk/src/rp2_common/cyw43_driver && $(CMAKE_COMMAND) -P CMakeFiles/cyw43_firmware_package.dir/cmake_clean.cmake
+	cd C:/gitprj/gitnas/lcd_i2cpwm_demo/build/pico-sdk/src/rp2_common/cyw43_driver && $(CMAKE_COMMAND) -P CMakeFiles/cyw43_firmware_package.dir/cmake_clean.cmake
 .PHONY : pico-sdk/src/rp2_common/cyw43_driver/CMakeFiles/cyw43_firmware_package.dir/clean
 
 pico-sdk/src/rp2_common/cyw43_driver/CMakeFiles/cyw43_firmware_package.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" C:/gitprj/lcd_i2cpwm_demo D:/pico/pico-sdk/src/rp2_common/cyw43_driver C:/gitprj/lcd_i2cpwm_demo/build C:/gitprj/lcd_i2cpwm_demo/build/pico-sdk/src/rp2_common/cyw43_driver C:/gitprj/lcd_i2cpwm_demo/build/pico-sdk/src/rp2_common/cyw43_driver/CMakeFiles/cyw43_firmware_package.dir/DependInfo.cmake --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" C:/gitprj/gitnas/lcd_i2cpwm_demo C:/pico/pico-sdk/src/rp2_common/cyw43_driver C:/gitprj/gitnas/lcd_i2cpwm_demo/build C:/gitprj/gitnas/lcd_i2cpwm_demo/build/pico-sdk/src/rp2_common/cyw43_driver C:/gitprj/gitnas/lcd_i2cpwm_demo/build/pico-sdk/src/rp2_common/cyw43_driver/CMakeFiles/cyw43_firmware_package.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : pico-sdk/src/rp2_common/cyw43_driver/CMakeFiles/cyw43_firmware_package.dir/depend
 

@@ -133,14 +133,11 @@ void setPWMFreq(int freq)
 		off값 0로 고정후 on값만 변경하여 PWM 제어
 
 */
-void setPWM(uint8_t led,int on_value){
+void setPWM(uint8_t led,uint16_t on_value){
 	uint8_t wbuf[2];
 	uint16_t ON_L_H=0x00,OFF_L_H=0x00;
 	if(on_value>1)
 	on_value--;
-
-
-
 
 
 	wbuf[0]=PWM_ON_L+((led-1)*MULTI);
@@ -166,6 +163,16 @@ void setPWM(uint8_t led,int on_value){
 	// printf("OFF_H : %02xh , D.%02x \r\n",wbuf[0],wbuf[1]);
 	
 	printf("pwm %d Ch on:%04x , addr:%02x \r\n",led,on_value,pca_addr);
+}
+
+void setMotor(uint8_t ch,uint8_t volt)
+{	
+	setPWM(ch,2049-cmap(volt,0,12,0,2048));
+}
+
+void setValve(uint8_t ch)
+{
+	setPWM(ch,1);
 }
 
 void read_PCA_reg(uint8_t reg,uint8_t len) {
@@ -200,7 +207,7 @@ void getPCAmode(uint8_t setPCA)
 	i2c_write_blocking(PICO_i2c1, pca_addr,setData , 2, false); // mode0에 0x00값 입력
 	
 	i2c_write_blocking(PICO_i2c1, pca_addr,PCA9685_MODE1 , 1, true);
-	ret = i2c_read_blocking(PICO_i2c1, 0x40,rxdata , 1, false);
+	ret = i2c_read_blocking(PICO_i2c1, pca_addr,rxdata , 1, false);
 	printf("0x40 : %02x\r\n",ret);
 	printf("mode1 : %02x \r\n",rxdata);
 

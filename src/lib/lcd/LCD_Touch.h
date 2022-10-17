@@ -23,6 +23,7 @@
 #include "pico/float.h"
 #include "fatfs_storage.h"
 #include "pca9685.h"
+#include "hardware/clocks.h"
 
 #define TP_PRESS_DOWN           0x80
 #define TP_PRESSED              0x40
@@ -74,5 +75,7 @@ void TP_start_view(uint8_t pagenum);
 
 void TP_Bmp_button(uint16_t Xpoz, uint16_t Ypoz,uint8_t BtnNum);
 void TP_Bmp_num(uint16_t Xpoz, uint16_t Ypoz,uint8_t Num);
+
+void Run_page(uint8_t page_num);
 #endif
  

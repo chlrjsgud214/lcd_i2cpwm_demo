@@ -57,10 +57,10 @@ RM = "C:/Program Files/CMake/bin/cmake.exe" -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:/gitprj/lcd_i2cpwm_demo
+CMAKE_SOURCE_DIR = C:/gitprj/gitnas/lcd_i2cpwm_demo
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:/gitprj/lcd_i2cpwm_demo/build
+CMAKE_BINARY_DIR = C:/gitprj/gitnas/lcd_i2cpwm_demo/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,14 +87,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd C:/gitprj/lcd_i2cpwm_demo/build && $(CMAKE_COMMAND) -E cmake_progress_start C:/gitprj/lcd_i2cpwm_demo/build/CMakeFiles C:/gitprj/lcd_i2cpwm_demo/build/pico-sdk/src/rp2_common/pico_cxx_options//CMakeFiles/progress.marks
-	cd C:/gitprj/lcd_i2cpwm_demo/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 pico-sdk/src/rp2_common/pico_cxx_options/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:/gitprj/lcd_i2cpwm_demo/build/CMakeFiles 0
+	cd C:/gitprj/gitnas/lcd_i2cpwm_demo/build && $(CMAKE_COMMAND) -E cmake_progress_start C:/gitprj/gitnas/lcd_i2cpwm_demo/build/CMakeFiles C:/gitprj/gitnas/lcd_i2cpwm_demo/build/pico-sdk/src/rp2_common/pico_cxx_options//CMakeFiles/progress.marks
+	cd C:/gitprj/gitnas/lcd_i2cpwm_demo/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 pico-sdk/src/rp2_common/pico_cxx_options/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:/gitprj/gitnas/lcd_i2cpwm_demo/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd C:/gitprj/lcd_i2cpwm_demo/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 pico-sdk/src/rp2_common/pico_cxx_options/clean
+	cd C:/gitprj/gitnas/lcd_i2cpwm_demo/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 pico-sdk/src/rp2_common/pico_cxx_options/clean
 .PHONY : clean
 
 # The main clean target
@@ -103,17 +103,17 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd C:/gitprj/lcd_i2cpwm_demo/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 pico-sdk/src/rp2_common/pico_cxx_options/preinstall
+	cd C:/gitprj/gitnas/lcd_i2cpwm_demo/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 pico-sdk/src/rp2_common/pico_cxx_options/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd C:/gitprj/lcd_i2cpwm_demo/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 pico-sdk/src/rp2_common/pico_cxx_options/preinstall
+	cd C:/gitprj/gitnas/lcd_i2cpwm_demo/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 pico-sdk/src/rp2_common/pico_cxx_options/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd C:/gitprj/lcd_i2cpwm_demo/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd C:/gitprj/gitnas/lcd_i2cpwm_demo/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Help Target
@@ -135,6 +135,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd C:/gitprj/lcd_i2cpwm_demo/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd C:/gitprj/gitnas/lcd_i2cpwm_demo/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

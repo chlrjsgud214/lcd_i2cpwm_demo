@@ -2,34 +2,34 @@
 	"sources" : 
 	[
 		{
-			"file" : "C:/gitprj/lcd_i2cpwm_demo/build/src/CMakeFiles/ELF2UF2Build"
+			"file" : "C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src/CMakeFiles/ELF2UF2Build"
 		},
 		{
-			"file" : "C:/gitprj/lcd_i2cpwm_demo/build/src/CMakeFiles/ELF2UF2Build.rule"
+			"file" : "C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src/CMakeFiles/ELF2UF2Build.rule"
 		},
 		{
-			"file" : "C:/gitprj/lcd_i2cpwm_demo/build/src/CMakeFiles/ELF2UF2Build-complete.rule"
+			"file" : "C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src/CMakeFiles/ELF2UF2Build-complete.rule"
 		},
 		{
-			"file" : "C:/gitprj/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-build.rule"
+			"file" : "C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-build.rule"
 		},
 		{
-			"file" : "C:/gitprj/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-configure.rule"
+			"file" : "C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-configure.rule"
 		},
 		{
-			"file" : "C:/gitprj/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-download.rule"
+			"file" : "C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-download.rule"
 		},
 		{
-			"file" : "C:/gitprj/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-install.rule"
+			"file" : "C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-install.rule"
 		},
 		{
-			"file" : "C:/gitprj/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-mkdir.rule"
+			"file" : "C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-mkdir.rule"
 		},
 		{
-			"file" : "C:/gitprj/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-patch.rule"
+			"file" : "C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-patch.rule"
 		},
 		{
-			"file" : "C:/gitprj/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-update.rule"
+			"file" : "C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-update.rule"
 		}
 	],
 	"target" : 

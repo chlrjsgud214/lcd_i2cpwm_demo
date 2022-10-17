@@ -50,17 +50,17 @@ int lcd_run(void)
 	LCD_Clear(LCD_BACKGROUND);
 
 	TP_gesmain();					  // 메인화면 표현
-	TP_Bmp_view(0, 0, "b_str.bmp");	  // 버튼 백그라운드 저장
-	TP_Bmp_view(0, 0, "num1216.bmp"); // 숫자 백그라운드 저장
+	TP_Bmp_view(0, 0, "b_str.bmp");	  // 버튼 백그라운드 저장 1~8
+	TP_Bmp_view(0, 0, "num1216.bmp"); // 숫자 백그라운드 저장 0~99
 	// show_button(12,54,5);
-	for (int i = 0; i < 10; i++)
-	{
-		for (int j = 0; j < 10; j++)
-		{
+	// for (int i = 0; i < 10; i++)
+	// {
+	// 	for (int j = 0; j < 10; j++)
+	// 	{
 
-			TP_Bmp_num(i * 25, j*20, i*j);
-		}
-	}
+	// 		TP_Bmp_num(i * 25, j*20, i*j);
+	// 	}
+	// }
 	while (1)
 	{
 		TP_DrawBoard(); // 터치 감지시 동작 이외엔 대기

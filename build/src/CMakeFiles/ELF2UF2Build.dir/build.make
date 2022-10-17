@@ -53,10 +53,10 @@ RM = "C:/Program Files/CMake/bin/cmake.exe" -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:/gitprj/lcd_i2cpwm_demo
+CMAKE_SOURCE_DIR = C:/gitprj/gitnas/lcd_i2cpwm_demo
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:/gitprj/lcd_i2cpwm_demo/build
+CMAKE_BINARY_DIR = C:/gitprj/gitnas/lcd_i2cpwm_demo/build
 
 # Utility rule file for ELF2UF2Build.
 
@@ -76,46 +76,46 @@ src/CMakeFiles/ELF2UF2Build-complete: src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2
 src/CMakeFiles/ELF2UF2Build-complete: src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-configure
 src/CMakeFiles/ELF2UF2Build-complete: src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-build
 src/CMakeFiles/ELF2UF2Build-complete: src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-install
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=C:/gitprj/lcd_i2cpwm_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Completed 'ELF2UF2Build'"
-	cd C:/gitprj/lcd_i2cpwm_demo/build/src && "C:/Program Files/CMake/bin/cmake.exe" -E make_directory C:/gitprj/lcd_i2cpwm_demo/build/src/CMakeFiles
-	cd C:/gitprj/lcd_i2cpwm_demo/build/src && "C:/Program Files/CMake/bin/cmake.exe" -E touch C:/gitprj/lcd_i2cpwm_demo/build/src/CMakeFiles/ELF2UF2Build-complete
-	cd C:/gitprj/lcd_i2cpwm_demo/build/src && "C:/Program Files/CMake/bin/cmake.exe" -E touch C:/gitprj/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-done
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=C:/gitprj/gitnas/lcd_i2cpwm_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Completed 'ELF2UF2Build'"
+	cd C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src && "C:/Program Files/CMake/bin/cmake.exe" -E make_directory C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src/CMakeFiles
+	cd C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src && "C:/Program Files/CMake/bin/cmake.exe" -E touch C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src/CMakeFiles/ELF2UF2Build-complete
+	cd C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src && "C:/Program Files/CMake/bin/cmake.exe" -E touch C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-done
 
 src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-build: src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-configure
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=C:/gitprj/lcd_i2cpwm_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Performing build step for 'ELF2UF2Build'"
-	cd C:/gitprj/lcd_i2cpwm_demo/build/elf2uf2 && $(MAKE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=C:/gitprj/gitnas/lcd_i2cpwm_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Performing build step for 'ELF2UF2Build'"
+	cd C:/gitprj/gitnas/lcd_i2cpwm_demo/build/elf2uf2 && $(MAKE)
 
 src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-configure: src/elf2uf2/tmp/ELF2UF2Build-cfgcmd.txt
 src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-configure: src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-patch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=C:/gitprj/lcd_i2cpwm_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Performing configure step for 'ELF2UF2Build'"
-	cd C:/gitprj/lcd_i2cpwm_demo/build/elf2uf2 && "C:/Program Files/CMake/bin/cmake.exe" "-GUnix Makefiles" D:/pico/pico-sdk/tools/elf2uf2
-	cd C:/gitprj/lcd_i2cpwm_demo/build/elf2uf2 && "C:/Program Files/CMake/bin/cmake.exe" -E touch C:/gitprj/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-configure
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=C:/gitprj/gitnas/lcd_i2cpwm_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Performing configure step for 'ELF2UF2Build'"
+	cd C:/gitprj/gitnas/lcd_i2cpwm_demo/build/elf2uf2 && "C:/Program Files/CMake/bin/cmake.exe" "-GUnix Makefiles" C:/pico/pico-sdk/tools/elf2uf2
+	cd C:/gitprj/gitnas/lcd_i2cpwm_demo/build/elf2uf2 && "C:/Program Files/CMake/bin/cmake.exe" -E touch C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-configure
 
 src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-download: src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-source_dirinfo.txt
 src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-download: src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-mkdir
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=C:/gitprj/lcd_i2cpwm_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "No download step for 'ELF2UF2Build'"
-	cd C:/gitprj/lcd_i2cpwm_demo/build/src && "C:/Program Files/CMake/bin/cmake.exe" -E echo_append
-	cd C:/gitprj/lcd_i2cpwm_demo/build/src && "C:/Program Files/CMake/bin/cmake.exe" -E touch C:/gitprj/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-download
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=C:/gitprj/gitnas/lcd_i2cpwm_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "No download step for 'ELF2UF2Build'"
+	cd C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src && "C:/Program Files/CMake/bin/cmake.exe" -E echo_append
+	cd C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src && "C:/Program Files/CMake/bin/cmake.exe" -E touch C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-download
 
 src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-install: src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=C:/gitprj/lcd_i2cpwm_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "No install step for 'ELF2UF2Build'"
-	cd C:/gitprj/lcd_i2cpwm_demo/build/elf2uf2 && "C:/Program Files/CMake/bin/cmake.exe" -E echo_append
-	cd C:/gitprj/lcd_i2cpwm_demo/build/elf2uf2 && "C:/Program Files/CMake/bin/cmake.exe" -E touch C:/gitprj/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-install
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=C:/gitprj/gitnas/lcd_i2cpwm_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "No install step for 'ELF2UF2Build'"
+	cd C:/gitprj/gitnas/lcd_i2cpwm_demo/build/elf2uf2 && "C:/Program Files/CMake/bin/cmake.exe" -E echo_append
+	cd C:/gitprj/gitnas/lcd_i2cpwm_demo/build/elf2uf2 && "C:/Program Files/CMake/bin/cmake.exe" -E touch C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-install
 
 src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-mkdir:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=C:/gitprj/lcd_i2cpwm_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Creating directories for 'ELF2UF2Build'"
-	cd C:/gitprj/lcd_i2cpwm_demo/build/src && "C:/Program Files/CMake/bin/cmake.exe" -Dcfgdir= -P C:/gitprj/lcd_i2cpwm_demo/build/src/elf2uf2/tmp/ELF2UF2Build-mkdirs.cmake
-	cd C:/gitprj/lcd_i2cpwm_demo/build/src && "C:/Program Files/CMake/bin/cmake.exe" -E touch C:/gitprj/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-mkdir
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=C:/gitprj/gitnas/lcd_i2cpwm_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Creating directories for 'ELF2UF2Build'"
+	cd C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src && "C:/Program Files/CMake/bin/cmake.exe" -Dcfgdir= -P C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src/elf2uf2/tmp/ELF2UF2Build-mkdirs.cmake
+	cd C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src && "C:/Program Files/CMake/bin/cmake.exe" -E touch C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-mkdir
 
 src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-patch: src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-update
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=C:/gitprj/lcd_i2cpwm_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "No patch step for 'ELF2UF2Build'"
-	cd C:/gitprj/lcd_i2cpwm_demo/build/src && "C:/Program Files/CMake/bin/cmake.exe" -E echo_append
-	cd C:/gitprj/lcd_i2cpwm_demo/build/src && "C:/Program Files/CMake/bin/cmake.exe" -E touch C:/gitprj/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-patch
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=C:/gitprj/gitnas/lcd_i2cpwm_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "No patch step for 'ELF2UF2Build'"
+	cd C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src && "C:/Program Files/CMake/bin/cmake.exe" -E echo_append
+	cd C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src && "C:/Program Files/CMake/bin/cmake.exe" -E touch C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-patch
 
 src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-update: src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-download
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=C:/gitprj/lcd_i2cpwm_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "No update step for 'ELF2UF2Build'"
-	cd C:/gitprj/lcd_i2cpwm_demo/build/src && "C:/Program Files/CMake/bin/cmake.exe" -E echo_append
-	cd C:/gitprj/lcd_i2cpwm_demo/build/src && "C:/Program Files/CMake/bin/cmake.exe" -E touch C:/gitprj/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-update
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=C:/gitprj/gitnas/lcd_i2cpwm_demo/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "No update step for 'ELF2UF2Build'"
+	cd C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src && "C:/Program Files/CMake/bin/cmake.exe" -E echo_append
+	cd C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src && "C:/Program Files/CMake/bin/cmake.exe" -E touch C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src/elf2uf2/src/ELF2UF2Build-stamp/ELF2UF2Build-update
 
 ELF2UF2Build: src/CMakeFiles/ELF2UF2Build
 ELF2UF2Build: src/CMakeFiles/ELF2UF2Build-complete
@@ -134,10 +134,10 @@ src/CMakeFiles/ELF2UF2Build.dir/build: ELF2UF2Build
 .PHONY : src/CMakeFiles/ELF2UF2Build.dir/build
 
 src/CMakeFiles/ELF2UF2Build.dir/clean:
-	cd C:/gitprj/lcd_i2cpwm_demo/build/src && $(CMAKE_COMMAND) -P CMakeFiles/ELF2UF2Build.dir/cmake_clean.cmake
+	cd C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src && $(CMAKE_COMMAND) -P CMakeFiles/ELF2UF2Build.dir/cmake_clean.cmake
 .PHONY : src/CMakeFiles/ELF2UF2Build.dir/clean
 
 src/CMakeFiles/ELF2UF2Build.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" C:/gitprj/lcd_i2cpwm_demo C:/gitprj/lcd_i2cpwm_demo/src C:/gitprj/lcd_i2cpwm_demo/build C:/gitprj/lcd_i2cpwm_demo/build/src C:/gitprj/lcd_i2cpwm_demo/build/src/CMakeFiles/ELF2UF2Build.dir/DependInfo.cmake --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" C:/gitprj/gitnas/lcd_i2cpwm_demo C:/gitprj/gitnas/lcd_i2cpwm_demo/src C:/gitprj/gitnas/lcd_i2cpwm_demo/build C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src C:/gitprj/gitnas/lcd_i2cpwm_demo/build/src/CMakeFiles/ELF2UF2Build.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : src/CMakeFiles/ELF2UF2Build.dir/depend
 

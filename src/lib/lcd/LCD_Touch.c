@@ -20,6 +20,8 @@ static TP_DEV sTP_DEV;
 static TP_DRAW sTP_Draw;
 static DEV_TIME settime;
 uint16_t pagestatus = 7;
+uint8_t sample_run = 0, h2o2_run = 0, nai_run = 0;
+uint64_t clock_start1=0,clock_end1=0;
 
 bool main1 = true;
 bool main2 = false;
@@ -35,6 +37,8 @@ uint8_t pwmval = 0;
 uint32_t pwmout = 0;
 uint8_t start_status = 0;
 uint8_t i2c_writebuf[3];
+/*m1=시료펌프 / m2=배수펌프 / m3=과산화수소펌프 / m4=NAI펌프*/
+uint8_t m1_power = 12, m2_power = 12, m3_power = 12, m4_power = 12;
 
 const char *ox_str = "";
 const char *ox_ch[10] = {
@@ -662,8 +666,7 @@ void TP_GetAdFac(void)
 }
 
 /*******************************************************************************
-function:
-        Paint the Delete key and paint color choose area
+function: 메인 페이지 - 테스트,설정,밸브 이동
 *******************************************************************************/
 void TP_gesmain(void)
 { // 가로 X축 , 세로 Y축
@@ -712,6 +715,7 @@ void TP_gesmain(void)
     }
 }
 
+/*페이지 표시 및 기본 버튼 선택 표현*/
 void TP_start_view(uint8_t pagenum)
 {
 
@@ -719,24 +723,47 @@ void TP_start_view(uint8_t pagenum)
     {
     case 1: // 전처리 테스트 인식 글자수 최대 14
         TP_Bmp_view(0, 0, "sp_s.bmp");
-        GUI_DrawRectangle(245,155,302,220,BLACK,1,1); // 정지 바탕색 
-        TP_Bmp_button(256,177,8); // 정지 표현
+
+        TP_Bmp_num(250, 58, m1_power);
+        GUI_DisString_EN(280, 65, "V", &Font20, WHITE, BLACK);
+        TP_Bmp_num(250, 84, m2_power);
+        GUI_DisString_EN(280, 90, "V", &Font20, WHITE, BLACK);
+        GUI_DisString_EN(230, 117, "NULL", &Font20, WHITE, BLACK);
+
+        GUI_DrawRectangle(245, 155, 302, 220, BLACK, 1, 1); // 정지 바탕색
+        TP_Bmp_button(256, 177, 8);                         // 정지 표현
         break;
     case 2:
         TP_Bmp_view(0, 0, "sp_c.bmp");
         break;
     case 3:
         TP_Bmp_view(0, 0, "h2o2_s.bmp");
-        GUI_DrawRectangle(245,155,302,220,BLACK,1,1);
-        TP_Bmp_button(256,177,8);
+
+        TP_Bmp_num(250, 58, m3_power);
+        GUI_DisString_EN(280, 65, "V", &Font20, WHITE, BLACK);
+        TP_Bmp_num(250, 84, m2_power);
+        GUI_DisString_EN(280, 90, "V", &Font20, WHITE, BLACK);
+        GUI_DisString_EN(230, 117, "NULL", &Font20, WHITE, BLACK);
+
+        GUI_DrawRectangle(245, 155, 302, 220, BLACK, 1, 1);
+        TP_Bmp_button(256, 177, 8);
         break;
     case 4:
         TP_Bmp_view(0, 0, "h2o2_c.bmp");
         break;
     case 5:
         TP_Bmp_view(0, 0, "nai_s.bmp");
-        GUI_DrawRectangle(245,155,302,220,BLACK,1,1);
-        TP_Bmp_button(256,177,8);
+
+        TP_Bmp_num(250, 46, m1_power);
+        GUI_DisString_EN(280, 52, "V", &Font20, WHITE, BLACK);
+        TP_Bmp_num(250, 70, m1_power);
+        GUI_DisString_EN(280, 76, "V", &Font20, WHITE, BLACK);
+        TP_Bmp_num(250, 96, m2_power);
+        GUI_DisString_EN(280, 102, "V", &Font20, WHITE, BLACK);
+        GUI_DisString_EN(230, 126, "NULL", &Font20, WHITE, BLACK);
+
+        GUI_DrawRectangle(245, 155, 302, 220, BLACK, 1, 1);
+        TP_Bmp_button(256, 177, 8);
         break;
     case 6:
         TP_Bmp_view(0, 0, "nai_c.bmp");
@@ -762,27 +789,15 @@ void TP_start_view(uint8_t pagenum)
     case 14: // 밸브
         TP_Bmp_view(0, 0, "nai_c_p.bmp");
         break;
-    case 15:
-        TP_Bmp_view(0, 0, "nai_c_p.bmp");
-        break;
-    case 16:
-        TP_Bmp_view(0, 0, "nai_c_p.bmp");
-        break;
-    case 17:
-        TP_Bmp_view(0, 0, "nai_c_p.bmp");
-        break;
-    case 18:
-        TP_Bmp_view(0, 0, "nai_c_p.bmp");
-        break;
-    case 19:
-        TP_Bmp_view(0, 0, "nai_c_p.bmp");
-        break;
+
     default:
 
         break;
     }
 }
-
+/*
+Function: 선택된 페이지 BMP 파일 보기
+*/
 void TP_Bmp_view(uint16_t Xpoz, uint16_t Ypoz, const char *Bmpname) // 배경
 {
     LCD_SetGramScanWay(7); // BMP용 각도로 변경
@@ -790,26 +805,30 @@ void TP_Bmp_view(uint16_t Xpoz, uint16_t Ypoz, const char *Bmpname) // 배경
     LCD_SetGramScanWay(4); // 터치용 각도로 변경
     // printf("save_page1 \r\n");
 }
-
-void TP_Bmp_button(uint16_t Xpoz, uint16_t Ypoz,uint8_t btn_num) // 버튼
+/*
+Function: 버튼 Bmp 표현
+*/
+void TP_Bmp_button(uint16_t Xpoz, uint16_t Ypoz, uint8_t btn_num) // 버튼
 {
-    LCD_SetGramScanWay(7); 
-	show_button(Xpoz,240-Ypoz-20,btn_num);
-	LCD_SetGramScanWay(4); 
+    LCD_SetGramScanWay(7);
+    show_button(Xpoz, 240 - Ypoz - 20, btn_num);
+    LCD_SetGramScanWay(4);
     // printf("save_page1 \r\n");
 }
 
-void TP_Bmp_num(uint16_t Xpoz, uint16_t Ypoz,uint8_t Num) // 숫자
+/*
+Function: 숫자 Bmp 표현
+*/
+void TP_Bmp_num(uint16_t Xpoz, uint16_t Ypoz, uint8_t Num) // 숫자
 {
-    LCD_SetGramScanWay(7); 
-	show_num(Xpoz,240-Ypoz-20,Num);
-	LCD_SetGramScanWay(4); 
+    LCD_SetGramScanWay(7);
+    show_num(Xpoz, 240 - Ypoz - 20, Num);
+    LCD_SetGramScanWay(4);
 }
 /*******************************************************************************
 function:
         Draw Board
 *******************************************************************************/
-
 void TP_DrawBoard(void)
 {
     // sTP_DEV.chStatus &= ~(1 << 6);
@@ -822,7 +841,7 @@ void TP_DrawBoard(void)
             // Dete/rmine whether the law is legal
             sTP_Draw.Ypoint < sLCD_DIS.LCD_Dis_Page)
         {
-            printf("\n x:%d,y:%d \r\n", sTP_Draw.Xpoint, sTP_Draw.Ypoint);
+            // printf("\n x:%d,y:%d \r\n", sTP_Draw.Xpoint, sTP_Draw.Ypoint);
 
             // 특정 위치 선택시 기능동작
             if ((sTP_Draw.Xpoint > 0 && sTP_Draw.Xpoint < 50 && //이전
@@ -877,7 +896,7 @@ void TP_DrawBoard(void)
                 pagestatus = 6;
                 TP_start_view(pagestatus);
             }
-            else if ((sTP_Draw.Xpoint > 273 && sTP_Draw.Xpoint < 320 && // 밸브 273,1 318,40 --------------------------------
+            else if ((sTP_Draw.Xpoint > 273 && sTP_Draw.Xpoint < 320 && // 밸브 273,1 318,40  --------------------------------
                       sTP_Draw.Ypoint > 0 && sTP_Draw.Ypoint < 40) &&
                      (pagestatus == 0 || pagestatus == 7))
             {
@@ -885,7 +904,7 @@ void TP_DrawBoard(void)
                 printf("valve\r\n");
                 TP_gesmain();
             }
-            else if ((sTP_Draw.Xpoint > 10 && sTP_Draw.Xpoint < 97 && //시료부
+            else if ((sTP_Draw.Xpoint > 10 && sTP_Draw.Xpoint < 97 && //시료부 설정
                       sTP_Draw.Ypoint > 52 && sTP_Draw.Ypoint < 132) &&
                      pagestatus == 7)
             {
@@ -933,14 +952,17 @@ void TP_DrawBoard(void)
                 pagestatus = 13;
                 TP_gesmain();
             }
-            printf("pagestatus : %d\r\n", pagestatus);
+            // printf("pagestatus : %d\r\n", pagestatus);
+
+            Run_page(pagestatus); // 페이지에 따른 버튼 활성화
 
             // 오동작으로 다른페이지로 넘어가지 않도록 안쓰는 좌표값으로 변경
             sTP_Draw.Xpoint = 160;
             sTP_Draw.Ypoint = 1;
         }
     }
-
+    /* 전처리 동작 */
+    Run_page_func(pagestatus);
     // if(sstart && (pagestatus==3))
     // {
 
@@ -950,6 +972,268 @@ void TP_DrawBoard(void)
     //     pwmgui=0;
 
     // }
+}
+
+void Run_inject()
+{
+}
+
+void Run_drain()
+{
+}
+
+void Run_clear()
+{
+}
+
+void Run_stop()
+{
+    
+}
+void Run_page_func(uint8_t page_num)
+{
+    switch (page_num)
+    {
+    case 1: // 시료부
+        switch (sample_run)
+        {
+        case 0: // stop
+            break;
+        case 1: // inject
+            break;
+        case 2: // drain
+            break;
+        case 3: // clear
+            break;
+
+        default:
+            break;
+        }
+        break;
+    case 3: // 과산화수소
+        switch (h2o2_run)
+        {
+        case 0: // stop
+            break;
+        case 1: // inject
+            break;
+        case 2: // drain
+            break;
+        case 3: // clear
+            break;
+
+        default:
+            break;
+        }
+        break;
+    case 5: // NAI
+        switch (nai_run)
+        {
+        case 0: // stop
+            break;
+        case 1: // inject
+            break;
+        case 2: // drain
+            break;
+        case 3: // clear
+            break;
+        case 4: // overflow
+            break;
+
+        default:
+            break;
+        }
+        break;
+
+    default:
+        break;
+    }
+}
+/*
+각 페이지별 버튼 기능 및 동작
+16 150 / 80 223 투입 - 93 150 / 157 223 배수 - 170 150 / 230 223 세척 - 240 150/ 305 223 정지
+*/
+void Run_page(uint8_t page_num)
+{
+    if (page_num == 1) // 시료부
+    {
+        if ((sTP_Draw.Xpoint > 16 && sTP_Draw.Xpoint < 80 && // 시료부 투입
+             sTP_Draw.Ypoint > 150 && sTP_Draw.Ypoint < 223))
+        {
+            if (sample_run == 0)
+            {
+                sample_run = 1;
+                clock_start1=time_us_64();
+                printf("%d",clock_start1);
+                GUI_DrawRectangle(245, 155, 302, 220, WHITE, 1, 1); // 정지 바탕색
+                TP_Bmp_button(256, 177, 4);                         // 정지 표현
+
+                GUI_DrawRectangle(20, 155, 77, 220, BLACK, 1, 1); // 투입 바탕색
+                TP_Bmp_button(30, 177, 5);                        // 투입 글씨
+            }
+        }
+        else if ((sTP_Draw.Xpoint > 93 && sTP_Draw.Xpoint < 157 && // 시료부 배수
+                  sTP_Draw.Ypoint > 150 && sTP_Draw.Ypoint < 223))
+        {
+            if (sample_run == 0)
+            {
+                sample_run = 2;
+                GUI_DrawRectangle(245, 155, 302, 220, WHITE, 1, 1); // 정지 바탕색
+                TP_Bmp_button(256, 177, 4);                         // 정지 표현
+
+                GUI_DrawRectangle(97, 155, 154, 220, BLACK, 1, 1); // 배수 바탕색
+                TP_Bmp_button(107, 177, 6);                        // 배수 글씨
+            }
+        }
+        else if ((sTP_Draw.Xpoint > 170 && sTP_Draw.Xpoint < 230 && // 시료부 세척
+                  sTP_Draw.Ypoint > 150 && sTP_Draw.Ypoint < 223))
+        {
+            if (sample_run == 0)
+            {
+                sample_run = 3;
+                GUI_DrawRectangle(245, 155, 302, 220, WHITE, 1, 1); // 정지 바탕색
+                TP_Bmp_button(256, 177, 4);                         // 정지 표현
+
+                GUI_DrawRectangle(172, 155, 229, 220, BLACK, 1, 1); // 세척 바탕색
+                TP_Bmp_button(182, 177, 7);                         // 세척 글씨
+            }
+        }
+        else if ((sTP_Draw.Xpoint > 240 && sTP_Draw.Xpoint < 305 && // 정지
+                  sTP_Draw.Ypoint > 150 && sTP_Draw.Ypoint < 223))
+        {
+            if (sample_run != 0)
+            {
+                sample_run = 0;
+                GUI_DrawRectangle(245, 155, 302, 220, BLACK, 1, 1); // 정지 바탕색
+                TP_Bmp_button(256, 177, 8);                         // 정지 표현
+
+                GUI_DrawRectangle(20, 155, 77, 220, WHITE, 1, 1);   // 투입 바탕색
+                TP_Bmp_button(30, 177, 1);                          // 투입 글씨
+                GUI_DrawRectangle(97, 155, 154, 220, WHITE, 1, 1);  // 투입 바탕색
+                TP_Bmp_button(107, 177, 2);                         // 투입 글씨
+                GUI_DrawRectangle(172, 155, 229, 220, WHITE, 1, 1); // 투입 바탕색
+                TP_Bmp_button(182, 177, 3);                         // 투입 글씨
+            }
+        }
+    }
+    else if (page_num == 3) // 과산화수소
+    {
+        if ((sTP_Draw.Xpoint > 16 && sTP_Draw.Xpoint < 80 && // 시료부 투입
+             sTP_Draw.Ypoint > 150 && sTP_Draw.Ypoint < 223))
+        {
+            if (h2o2_run == 0)
+            {
+                h2o2_run = 1;
+                GUI_DrawRectangle(245, 155, 302, 220, WHITE, 1, 1); // 정지 바탕색
+                TP_Bmp_button(256, 177, 4);                         // 정지 표현
+
+                GUI_DrawRectangle(20, 155, 77, 220, BLACK, 1, 1); // 투입 바탕색
+                TP_Bmp_button(30, 177, 5);                        // 투입 글씨
+            }
+        }
+        else if ((sTP_Draw.Xpoint > 93 && sTP_Draw.Xpoint < 157 && // 시료부 배수
+                  sTP_Draw.Ypoint > 150 && sTP_Draw.Ypoint < 223))
+        {
+            if (h2o2_run == 0)
+            {
+                h2o2_run = 2;
+                GUI_DrawRectangle(245, 155, 302, 220, WHITE, 1, 1); // 정지 바탕색
+                TP_Bmp_button(256, 177, 4);                         // 정지 표현
+
+                GUI_DrawRectangle(97, 155, 154, 220, BLACK, 1, 1); // 배수 바탕색
+                TP_Bmp_button(107, 177, 6);                        // 배수 글씨
+            }
+        }
+        else if ((sTP_Draw.Xpoint > 170 && sTP_Draw.Xpoint < 230 && // 시료부 세척
+                  sTP_Draw.Ypoint > 150 && sTP_Draw.Ypoint < 223))
+        {
+            if (h2o2_run == 0)
+            {
+                h2o2_run = 3;
+                GUI_DrawRectangle(245, 155, 302, 220, WHITE, 1, 1); // 정지 바탕색
+                TP_Bmp_button(256, 177, 4);                         // 정지 표현
+
+                GUI_DrawRectangle(172, 155, 229, 220, BLACK, 1, 1); // 세척 바탕색
+                TP_Bmp_button(182, 177, 7);                         // 세척 글씨
+            }
+        }
+        else if ((sTP_Draw.Xpoint > 240 && sTP_Draw.Xpoint < 305 && // 정지
+                  sTP_Draw.Ypoint > 150 && sTP_Draw.Ypoint < 223))
+        {
+            if (h2o2_run != 0)
+            {
+                h2o2_run = 0;
+                GUI_DrawRectangle(245, 155, 302, 220, BLACK, 1, 1); // 정지 바탕색
+                TP_Bmp_button(256, 177, 8);                         // 정지 표현
+
+                GUI_DrawRectangle(20, 155, 77, 220, WHITE, 1, 1);   // 투입 바탕색
+                TP_Bmp_button(30, 177, 1);                          // 투입 글씨
+                GUI_DrawRectangle(97, 155, 154, 220, WHITE, 1, 1);  // 투입 바탕색
+                TP_Bmp_button(107, 177, 2);                         // 투입 글씨
+                GUI_DrawRectangle(172, 155, 229, 220, WHITE, 1, 1); // 투입 바탕색
+                TP_Bmp_button(182, 177, 3);                         // 투입 글씨
+            }
+        }
+    }
+    else if (page_num == 5) // NAI
+    {
+        if ((sTP_Draw.Xpoint > 16 && sTP_Draw.Xpoint < 80 && // 시료부 투입
+             sTP_Draw.Ypoint > 150 && sTP_Draw.Ypoint < 223))
+        {
+            if (nai_run == 0)
+            {
+                nai_run = 1;
+                GUI_DrawRectangle(245, 155, 302, 220, WHITE, 1, 1); // 정지 바탕색
+                TP_Bmp_button(256, 177, 4);                         // 정지 표현
+
+                GUI_DrawRectangle(20, 155, 77, 220, BLACK, 1, 1); // 투입 바탕색
+                TP_Bmp_button(30, 177, 5);                        // 투입 글씨
+            }
+        }
+        else if ((sTP_Draw.Xpoint > 93 && sTP_Draw.Xpoint < 157 && // 시료부 배수
+                  sTP_Draw.Ypoint > 150 && sTP_Draw.Ypoint < 223))
+        {
+            if (nai_run == 0)
+            {
+                nai_run = 2;
+                GUI_DrawRectangle(245, 155, 302, 220, WHITE, 1, 1); // 정지 바탕색
+                TP_Bmp_button(256, 177, 4);                         // 정지 표현
+
+                GUI_DrawRectangle(97, 155, 154, 220, BLACK, 1, 1); // 배수 바탕색
+                TP_Bmp_button(107, 177, 6);                        // 배수 글씨
+            }
+        }
+        else if ((sTP_Draw.Xpoint > 170 && sTP_Draw.Xpoint < 230 && // 시료부 세척
+                  sTP_Draw.Ypoint > 150 && sTP_Draw.Ypoint < 223))
+        {
+            if (nai_run == 0)
+            {
+                nai_run = 3;
+                GUI_DrawRectangle(245, 155, 302, 220, WHITE, 1, 1); // 정지 바탕색
+                TP_Bmp_button(256, 177, 4);                         // 정지 표현
+
+                GUI_DrawRectangle(172, 155, 229, 220, BLACK, 1, 1); // 세척 바탕색
+                TP_Bmp_button(182, 177, 7);                         // 세척 글씨
+            }
+        }
+        else if ((sTP_Draw.Xpoint > 240 && sTP_Draw.Xpoint < 305 && // 정지
+                  sTP_Draw.Ypoint > 150 && sTP_Draw.Ypoint < 223))
+        {
+            if (nai_run != 0)
+            {
+                nai_run = 0;
+                GUI_DrawRectangle(245, 155, 302, 220, BLACK, 1, 1); // 정지 바탕색
+                TP_Bmp_button(256, 177, 8);                         // 정지 표현
+
+                GUI_DrawRectangle(20, 155, 77, 220, WHITE, 1, 1);   // 투입 바탕색
+                TP_Bmp_button(30, 177, 1);                          // 투입 글씨
+                GUI_DrawRectangle(97, 155, 154, 220, WHITE, 1, 1);  // 투입 바탕색
+                TP_Bmp_button(107, 177, 2);                         // 투입 글씨
+                GUI_DrawRectangle(172, 155, 229, 220, WHITE, 1, 1); // 투입 바탕색
+                TP_Bmp_button(182, 177, 3);                         // 투입 글씨
+            }
+        }
+    }
 }
 
 /*******************************************************************************
