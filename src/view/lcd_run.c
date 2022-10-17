@@ -35,6 +35,14 @@
 #include "fatfs_storage.h"
 #include "pca9685.h"
 
+
+
+void doSomething(int seconds)
+{
+    sleep_ms(seconds * 1000);
+}
+
+
 int lcd_run(void)
 {
 	System_Init();							  // USB Serial , SPI , default GPIO set
@@ -61,8 +69,11 @@ int lcd_run(void)
 	// 		TP_Bmp_num(i * 25, j*20, i*j);
 	// 	}
 	// }
+
+	
 	while (1)
 	{
+		
 		TP_DrawBoard(); // 터치 감지시 동작 이외엔 대기
 	}
 	return 0;

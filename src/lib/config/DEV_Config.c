@@ -136,7 +136,9 @@ uint8_t System_Init(void)
 {
 	set_sys_clock_khz(250000, true); // 250Mhz
 	stdio_init_all();
-  
+  // rtc_init();
+
+  sleep_us(64);
 	DEV_GPIO_Init();
 	spi_init(SPI_PORT,4*1000*1000);
 	gpio_set_function(LCD_CLK_PIN,GPIO_FUNC_SPI);

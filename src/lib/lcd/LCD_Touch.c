@@ -21,7 +21,7 @@ static TP_DRAW sTP_Draw;
 static DEV_TIME settime;
 uint16_t pagestatus = 7;
 uint8_t sample_run = 0, h2o2_run = 0, nai_run = 0;
-absolute_time_t clock_start1 = 0; 
+long double clock_start1 = 0; 
 uint64_t clock_end1 = 0;
 
 bool main1 = true;
@@ -42,7 +42,7 @@ uint8_t i2c_writebuf[3];
 uint8_t m1_power = 12, m2_power = 12, m3_power = 12, m4_power = 12;
 
 const char *ox_str = "";
-const char *ox_ch[10] = {
+const char *ox_ch[10] = { 
     0x00,
 };
 const char *kitno[] = {"001", "002", "003", "004"};
@@ -1050,6 +1050,14 @@ void Run_page_func(uint8_t page_num)
     }
 }
 /*
+부팅후 동작시간 실시간 확인가능
+*/
+clock_t clock()
+{
+    return (clock_t) time_us_64() / 10000;
+}
+
+/*
 각 페이지별 버튼 기능 및 동작
 16 150 / 80 223 투입 - 93 150 / 157 223 배수 - 170 150 / 230 223 세척 - 240 150/ 305 223 정지
 */
@@ -1063,15 +1071,15 @@ void Run_page(uint8_t page_num)
             if (sample_run == 0)
             {
                 sample_run = 1;
-
+                // 시스템 클럭 초단위로 변환
+                clock_start1=clock() / CLOCKS_PER_SEC;
                 GUI_DrawRectangle(245, 155, 302, 220, WHITE, 1, 1); // 정지 바탕색
                 TP_Bmp_button(256, 177, 4);                         // 정지 표현
 
                 GUI_DrawRectangle(20, 155, 77, 220, BLACK, 1, 1); // 투입 바탕색
                 TP_Bmp_button(30, 177, 5);                        // 투입 글씨
             }
-            to_ms_since_boot(clock_start1);            
-            printf("time2 : %.5d\r\n", clock_start1);
+             
         }
         else if ((sTP_Draw.Xpoint > 93 && sTP_Draw.Xpoint < 157 && // 시료부 배수
                   sTP_Draw.Ypoint > 150 && sTP_Draw.Ypoint < 223))

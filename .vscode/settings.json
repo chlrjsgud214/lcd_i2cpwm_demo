@@ -8,6 +8,7 @@
         "dev_config.h": "c",
         "lcd_driver.h": "c",
         "pca9685.h": "c",
-        "mapi.h": "c"
+        "mapi.h": "c",
+        "main.h": "c"
     }
 }

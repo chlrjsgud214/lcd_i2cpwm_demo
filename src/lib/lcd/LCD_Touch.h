@@ -23,7 +23,7 @@
 #include "pico/float.h"
 #include "fatfs_storage.h"
 #include "pca9685.h"
-#include "hardware/clocks.h"
+#include <time.h>
 
 #define TP_PRESS_DOWN           0x80
 #define TP_PRESSED              0x40

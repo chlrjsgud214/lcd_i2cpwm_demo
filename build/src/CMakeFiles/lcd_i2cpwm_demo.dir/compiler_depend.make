@@ -3711,9 +3711,9 @@ src/CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj: C:/gitprj/gitnas/lcd
   C:/pico/pico-sdk/src/rp2_common/hardware_i2c/include/hardware/i2c.h \
   C:/pico/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/i2c.h \
   C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/i2c.h \
-  C:/pico/pico-sdk/src/rp2_common/hardware_clocks/include/hardware/clocks.h \
-  C:/pico/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/clocks.h \
-  C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/clocks.h
+  C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/time.h \
+  C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/time.h \
+  C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_locale.h
 
 src/CMakeFiles/lcd_i2cpwm_demo.dir/lib/pca9685/pca9685.c.obj: C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/pca9685/pca9685.c \
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdio.h \
@@ -4053,9 +4053,9 @@ src/CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_run.c.obj: C:/gitprj/gitnas/lcd_i2cp
   C:/pico/pico-sdk/src/rp2_common/hardware_i2c/include/hardware/i2c.h \
   C:/pico/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/i2c.h \
   C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/i2c.h \
-  C:/pico/pico-sdk/src/rp2_common/hardware_clocks/include/hardware/clocks.h \
-  C:/pico/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/clocks.h \
-  C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/clocks.h \
+  C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/time.h \
+  C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/time.h \
+  C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_locale.h \
   C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/lcd/LCD_Bmp.h \
   C:/pico/pico-sdk/src/rp2_common/hardware_watchdog/include/hardware/watchdog.h \
   C:/pico/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/watchdog.h \
@@ -4621,6 +4621,10 @@ C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/lcd/LCD_Driver.c:
 C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/lcd/LCD_Touch.c:
 
 C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/lcd/LCD_Touch.h:
+
+C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/time.h:
+
+C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/time.h:
 
 C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/pca9685/pca9685.c:
 

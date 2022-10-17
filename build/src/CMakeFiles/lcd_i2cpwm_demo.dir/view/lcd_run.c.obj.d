@@ -96,9 +96,9 @@ src/CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_run.c.obj: \
  C:/pico/pico-sdk/src/rp2_common/hardware_i2c/include/hardware/i2c.h \
  C:/pico/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/i2c.h \
  C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/i2c.h \
- C:/pico/pico-sdk/src/rp2_common/hardware_clocks/include/hardware/clocks.h \
- C:/pico/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/clocks.h \
- C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/clocks.h \
+ c:\tools\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\time.h \
+ c:\tools\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\machine\time.h \
+ c:\tools\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\_locale.h \
  C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/lcd/LCD_Bmp.h \
  C:/pico/pico-sdk/src/rp2_common/hardware_watchdog/include/hardware/watchdog.h \
  C:/pico/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/watchdog.h \
