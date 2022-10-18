@@ -142,12 +142,22 @@ void show_button(uint16_t Xpoz, uint16_t Ypoz, uint8_t ButtonNum)
     DEV_Digital_Write(LCD_CS_PIN, 1);
 }
 
-void show_num(uint16_t Xpoz, uint16_t Ypoz, uint8_t Num)
+void show_num(uint16_t Xpoz, uint16_t Ypoz, uint8_t Num, bool back)
 {
     uint16_t i, j, k;
     uint32_t index = 0;
-    uint8_t num00 = 0, num0 = 0;
-    if (Num >= 10) // 입력 숫자가 10이상일때 
+    uint8_t num000 = 0, num00 = 0, num0 = 0, back_g = 0;
+
+    if (back)
+        back_g = 100;
+
+    if (Num >= 100)
+    {
+        num0 = Num % 10;
+        num00 = (Num % 100) / 10;
+        num000 = Num / 100;
+    }
+    else if (Num >= 10 && Num <= 99) // 입력 숫자가 10이상일때
     {
         num0 = Num % 10;
         num00 = Num / 10;
@@ -166,13 +176,13 @@ void show_num(uint16_t Xpoz, uint16_t Ypoz, uint8_t Num)
 
         for (i = 0; i < 10; i++)
         { // 너비
-            SPI4W_Write_Byte((num_in[i + ((num0)*10) + (j * 320)] >> 8) & 0xFF);
-            SPI4W_Write_Byte(num_in[i + ((num0)*10) + (j * 320)] & 0xFF);
+            SPI4W_Write_Byte((num_in[i + ((num0)*10 + back_g) + (j * 320)] >> 8) & 0xFF);
+            SPI4W_Write_Byte(num_in[i + ((num0)*10 + back_g) + (j * 320)] & 0xFF);
         }
     }
-    DEV_Digital_Write(LCD_CS_PIN, 1); 
+    DEV_Digital_Write(LCD_CS_PIN, 1);
 
-    if (num00 > 0) // 10의 자릿수 표현
+    if (num00 > 0 || num000 > 0) // 10의 자릿수 표현
     {
         for (j = 0; j < 14; j++)
         {
@@ -183,8 +193,24 @@ void show_num(uint16_t Xpoz, uint16_t Ypoz, uint8_t Num)
 
             for (i = 0; i < 10; i++)
             { // 너비
-                SPI4W_Write_Byte((num_in[i + ((num00)*10) + (j * 320)] >> 8) & 0xFF);
-                SPI4W_Write_Byte(num_in[i + ((num00)*10) + (j * 320)] & 0xFF);
+                SPI4W_Write_Byte((num_in[i + ((num00)*10 + back_g) + (j * 320)] >> 8) & 0xFF);
+                SPI4W_Write_Byte(num_in[i + ((num00)*10 + back_g) + (j * 320)] & 0xFF);
+            }
+        }
+    }
+    if (num000 > 0) // 10의 자릿수 표현
+    {
+        for (j = 0; j < 14; j++)
+        {
+            LCD_SetCursor(Xpoz - 20, Ypoz + j); // 오른쪽 정렬이 되도록 십의자리가 -10만큼 이동하여 그려짐
+            DEV_Digital_Write(LCD_DC_PIN, 1);
+            DEV_Digital_Write(LCD_CS_PIN, 0);
+            // 높이
+
+            for (i = 0; i < 10; i++)
+            { // 너비
+                SPI4W_Write_Byte((num_in[i + ((num000)*10 + back_g) + (j * 320)] >> 8) & 0xFF);
+                SPI4W_Write_Byte(num_in[i + ((num000)*10 + back_g) + (j * 320)] & 0xFF);
             }
         }
     }
@@ -195,7 +221,6 @@ void show_num(uint16_t Xpoz, uint16_t Ypoz, uint8_t Num)
     // }
     DEV_Digital_Write(LCD_CS_PIN, 1);
 }
-
 
 uint32_t Storage_OpenReadFile(uint8_t Xpoz, uint16_t Ypoz, const char *BmpName)
 {

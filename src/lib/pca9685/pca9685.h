@@ -46,19 +46,23 @@
 #define PRE_SCALE 0xFE         // prescaler for output frequency
 #define CLOCK_FREQ 250000000.0 // 250MHz default osc clock
 
-#define S_MOTOR 1 // 시료 모터
-#define C_MOTOR 2 // 세척모터
-#define D_MOTOR 3 // 배수모터
-#define H_MOTOR 4 // 과산화수소 모터
-#define N_MOTOR 5 // NAI모터
+#define M1 1 // 시료 모터
+#define M2 2 // 배수
+#define M3 3 // 과산화수소
+#define M4 4 // NAI
+#define V8M 16 // 노즐 모터
 
-#define S_VALVE 10  // 시료 밸브
-#define NC_VALVE 11 // 노즐세척 밸브
-#define PC_VALVE 12 // 배관세척 밸브
-#define D1_VALVE 13 // 배수1 밸브
-#define D2_VALVE 14 // 배수2 밸브
-#define H_VALVE 15 // 과산화수소 밸브
-#define N_VALVE 16 // NAI 밸브
+#define V1 9  // 시료
+#define V2 10 // 배수1
+#define V3 11 // 배수2
+#define V4 12 // 배관 세척
+#define V5 13 // 세척 노즐
+#define V6 14 // 과산화수소
+#define V7 15 // NAI
+
+#define VALVE_ON 1
+#define VALVE_OFF 0
+#define MOTOR_OFF 0
 
 #define mmap(value, in_min, in_max, out_min, out_max) ((value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min)
 

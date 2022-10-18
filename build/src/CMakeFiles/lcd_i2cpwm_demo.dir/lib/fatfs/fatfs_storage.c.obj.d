@@ -35,13 +35,13 @@ src/CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/fatfs_storage.c.obj: \
  C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/fatfs/ffconf.h \
  C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/fatfs/diskio.h \
  C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/fatfs/fatfs_storage.h \
+ c:\tools\gcc-arm-none-eabi-10.3-2021.10\lib\gcc\arm-none-eabi\10.3.1\include\stdbool.h \
  C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/lcd/LCD_Driver.h \
  C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/config/DEV_Config.h \
  C:/pico/pico-sdk/src/common/pico_stdlib/include/pico/stdlib.h \
  C:/pico/pico-sdk/src/common/pico_base/include/pico.h \
  C:/pico/pico-sdk/src/common/pico_base/include/pico/types.h \
  C:/pico/pico-sdk/src/common/pico_base/include/pico/assert.h \
- c:\tools\gcc-arm-none-eabi-10.3-2021.10\lib\gcc\arm-none-eabi\10.3.1\include\stdbool.h \
  c:\tools\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\assert.h \
  c:\tools\gcc-arm-none-eabi-10.3-2021.10\lib\gcc\arm-none-eabi\10.3.1\include\stdint.h \
  c:\tools\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\stdint.h \
@@ -81,6 +81,9 @@ src/CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/fatfs_storage.c.obj: \
  C:/pico/pico-sdk/src/rp2_common/hardware_spi/include/hardware/spi.h \
  C:/pico/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/spi.h \
  C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/spi.h \
+ C:/pico/pico-sdk/src/rp2_common/hardware_rtc/include/hardware/rtc.h \
+ C:/pico/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/rtc.h \
+ C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/rtc.h \
  C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/lcd/LCD_GUI.h \
  C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/lcd/LCD_Driver.h \
  C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/font/fonts.h \

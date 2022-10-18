@@ -129,6 +129,7 @@ set(CMAKE_ASM_TARGET_INCLUDE_PATH
   "C:/pico/pico-sdk/src/rp2_common/hardware_i2c/include"
   "C:/pico/pico-sdk/src/rp2_common/hardware_pwm/include"
   "C:/pico/pico-sdk/src/rp2_common/hardware_pio/include"
+  "C:/pico/pico-sdk/src/rp2_common/hardware_rtc/include"
   )
 
 # The set of dependency files which are needed:
@@ -170,6 +171,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c" "src/CMakeFiles/lcd_i2cpwm_demo.dir/C_/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj" "gcc" "src/CMakeFiles/lcd_i2cpwm_demo.dir/C_/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj.d"
   "C:/pico/pico-sdk/src/rp2_common/hardware_pio/pio.c" "src/CMakeFiles/lcd_i2cpwm_demo.dir/C_/pico/pico-sdk/src/rp2_common/hardware_pio/pio.c.obj" "gcc" "src/CMakeFiles/lcd_i2cpwm_demo.dir/C_/pico/pico-sdk/src/rp2_common/hardware_pio/pio.c.obj.d"
   "C:/pico/pico-sdk/src/rp2_common/hardware_pll/pll.c" "src/CMakeFiles/lcd_i2cpwm_demo.dir/C_/pico/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj" "gcc" "src/CMakeFiles/lcd_i2cpwm_demo.dir/C_/pico/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj.d"
+  "C:/pico/pico-sdk/src/rp2_common/hardware_rtc/rtc.c" "src/CMakeFiles/lcd_i2cpwm_demo.dir/C_/pico/pico-sdk/src/rp2_common/hardware_rtc/rtc.c.obj" "gcc" "src/CMakeFiles/lcd_i2cpwm_demo.dir/C_/pico/pico-sdk/src/rp2_common/hardware_rtc/rtc.c.obj.d"
   "C:/pico/pico-sdk/src/rp2_common/hardware_spi/spi.c" "src/CMakeFiles/lcd_i2cpwm_demo.dir/C_/pico/pico-sdk/src/rp2_common/hardware_spi/spi.c.obj" "gcc" "src/CMakeFiles/lcd_i2cpwm_demo.dir/C_/pico/pico-sdk/src/rp2_common/hardware_spi/spi.c.obj.d"
   "C:/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c" "src/CMakeFiles/lcd_i2cpwm_demo.dir/C_/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj" "gcc" "src/CMakeFiles/lcd_i2cpwm_demo.dir/C_/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj.d"
   "C:/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c" "src/CMakeFiles/lcd_i2cpwm_demo.dir/C_/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj" "gcc" "src/CMakeFiles/lcd_i2cpwm_demo.dir/C_/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj.d"

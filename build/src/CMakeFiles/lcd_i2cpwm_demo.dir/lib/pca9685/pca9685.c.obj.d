@@ -81,4 +81,7 @@ src/CMakeFiles/lcd_i2cpwm_demo.dir/lib/pca9685/pca9685.c.obj: \
  C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/config/DEV_Config.h \
  C:/pico/pico-sdk/src/rp2_common/hardware_spi/include/hardware/spi.h \
  C:/pico/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/spi.h \
- C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/spi.h
+ C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/spi.h \
+ C:/pico/pico-sdk/src/rp2_common/hardware_rtc/include/hardware/rtc.h \
+ C:/pico/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/rtc.h \
+ C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/rtc.h

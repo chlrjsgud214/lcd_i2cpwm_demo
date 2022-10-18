@@ -21,8 +21,18 @@ static TP_DRAW sTP_Draw;
 static DEV_TIME settime;
 uint16_t pagestatus = 7;
 uint8_t sample_run = 0, h2o2_run = 0, nai_run = 0;
-long double clock_start1 = 0; 
-uint64_t clock_end1 = 0;
+uint32_t clock_start1 = 0, clock_end1 = 0, diff_clock = 0;
+bool sample_set = false, h2o2_set = false, nai_set = false;
+char rtc_buf[256];
+char *rtc_str = &rtc_buf[0];
+datetime_t get_t = {
+    .year = 2022,
+    .month = 00,
+    .day = 00,
+    .dotw = 0, // 0 is Sunday, so 5 is Friday
+    .hour = 00,
+    .min = 00,
+    .sec = 00};
 
 bool main1 = true;
 bool main2 = false;
@@ -39,17 +49,8 @@ uint32_t pwmout = 0;
 uint8_t start_status = 0;
 uint8_t i2c_writebuf[3];
 /*m1=시료펌프 / m2=배수펌프 / m3=과산화수소펌프 / m4=NAI펌프*/
-uint8_t m1_power = 12, m2_power = 12, m3_power = 12, m4_power = 12;
+uint8_t m1_power = 12, m2_power = 12, m3_power = 12, m4_power = 12, v8m_power = 12;
 
-const char *ox_str = "";
-const char *ox_ch[10] = { 
-    0x00,
-};
-const char *kitno[] = {"001", "002", "003", "004"};
-const char *reml[] = {"400ml", "3000ml", "500ml", "1000ml"};
-const char *reppm[] = {"25ppm", "100ppm", "100EA", "1000ppm"};
-const char *reday[] = {"22.08.18", "22.08.08", "22.07.28", "22.07.08"};
-const char *retime[] = {"12:10", "16:22", "07:45", "00:00"};
 int ycur = 35;
 
 bool ret = false;
@@ -725,9 +726,9 @@ void TP_start_view(uint8_t pagenum)
     case 1: // 전처리 테스트 인식 글자수 최대 14
         TP_Bmp_view(0, 0, "sp_s.bmp");
 
-        TP_Bmp_num(250, 58, m1_power);
+        TP_Bmp_num(250, 58, m1_power, false);
         GUI_DisString_EN(280, 65, "V", &Font20, WHITE, BLACK);
-        TP_Bmp_num(250, 84, m2_power);
+        TP_Bmp_num(250, 84, m2_power, false);
         GUI_DisString_EN(280, 90, "V", &Font20, WHITE, BLACK);
         GUI_DisString_EN(230, 117, "NULL", &Font20, WHITE, BLACK);
 
@@ -740,9 +741,9 @@ void TP_start_view(uint8_t pagenum)
     case 3:
         TP_Bmp_view(0, 0, "h2o2_s.bmp");
 
-        TP_Bmp_num(250, 58, m3_power);
+        TP_Bmp_num(250, 58, m3_power, false);
         GUI_DisString_EN(280, 65, "V", &Font20, WHITE, BLACK);
-        TP_Bmp_num(250, 84, m2_power);
+        TP_Bmp_num(250, 84, m2_power, false);
         GUI_DisString_EN(280, 90, "V", &Font20, WHITE, BLACK);
         GUI_DisString_EN(230, 117, "NULL", &Font20, WHITE, BLACK);
 
@@ -755,11 +756,11 @@ void TP_start_view(uint8_t pagenum)
     case 5:
         TP_Bmp_view(0, 0, "nai_s.bmp");
 
-        TP_Bmp_num(250, 46, m1_power);
+        TP_Bmp_num(250, 46, m1_power, false);
         GUI_DisString_EN(280, 52, "V", &Font20, WHITE, BLACK);
-        TP_Bmp_num(250, 70, m1_power);
+        TP_Bmp_num(250, 70, m1_power, false);
         GUI_DisString_EN(280, 76, "V", &Font20, WHITE, BLACK);
-        TP_Bmp_num(250, 96, m2_power);
+        TP_Bmp_num(250, 96, m2_power, false);
         GUI_DisString_EN(280, 102, "V", &Font20, WHITE, BLACK);
         GUI_DisString_EN(230, 126, "NULL", &Font20, WHITE, BLACK);
 
@@ -820,10 +821,10 @@ void TP_Bmp_button(uint16_t Xpoz, uint16_t Ypoz, uint8_t btn_num) // 버튼
 /*
 Function: 숫자 Bmp 표현
 */
-void TP_Bmp_num(uint16_t Xpoz, uint16_t Ypoz, uint8_t Num) // 숫자
+void TP_Bmp_num(uint16_t Xpoz, uint16_t Ypoz, uint8_t Num, bool back_g) // 숫자
 {
     LCD_SetGramScanWay(7);
-    show_num(Xpoz, 240 - Ypoz - 20, Num);
+    show_num(Xpoz, 240 - Ypoz - 20, Num, back_g);
     LCD_SetGramScanWay(4);
 }
 /*******************************************************************************
@@ -975,35 +976,116 @@ void TP_DrawBoard(void)
     // }
 }
 
-void Run_inject()
-{
-}
-
-void Run_drain()
-{
-}
-
-void Run_clear()
-{
-}
-
-void Run_stop()
-{
-}
 void Run_page_func(uint8_t page_num)
 {
     switch (page_num)
     {
     case 1: // 시료부
+        /*
+        사용 모터 M1,M2,V8M
+        사용 밸브 V1,V2,V3,V5
+        */
         switch (sample_run)
         {
-        case 0: // stop
+        case STOP: // stop
+            if (sample_set)
+            {
+                sample_set = false;
+                setMotor(V8M, MOTOR_OFF);
+                setMotor(M1, MOTOR_OFF);
+                setMotor(M2, MOTOR_OFF);
+                setValve(V1, VALVE_OFF);
+                setValve(V2, VALVE_OFF);
+                setValve(V3, VALVE_OFF);
+                setValve(V5, VALVE_OFF);
+
+                GUI_DrawRectangle(245, 155, 302, 220, BLACK, 1, 1); // 정지 바탕색
+                TP_Bmp_button(256, 177, 8);                         // 정지 표현
+                GUI_DrawRectangle(20, 155, 77, 220, WHITE, 1, 1);   // 투입 바탕색
+                TP_Bmp_button(30, 177, 1);                          // 투입 글씨
+                GUI_DrawRectangle(97, 155, 154, 220, WHITE, 1, 1);  // 투입 바탕색
+                TP_Bmp_button(107, 177, 2);                         // 투입 글씨
+                GUI_DrawRectangle(172, 155, 229, 220, WHITE, 1, 1); // 투입 바탕색
+                TP_Bmp_button(182, 177, 3);                         // 투입 글씨
+            }
             break;
-        case 1: // inject
+
+        case INJECT: // inject 투입
+            rtc_get_datetime(&get_t);
+            clock_end1 = get_t.hour * 3600 + get_t.min * 60 + get_t.sec; //진행시간 확인
+            diff_clock = clock_end1 - clock_start1;
+            TP_Bmp_num(50, 156, diff_clock, true);
+
+            if (!sample_set)
+            {
+                sample_set = true;
+                setMotor(M1, m1_power);
+                setMotor(M2, m2_power);
+                setValve(V1, VALVE_ON);
+                setValve(V2, VALVE_ON);
+                setValve(V3, VALVE_OFF);
+            }
+            else if (diff_clock > 170 && diff_clock < 180) //투입 종료 잔여액 배출
+            {
+                setMotor(M1, MOTOR_OFF);
+                setValve(V1, VALVE_OFF);
+            }
+            else if (diff_clock >= 180) // 3분후에 정지
+            {
+                sample_run = STOP;
+            }
+
             break;
-        case 2: // drain
+
+        case DRAIN: // drain 배수
+            rtc_get_datetime(&get_t);
+            clock_end1 = get_t.hour * 3600 + get_t.min * 60 + get_t.sec; //진행시간 확인
+            diff_clock = clock_end1 - clock_start1;
+            TP_Bmp_num(130, 156, diff_clock, true);
+
+            if (!sample_set)
+            {
+                sample_set = true;
+                setMotor(M2, m2_power);
+                setValve(V2, VALVE_ON);
+                setValve(V3, VALVE_OFF);
+            }
+            else if (diff_clock >= 10)
+            {
+                sample_run = STOP;
+            }
             break;
-        case 3: // clear
+
+        case CLEAN: // clean 세척
+            rtc_get_datetime(&get_t);
+            clock_end1 = get_t.hour * 3600 + get_t.min * 60 + get_t.sec; //진행시간 확인
+            diff_clock = clock_end1 - clock_start1;
+            TP_Bmp_num(205, 156, diff_clock, true);
+
+            if (!sample_set)
+            {
+                sample_set = true;
+                setMotor(V8M, 12); // 노즐 모터 동작
+                setMotor(M1, 12);
+                setMotor(M2, 12);
+                setValve(V1, VALVE_ON);
+                setValve(V2, VALVE_ON);
+                setValve(V3, VALVE_OFF);
+                setValve(V5, VALVE_OFF); // 시료부 세척
+            }
+            else if (diff_clock > 5 && diff_clock <= 10)
+            {
+                setValve(V5, VALVE_ON); // 반응조 세척
+            }
+            else if (diff_clock > 10 && diff_clock <= 15)
+            {
+                setMotor(V8M, MOTOR_OFF);
+                setValve(V5, VALVE_OFF);
+            }
+            else if (diff_clock > 15)
+            {
+                sample_run = STOP;
+            }
             break;
 
         default:
@@ -1016,10 +1098,19 @@ void Run_page_func(uint8_t page_num)
         case 0: // stop
             break;
         case 1: // inject
+            rtc_get_datetime(&get_t);
+            clock_end1 = get_t.hour * 3600 + get_t.min * 60 + get_t.sec; //진행시간 확인
+            diff_clock = clock_end1 - clock_start1;
             break;
         case 2: // drain
+            rtc_get_datetime(&get_t);
+            clock_end1 = get_t.hour * 3600 + get_t.min * 60 + get_t.sec; //진행시간 확인
+            diff_clock = clock_end1 - clock_start1;
             break;
-        case 3: // clear
+        case 3: // clean
+            rtc_get_datetime(&get_t);
+            clock_end1 = get_t.hour * 3600 + get_t.min * 60 + get_t.sec; //진행시간 확인
+            diff_clock = clock_end1 - clock_start1;
             break;
 
         default:
@@ -1032,12 +1123,24 @@ void Run_page_func(uint8_t page_num)
         case 0: // stop
             break;
         case 1: // inject
+            rtc_get_datetime(&get_t);
+            clock_end1 = get_t.hour * 3600 + get_t.min * 60 + get_t.sec; //진행시간 확인
+            diff_clock = clock_end1 - clock_start1;
             break;
         case 2: // drain
+            rtc_get_datetime(&get_t);
+            clock_end1 = get_t.hour * 3600 + get_t.min * 60 + get_t.sec; //진행시간 확인
+            diff_clock = clock_end1 - clock_start1;
             break;
-        case 3: // clear
+        case 3: // clean
+            rtc_get_datetime(&get_t);
+            clock_end1 = get_t.hour * 3600 + get_t.min * 60 + get_t.sec; //진행시간 확인
+            diff_clock = clock_end1 - clock_start1;
             break;
         case 4: // overflow
+            rtc_get_datetime(&get_t);
+            clock_end1 = get_t.hour * 3600 + get_t.min * 60 + get_t.sec; //진행시간 확인
+            diff_clock = clock_end1 - clock_start1;
             break;
 
         default:
@@ -1051,10 +1154,12 @@ void Run_page_func(uint8_t page_num)
 }
 /*
 부팅후 동작시간 실시간 확인가능
+4300초 까지밖에 측정이 안되어 장시간 사용불가
 */
-clock_t clock()
+clock_t clock_mp()
 {
-    return (clock_t) time_us_64() / 10000;
+    return (clock_t)time_us_64() / 10000;
+    // clock_start1 = clock_mp() / CLOCKS_PER_SEC;
 }
 
 /*
@@ -1071,15 +1176,20 @@ void Run_page(uint8_t page_num)
             if (sample_run == 0)
             {
                 sample_run = 1;
-                // 시스템 클럭 초단위로 변환
-                clock_start1=clock() / CLOCKS_PER_SEC;
+                rtc_get_datetime(&get_t);                                      // RTC 값 get
+                clock_start1 = get_t.hour * 3600 + get_t.min * 60 + get_t.sec; // 시작 초로 저장
+                printf("start clock : %d\r\n", clock_start1);
+
                 GUI_DrawRectangle(245, 155, 302, 220, WHITE, 1, 1); // 정지 바탕색
                 TP_Bmp_button(256, 177, 4);                         // 정지 표현
 
                 GUI_DrawRectangle(20, 155, 77, 220, BLACK, 1, 1); // 투입 바탕색
                 TP_Bmp_button(30, 177, 5);                        // 투입 글씨
             }
-             
+
+            printf("\r%d %d %d \n\r %d  \r\n", get_t.hour, get_t.min, get_t.sec, (get_t.hour * 3600) + (get_t.min * 60) + get_t.sec);
+            // datetime_to_str(rtc_str, sizeof(rtc_buf), &get_t); // 시간값 문자열로 변환
+            // printf("\r%s      \r\n", rtc_str);
         }
         else if ((sTP_Draw.Xpoint > 93 && sTP_Draw.Xpoint < 157 && // 시료부 배수
                   sTP_Draw.Ypoint > 150 && sTP_Draw.Ypoint < 223))
@@ -1087,6 +1197,9 @@ void Run_page(uint8_t page_num)
             if (sample_run == 0)
             {
                 sample_run = 2;
+                rtc_get_datetime(&get_t);                                      // RTC 값 get
+                clock_start1 = get_t.hour * 3600 + get_t.min * 60 + get_t.sec; // 시작 초로 저장
+                printf("start clock : %d\r\n", clock_start1);
                 GUI_DrawRectangle(245, 155, 302, 220, WHITE, 1, 1); // 정지 바탕색
                 TP_Bmp_button(256, 177, 4);                         // 정지 표현
 
@@ -1100,6 +1213,9 @@ void Run_page(uint8_t page_num)
             if (sample_run == 0)
             {
                 sample_run = 3;
+                rtc_get_datetime(&get_t);                                      // RTC 값 get
+                clock_start1 = get_t.hour * 3600 + get_t.min * 60 + get_t.sec; // 시작 초로 저장
+                printf("start clock : %d\r\n", clock_start1);
                 GUI_DrawRectangle(245, 155, 302, 220, WHITE, 1, 1); // 정지 바탕색
                 TP_Bmp_button(256, 177, 4);                         // 정지 표현
 
@@ -1133,6 +1249,9 @@ void Run_page(uint8_t page_num)
             if (h2o2_run == 0)
             {
                 h2o2_run = 1;
+                rtc_get_datetime(&get_t);                                      // RTC 값 get
+                clock_start1 = get_t.hour * 3600 + get_t.min * 60 + get_t.sec; // 시작 초로 저장
+                printf("start clock : %d\r\n", clock_start1);
                 GUI_DrawRectangle(245, 155, 302, 220, WHITE, 1, 1); // 정지 바탕색
                 TP_Bmp_button(256, 177, 4);                         // 정지 표현
 
@@ -1146,6 +1265,9 @@ void Run_page(uint8_t page_num)
             if (h2o2_run == 0)
             {
                 h2o2_run = 2;
+                rtc_get_datetime(&get_t);                                      // RTC 값 get
+                clock_start1 = get_t.hour * 3600 + get_t.min * 60 + get_t.sec; // 시작 초로 저장
+                printf("start clock : %d\r\n", clock_start1);
                 GUI_DrawRectangle(245, 155, 302, 220, WHITE, 1, 1); // 정지 바탕색
                 TP_Bmp_button(256, 177, 4);                         // 정지 표현
 
@@ -1159,6 +1281,9 @@ void Run_page(uint8_t page_num)
             if (h2o2_run == 0)
             {
                 h2o2_run = 3;
+                rtc_get_datetime(&get_t);                                      // RTC 값 get
+                clock_start1 = get_t.hour * 3600 + get_t.min * 60 + get_t.sec; // 시작 초로 저장
+                printf("start clock : %d\r\n", clock_start1);
                 GUI_DrawRectangle(245, 155, 302, 220, WHITE, 1, 1); // 정지 바탕색
                 TP_Bmp_button(256, 177, 4);                         // 정지 표현
 
@@ -1192,6 +1317,9 @@ void Run_page(uint8_t page_num)
             if (nai_run == 0)
             {
                 nai_run = 1;
+                rtc_get_datetime(&get_t);                                      // RTC 값 get
+                clock_start1 = get_t.hour * 3600 + get_t.min * 60 + get_t.sec; // 시작 초로 저장
+                printf("start clock : %d\r\n", clock_start1);
                 GUI_DrawRectangle(245, 155, 302, 220, WHITE, 1, 1); // 정지 바탕색
                 TP_Bmp_button(256, 177, 4);                         // 정지 표현
 
@@ -1205,6 +1333,9 @@ void Run_page(uint8_t page_num)
             if (nai_run == 0)
             {
                 nai_run = 2;
+                rtc_get_datetime(&get_t);                                      // RTC 값 get
+                clock_start1 = get_t.hour * 3600 + get_t.min * 60 + get_t.sec; // 시작 초로 저장
+                printf("start clock : %d\r\n", clock_start1);
                 GUI_DrawRectangle(245, 155, 302, 220, WHITE, 1, 1); // 정지 바탕색
                 TP_Bmp_button(256, 177, 4);                         // 정지 표현
 
@@ -1218,6 +1349,9 @@ void Run_page(uint8_t page_num)
             if (nai_run == 0)
             {
                 nai_run = 3;
+                rtc_get_datetime(&get_t);                                      // RTC 값 get
+                clock_start1 = get_t.hour * 3600 + get_t.min * 60 + get_t.sec; // 시작 초로 저장
+                printf("start clock : %d\r\n", clock_start1);
                 GUI_DrawRectangle(245, 155, 302, 220, WHITE, 1, 1); // 정지 바탕색
                 TP_Bmp_button(256, 177, 4);                         // 정지 표현
 
@@ -1231,6 +1365,7 @@ void Run_page(uint8_t page_num)
             if (nai_run != 0)
             {
                 nai_run = 0;
+
                 GUI_DrawRectangle(245, 155, 302, 220, BLACK, 1, 1); // 정지 바탕색
                 TP_Bmp_button(256, 177, 8);                         // 정지 표현
 

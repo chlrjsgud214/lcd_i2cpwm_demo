@@ -27,8 +27,11 @@
   */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
+
 #ifndef __FATFS_STORAGE_H
 #define __FATFS_STORAGE_H
+#include <stdio.h>
+#include <stdbool.h>
 
 typedef struct PIC_PAGE{
 	uint16_t pic_page1[76800];
@@ -45,7 +48,7 @@ extern uint8_t Buffercmp(uint8_t* pBuffer1, uint8_t* pBuffer2, uint16_t BufferLe
 
 extern uint32_t button_read(const char *BmpName);
 extern void show_button(uint16_t Xpoz, uint16_t Ypoz,uint8_t ButtonNum);
-extern void show_num(uint16_t Xpoz, uint16_t Ypoz, uint8_t Num);
+extern void show_num(uint16_t Xpoz, uint16_t Ypoz, uint8_t Num, bool back);
 
 static void P_main(void);
 static void P_cat(void);

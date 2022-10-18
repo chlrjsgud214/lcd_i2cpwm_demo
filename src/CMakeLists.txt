@@ -46,6 +46,7 @@ target_link_libraries(${PRJ_NAME}
   hardware_pwm
   hardware_pio
   hardware_clocks
+  hardware_rtc
   )
 
 pico_add_extra_outputs(${PRJ_NAME})

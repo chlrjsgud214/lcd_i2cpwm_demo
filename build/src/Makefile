@@ -1048,6 +1048,30 @@ C_/pico/pico-sdk/src/rp2_common/hardware_pll/pll.c.s:
 	cd C:/gitprj/gitnas/lcd_i2cpwm_demo/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/lcd_i2cpwm_demo.dir/build.make src/CMakeFiles/lcd_i2cpwm_demo.dir/C_/pico/pico-sdk/src/rp2_common/hardware_pll/pll.c.s
 .PHONY : C_/pico/pico-sdk/src/rp2_common/hardware_pll/pll.c.s
 
+C_/pico/pico-sdk/src/rp2_common/hardware_rtc/rtc.obj: C_/pico/pico-sdk/src/rp2_common/hardware_rtc/rtc.c.obj
+.PHONY : C_/pico/pico-sdk/src/rp2_common/hardware_rtc/rtc.obj
+
+# target to build an object file
+C_/pico/pico-sdk/src/rp2_common/hardware_rtc/rtc.c.obj:
+	cd C:/gitprj/gitnas/lcd_i2cpwm_demo/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/lcd_i2cpwm_demo.dir/build.make src/CMakeFiles/lcd_i2cpwm_demo.dir/C_/pico/pico-sdk/src/rp2_common/hardware_rtc/rtc.c.obj
+.PHONY : C_/pico/pico-sdk/src/rp2_common/hardware_rtc/rtc.c.obj
+
+C_/pico/pico-sdk/src/rp2_common/hardware_rtc/rtc.i: C_/pico/pico-sdk/src/rp2_common/hardware_rtc/rtc.c.i
+.PHONY : C_/pico/pico-sdk/src/rp2_common/hardware_rtc/rtc.i
+
+# target to preprocess a source file
+C_/pico/pico-sdk/src/rp2_common/hardware_rtc/rtc.c.i:
+	cd C:/gitprj/gitnas/lcd_i2cpwm_demo/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/lcd_i2cpwm_demo.dir/build.make src/CMakeFiles/lcd_i2cpwm_demo.dir/C_/pico/pico-sdk/src/rp2_common/hardware_rtc/rtc.c.i
+.PHONY : C_/pico/pico-sdk/src/rp2_common/hardware_rtc/rtc.c.i
+
+C_/pico/pico-sdk/src/rp2_common/hardware_rtc/rtc.s: C_/pico/pico-sdk/src/rp2_common/hardware_rtc/rtc.c.s
+.PHONY : C_/pico/pico-sdk/src/rp2_common/hardware_rtc/rtc.s
+
+# target to generate assembly for a file
+C_/pico/pico-sdk/src/rp2_common/hardware_rtc/rtc.c.s:
+	cd C:/gitprj/gitnas/lcd_i2cpwm_demo/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/lcd_i2cpwm_demo.dir/build.make src/CMakeFiles/lcd_i2cpwm_demo.dir/C_/pico/pico-sdk/src/rp2_common/hardware_rtc/rtc.c.s
+.PHONY : C_/pico/pico-sdk/src/rp2_common/hardware_rtc/rtc.c.s
+
 C_/pico/pico-sdk/src/rp2_common/hardware_spi/spi.obj: C_/pico/pico-sdk/src/rp2_common/hardware_spi/spi.c.obj
 .PHONY : C_/pico/pico-sdk/src/rp2_common/hardware_spi/spi.obj
 
@@ -2251,6 +2275,9 @@ help:
 	@echo "... C_/pico/pico-sdk/src/rp2_common/hardware_pll/pll.obj"
 	@echo "... C_/pico/pico-sdk/src/rp2_common/hardware_pll/pll.i"
 	@echo "... C_/pico/pico-sdk/src/rp2_common/hardware_pll/pll.s"
+	@echo "... C_/pico/pico-sdk/src/rp2_common/hardware_rtc/rtc.obj"
+	@echo "... C_/pico/pico-sdk/src/rp2_common/hardware_rtc/rtc.i"
+	@echo "... C_/pico/pico-sdk/src/rp2_common/hardware_rtc/rtc.s"
 	@echo "... C_/pico/pico-sdk/src/rp2_common/hardware_spi/spi.obj"
 	@echo "... C_/pico/pico-sdk/src/rp2_common/hardware_spi/spi.i"
 	@echo "... C_/pico/pico-sdk/src/rp2_common/hardware_spi/spi.s"

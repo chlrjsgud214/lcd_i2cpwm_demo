@@ -74,4 +74,7 @@ src/CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Driver.c.obj: \
  c:\tools\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\_pthreadtypes.h \
  c:\tools\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\sched.h \
  c:\tools\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\machine\types.h \
- c:\tools\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\stdio.h
+ c:\tools\gcc-arm-none-eabi-10.3-2021.10\arm-none-eabi\include\sys\stdio.h \
+ C:/pico/pico-sdk/src/rp2_common/hardware_rtc/include/hardware/rtc.h \
+ C:/pico/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/rtc.h \
+ C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/rtc.h

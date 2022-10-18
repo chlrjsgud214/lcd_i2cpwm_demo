@@ -167,12 +167,12 @@ void setPWM(uint8_t led,uint16_t on_value){
 
 void setMotor(uint8_t ch,uint8_t volt)
 {	
-	setPWM(ch,2049-cmap(volt,0,12,0,2048));
+	setPWM(ch,4096-cmap(volt,0,12,0,4095));
 }
 
-void setValve(uint8_t ch)
+void setValve(uint8_t ch,uint8_t set)
 {
-	setPWM(ch,1);
+	setPWM(ch,set);
 }
 
 void read_PCA_reg(uint8_t reg,uint8_t len) {

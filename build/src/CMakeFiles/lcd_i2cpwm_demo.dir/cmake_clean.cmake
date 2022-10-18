@@ -75,6 +75,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/lcd_i2cpwm_demo.dir/C_/pico/pico-sdk/src/rp2_common/hardware_pio/pio.c.obj.d"
   "CMakeFiles/lcd_i2cpwm_demo.dir/C_/pico/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj"
   "CMakeFiles/lcd_i2cpwm_demo.dir/C_/pico/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj.d"
+  "CMakeFiles/lcd_i2cpwm_demo.dir/C_/pico/pico-sdk/src/rp2_common/hardware_rtc/rtc.c.obj"
+  "CMakeFiles/lcd_i2cpwm_demo.dir/C_/pico/pico-sdk/src/rp2_common/hardware_rtc/rtc.c.obj.d"
   "CMakeFiles/lcd_i2cpwm_demo.dir/C_/pico/pico-sdk/src/rp2_common/hardware_spi/spi.c.obj"
   "CMakeFiles/lcd_i2cpwm_demo.dir/C_/pico/pico-sdk/src/rp2_common/hardware_spi/spi.c.obj.d"
   "CMakeFiles/lcd_i2cpwm_demo.dir/C_/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj"

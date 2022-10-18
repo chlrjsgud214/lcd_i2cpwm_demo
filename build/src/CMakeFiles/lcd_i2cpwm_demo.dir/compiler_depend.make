@@ -1839,6 +1839,50 @@ src/CMakeFiles/lcd_i2cpwm_demo.dir/C_/pico/pico-sdk/src/rp2_common/hardware_pll/
   C:/pico/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/resets.h \
   C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/resets.h
 
+src/CMakeFiles/lcd_i2cpwm_demo.dir/C_/pico/pico-sdk/src/rp2_common/hardware_rtc/rtc.c.obj: C:/pico/pico-sdk/src/rp2_common/hardware_rtc/rtc.c \
+  C:/pico/pico-sdk/src/common/pico_base/include/pico.h \
+  C:/pico/pico-sdk/src/common/pico_base/include/pico/types.h \
+  C:/pico/pico-sdk/src/common/pico_base/include/pico/assert.h \
+  C:/tools/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stdbool.h \
+  C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/assert.h \
+  C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/_ansi.h \
+  C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/newlib.h \
+  C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/_newlib_version.h \
+  C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/config.h \
+  C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/ieeefp.h \
+  C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/features.h \
+  C:/tools/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h \
+  C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdint.h \
+  C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/_default_types.h \
+  C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_intsup.h \
+  C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_stdint.h \
+  C:/tools/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stddef.h \
+  generated/pico_base/pico/version.h \
+  C:/pico/pico-sdk/src/common/pico_base/include/pico/config.h \
+  generated/pico_base/pico/config_autogen.h \
+  C:/pico/pico-sdk/src/boards/include/boards/pico.h \
+  C:/pico/pico-sdk/src/rp2_common/cmsis/include/cmsis/rename_exceptions.h \
+  C:/pico/pico-sdk/src/rp2_common/pico_platform/include/pico/platform.h \
+  C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/platform_defs.h \
+  C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/addressmap.h \
+  C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/sio.h \
+  C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/cdefs.h \
+  C:/pico/pico-sdk/src/common/pico_base/include/pico/types.h \
+  C:/pico/pico-sdk/src/common/pico_base/include/pico/error.h \
+  C:/pico/pico-sdk/src/rp2_common/hardware_irq/include/hardware/irq.h \
+  C:/pico/pico-sdk/src/rp2_common/hardware_base/include/hardware/address_mapped.h \
+  C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/intctrl.h \
+  C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/m0plus.h \
+  C:/pico/pico-sdk/src/rp2_common/hardware_rtc/include/hardware/rtc.h \
+  C:/pico/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/rtc.h \
+  C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/rtc.h \
+  C:/pico/pico-sdk/src/rp2_common/hardware_resets/include/hardware/resets.h \
+  C:/pico/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/resets.h \
+  C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/resets.h \
+  C:/pico/pico-sdk/src/rp2_common/hardware_clocks/include/hardware/clocks.h \
+  C:/pico/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/clocks.h \
+  C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/clocks.h
+
 src/CMakeFiles/lcd_i2cpwm_demo.dir/C_/pico/pico-sdk/src/rp2_common/hardware_spi/spi.c.obj: C:/pico/pico-sdk/src/rp2_common/hardware_spi/spi.c \
   C:/pico/pico-sdk/src/rp2_common/hardware_resets/include/hardware/resets.h \
   C:/pico/pico-sdk/src/common/pico_base/include/pico.h \
@@ -3143,6 +3187,9 @@ src/CMakeFiles/lcd_i2cpwm_demo.dir/lib/config/DEV_Config.c.obj: C:/gitprj/gitnas
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/sched.h \
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/types.h \
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/stdio.h \
+  C:/pico/pico-sdk/src/rp2_common/hardware_rtc/include/hardware/rtc.h \
+  C:/pico/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/rtc.h \
+  C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/rtc.h \
   C:/pico/pico-sdk/src/rp2_common/hardware_pwm/include/hardware/pwm.h \
   C:/pico/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/pwm.h \
   C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/pwm.h \
@@ -3225,6 +3272,9 @@ src/CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/diskio.c.obj: C:/gitprj/gitnas/lcd_
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/sched.h \
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/types.h \
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/stdio.h \
+  C:/pico/pico-sdk/src/rp2_common/hardware_rtc/include/hardware/rtc.h \
+  C:/pico/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/rtc.h \
+  C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/rtc.h \
   C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/sdcard/MMC_SD.h \
   C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/fatfs/ff.h \
   C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/fatfs/integer.h \
@@ -3267,13 +3317,13 @@ src/CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/fatfs_storage.c.obj: C:/gitprj/gitn
   C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/fatfs/ffconf.h \
   C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/fatfs/diskio.h \
   C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/fatfs/fatfs_storage.h \
+  C:/tools/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stdbool.h \
   C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/lcd/LCD_Driver.h \
   C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/config/DEV_Config.h \
   C:/pico/pico-sdk/src/common/pico_stdlib/include/pico/stdlib.h \
   C:/pico/pico-sdk/src/common/pico_base/include/pico.h \
   C:/pico/pico-sdk/src/common/pico_base/include/pico/types.h \
   C:/pico/pico-sdk/src/common/pico_base/include/pico/assert.h \
-  C:/tools/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stdbool.h \
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/assert.h \
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h \
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdint.h \
@@ -3313,6 +3363,9 @@ src/CMakeFiles/lcd_i2cpwm_demo.dir/lib/fatfs/fatfs_storage.c.obj: C:/gitprj/gitn
   C:/pico/pico-sdk/src/rp2_common/hardware_spi/include/hardware/spi.h \
   C:/pico/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/spi.h \
   C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/spi.h \
+  C:/pico/pico-sdk/src/rp2_common/hardware_rtc/include/hardware/rtc.h \
+  C:/pico/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/rtc.h \
+  C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/rtc.h \
   C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/lcd/LCD_GUI.h \
   C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/lcd/LCD_Driver.h \
   C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/font/fonts.h \
@@ -3456,6 +3509,9 @@ src/CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Bmp.c.obj: C:/gitprj/gitnas/lcd_i
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/sched.h \
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/types.h \
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/stdio.h \
+  C:/pico/pico-sdk/src/rp2_common/hardware_rtc/include/hardware/rtc.h \
+  C:/pico/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/rtc.h \
+  C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/rtc.h \
   C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/lcd/LCD_GUI.h \
   C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/font/fonts.h \
   C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/fatfs/ff.h \
@@ -3538,7 +3594,10 @@ src/CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Driver.c.obj: C:/gitprj/gitnas/lc
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_pthreadtypes.h \
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/sched.h \
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/types.h \
-  C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/stdio.h
+  C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/stdio.h \
+  C:/pico/pico-sdk/src/rp2_common/hardware_rtc/include/hardware/rtc.h \
+  C:/pico/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/rtc.h \
+  C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/rtc.h
 
 src/CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_GUI.c.obj: C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/lcd/LCD_GUI.c \
   C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/lcd/LCD_GUI.h \
@@ -3617,6 +3676,9 @@ src/CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_GUI.c.obj: C:/gitprj/gitnas/lcd_i
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/sched.h \
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/types.h \
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/stdio.h \
+  C:/pico/pico-sdk/src/rp2_common/hardware_rtc/include/hardware/rtc.h \
+  C:/pico/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/rtc.h \
+  C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/rtc.h \
   C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/font/fonts.h
 
 src/CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj: C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/lcd/LCD_Touch.c \
@@ -3695,6 +3757,9 @@ src/CMakeFiles/lcd_i2cpwm_demo.dir/lib/lcd/LCD_Touch.c.obj: C:/gitprj/gitnas/lcd
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/sched.h \
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/types.h \
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/stdio.h \
+  C:/pico/pico-sdk/src/rp2_common/hardware_rtc/include/hardware/rtc.h \
+  C:/pico/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/rtc.h \
+  C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/rtc.h \
   C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/lcd/LCD_Driver.h \
   C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/lcd/LCD_GUI.h \
   C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/font/fonts.h \
@@ -3797,7 +3862,10 @@ src/CMakeFiles/lcd_i2cpwm_demo.dir/lib/pca9685/pca9685.c.obj: C:/gitprj/gitnas/l
   C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/config/DEV_Config.h \
   C:/pico/pico-sdk/src/rp2_common/hardware_spi/include/hardware/spi.h \
   C:/pico/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/spi.h \
-  C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/spi.h
+  C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/spi.h \
+  C:/pico/pico-sdk/src/rp2_common/hardware_rtc/include/hardware/rtc.h \
+  C:/pico/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/rtc.h \
+  C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/rtc.h
 
 src/CMakeFiles/lcd_i2cpwm_demo.dir/lib/sdcard/MMC_SD.c.obj: C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/sdcard/MMC_SD.c \
   C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/config/DEV_Config.h \
@@ -3874,6 +3942,9 @@ src/CMakeFiles/lcd_i2cpwm_demo.dir/lib/sdcard/MMC_SD.c.obj: C:/gitprj/gitnas/lcd
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/sched.h \
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/types.h \
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/stdio.h \
+  C:/pico/pico-sdk/src/rp2_common/hardware_rtc/include/hardware/rtc.h \
+  C:/pico/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/rtc.h \
+  C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/rtc.h \
   C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/sdcard/MMC_SD.h
 
 src/CMakeFiles/lcd_i2cpwm_demo.dir/main.c.obj: C:/gitprj/gitnas/lcd_i2cpwm_demo/src/main.c \
@@ -3952,6 +4023,9 @@ src/CMakeFiles/lcd_i2cpwm_demo.dir/main.c.obj: C:/gitprj/gitnas/lcd_i2cpwm_demo/
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/sched.h \
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/types.h \
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/stdio.h \
+  C:/pico/pico-sdk/src/rp2_common/hardware_rtc/include/hardware/rtc.h \
+  C:/pico/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/rtc.h \
+  C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/rtc.h \
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdlib.h \
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/stdlib.h \
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/alloca.h
@@ -4032,6 +4106,9 @@ src/CMakeFiles/lcd_i2cpwm_demo.dir/view/lcd_run.c.obj: C:/gitprj/gitnas/lcd_i2cp
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/sched.h \
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/types.h \
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/stdio.h \
+  C:/pico/pico-sdk/src/rp2_common/hardware_rtc/include/hardware/rtc.h \
+  C:/pico/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/rtc.h \
+  C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/rtc.h \
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdlib.h \
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/machine/stdlib.h \
   C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/alloca.h \
@@ -4137,6 +4214,8 @@ C:/gitprj/gitnas/lcd_i2cpwm_demo/src/lib/font/font16.c:
 C:/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.h:
 
 C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/stdint.h:
+
+C:/pico/pico-sdk/src/rp2040/hardware_structs/include/hardware/structs/rtc.h:
 
 C:/tools/gcc-arm-none-eabi-10.3-2021.10/arm-none-eabi/include/sys/_types.h:
 
@@ -4301,6 +4380,8 @@ C:/pico/pico-sdk/lib/tinyusb/src/class/net/ncm_device.c:
 C:/pico/pico-sdk/lib/tinyusb/src/class/usbtmc/usbtmc_device.c:
 
 C:/pico/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c:
+
+C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/rtc.h:
 
 C:/pico/pico-sdk/lib/tinyusb/src/class/video/video_device.c:
 
@@ -4493,6 +4574,10 @@ C:/pico/pico-sdk/src/rp2040/hardware_regs/include/hardware/regs/pio.h:
 C:/pico/pico-sdk/src/rp2_common/hardware_pio/include/hardware/pio_instructions.h:
 
 C:/pico/pico-sdk/src/rp2_common/hardware_pll/pll.c:
+
+C:/pico/pico-sdk/src/rp2_common/hardware_rtc/rtc.c:
+
+C:/pico/pico-sdk/src/rp2_common/hardware_rtc/include/hardware/rtc.h:
 
 C:/pico/pico-sdk/src/rp2_common/hardware_spi/include/hardware/spi.h:
 

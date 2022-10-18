@@ -18,6 +18,7 @@
 #include "hardware/spi.h"
 #include "stdio.h"
 #include "pico/time.h"
+#include "hardware/rtc.h"
 
 #define UBYTE   uint8_t
 #define UWORD   uint16_t
@@ -57,6 +58,13 @@
 #ifndef cmap
 #define cmap(value, in_min, in_max, out_min, out_max) ((value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min)
 #endif
+
+
+
+
+
+
+
 /*------------------------------------------------------------------------------------------------------*/
  
 void DEV_Digital_Write(UWORD Pin, UBYTE Value);
