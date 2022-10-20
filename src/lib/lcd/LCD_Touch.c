@@ -22,7 +22,7 @@ static DEV_TIME settime;
 uint16_t pagestatus = 7;
 uint8_t sample_run = 0, h2o2_run = 0, nai_run = 0;
 uint32_t clock_start1 = 0, clock_end1 = 0, diff_clock = 0;
-bool sample_set = false, h2o2_set = false, nai_set = false;
+bool sample_set = false, h2o2_set = false, nai_set = false, sensor_en = false;
 char rtc_buf[256];
 char *rtc_str = &rtc_buf[0];
 datetime_t get_t = {
@@ -49,7 +49,7 @@ uint32_t pwmout = 0;
 uint8_t start_status = 0;
 uint8_t i2c_writebuf[3];
 /*m1=시료펌프 / m2=배수펌프 / m3=과산화수소펌프 / m4=NAI펌프*/
-uint8_t m1_power = 12, m2_power = 12, m3_power = 12, m4_power = 12, v8m_power = 12;
+uint8_t m1_power = 6, m2_power = 12, m3_power = 12, m4_power = 12, sample_clean = 12, center_clean = 12, over_power = 4;
 
 int ycur = 35;
 
@@ -696,8 +696,10 @@ void TP_gesmain(void)
 
     if (main1)
     {
+        Run_All_STOP();
         TP_Bmp_view(0, 0, "b_main1.bmp");
         pagestatus = 0;
+
         return 0;
     }
     else if (main2)
@@ -725,12 +727,13 @@ void TP_start_view(uint8_t pagenum)
     {
     case 1: // 전처리 테스트 인식 글자수 최대 14
         TP_Bmp_view(0, 0, "sp_s.bmp");
+        sensor_en = false;
 
         TP_Bmp_num(250, 58, m1_power, false);
         GUI_DisString_EN(280, 65, "V", &Font20, WHITE, BLACK);
         TP_Bmp_num(250, 84, m2_power, false);
         GUI_DisString_EN(280, 90, "V", &Font20, WHITE, BLACK);
-        GUI_DisString_EN(230, 117, "NULL", &Font20, WHITE, BLACK);
+        // GUI_DisString_EN(230, 117, "NULL", &Font20, WHITE, BLACK);
 
         GUI_DrawRectangle(245, 155, 302, 220, BLACK, 1, 1); // 정지 바탕색
         TP_Bmp_button(256, 177, 8);                         // 정지 표현
@@ -740,12 +743,13 @@ void TP_start_view(uint8_t pagenum)
         break;
     case 3:
         TP_Bmp_view(0, 0, "h2o2_s.bmp");
+        sensor_en = false;
 
         TP_Bmp_num(250, 58, m3_power, false);
         GUI_DisString_EN(280, 65, "V", &Font20, WHITE, BLACK);
         TP_Bmp_num(250, 84, m2_power, false);
         GUI_DisString_EN(280, 90, "V", &Font20, WHITE, BLACK);
-        GUI_DisString_EN(230, 117, "NULL", &Font20, WHITE, BLACK);
+        // GUI_DisString_EN(230, 117, "NULL", &Font20, WHITE, BLACK);
 
         GUI_DrawRectangle(245, 155, 302, 220, BLACK, 1, 1);
         TP_Bmp_button(256, 177, 8);
@@ -755,17 +759,20 @@ void TP_start_view(uint8_t pagenum)
         break;
     case 5:
         TP_Bmp_view(0, 0, "nai_s.bmp");
+        sensor_en = false;
 
-        TP_Bmp_num(250, 46, m1_power, false);
+        TP_Bmp_num(250, 46, m4_power, false);
         GUI_DisString_EN(280, 52, "V", &Font20, WHITE, BLACK);
-        TP_Bmp_num(250, 70, m1_power, false);
+        TP_Bmp_num(250, 70, over_power, false);
         GUI_DisString_EN(280, 76, "V", &Font20, WHITE, BLACK);
         TP_Bmp_num(250, 96, m2_power, false);
         GUI_DisString_EN(280, 102, "V", &Font20, WHITE, BLACK);
-        GUI_DisString_EN(230, 126, "NULL", &Font20, WHITE, BLACK);
+        // GUI_DisString_EN(230, 126, "NULL", &Font20, WHITE, BLACK);
 
-        GUI_DrawRectangle(245, 155, 302, 220, BLACK, 1, 1);
-        TP_Bmp_button(256, 177, 8);
+        GUI_DrawRectangle(259, 155, 305, 220, BLACK, 1, 1);
+        TP_Bmp_button(265, 177, 8);
+
+        GUI_DisString_EN(204, 177, "OVER", &Font16, WHITE, BLACK);
         break;
     case 6:
         TP_Bmp_view(0, 0, "nai_c.bmp");
@@ -965,6 +972,8 @@ void TP_DrawBoard(void)
     }
     /* 전처리 동작 */
     Run_page_func(pagestatus);
+    // TP_Bmp_num(50, 35, S0, false);
+    // TP_Bmp_num(50 + 10, 35, S1, false);
     // if(sstart && (pagestatus==3))
     // {
 
@@ -975,7 +984,19 @@ void TP_DrawBoard(void)
 
     // }
 }
-
+void sec_check()
+{
+    rtc_get_datetime(&get_t);
+    clock_end1 = get_t.hour * 3600 + get_t.min * 60 + get_t.sec; //진행시간 확인
+    diff_clock = clock_end1 - clock_start1;
+}
+void Run_All_STOP()
+{
+    sample_run = STOP;
+    h2o2_run = STOP;
+    nai_run = STOP;
+    Run_page_func(pagestatus);
+}
 void Run_page_func(uint8_t page_num)
 {
     switch (page_num)
@@ -985,9 +1006,21 @@ void Run_page_func(uint8_t page_num)
         사용 모터 M1,M2,V8M
         사용 밸브 V1,V2,V3,V5
         */
+        if (S1 && !sensor_en)
+        {
+            sensor_en = true;
+            GUI_DrawRectangle(230, 117, 230 + 80, 117 + 14, WHITE, 1, 1);
+            GUI_DisString_EN(230, 117, "EMPTY", &Font20, WHITE, BLACK);
+        }
+        else if (!S1 && sensor_en)
+        {
+            sensor_en = false;
+            GUI_DrawRectangle(230, 117, 230 + 80, 117 + 14, WHITE, 1, 1);
+            GUI_DisString_EN(230, 117, "FULL", &Font20, WHITE, BLACK);
+        }
         switch (sample_run)
         {
-        case STOP: // stop
+        case STOP: // 시료통 정지
             if (sample_set)
             {
                 sample_set = false;
@@ -1010,43 +1043,49 @@ void Run_page_func(uint8_t page_num)
             }
             break;
 
-        case INJECT: // inject 투입
-            rtc_get_datetime(&get_t);
-            clock_end1 = get_t.hour * 3600 + get_t.min * 60 + get_t.sec; //진행시간 확인
-            diff_clock = clock_end1 - clock_start1;
+        case INJECT: // 시료통 투입
+            sec_check();
             TP_Bmp_num(50, 156, diff_clock, true);
-
             if (!sample_set)
             {
                 sample_set = true;
                 setMotor(M1, m1_power);
                 setMotor(M2, m2_power);
+
                 setValve(V1, VALVE_ON);
                 setValve(V2, VALVE_ON);
                 setValve(V3, VALVE_OFF);
             }
-            else if (diff_clock > 170 && diff_clock < 180) //투입 종료 잔여액 배출
+            else if (diff_clock < 230 && !S0)
             {
                 setMotor(M1, MOTOR_OFF);
+            }
+            else if (diff_clock < 230 && S0)
+            {
+                setMotor(M1, m1_power);
+            }
+            else if (diff_clock > 230 && diff_clock < 240) //투입 종료 잔여액 배출
+            {
+                setMotor(M1, MOTOR_OFF);
+
                 setValve(V1, VALVE_OFF);
             }
-            else if (diff_clock >= 180) // 3분후에 정지
+            else if (diff_clock >= 240) // 3분후에 정지
             {
                 sample_run = STOP;
             }
 
             break;
 
-        case DRAIN: // drain 배수
-            rtc_get_datetime(&get_t);
-            clock_end1 = get_t.hour * 3600 + get_t.min * 60 + get_t.sec; //진행시간 확인
-            diff_clock = clock_end1 - clock_start1;
+        case DRAIN: // 시료통 배수
+            sec_check();
             TP_Bmp_num(130, 156, diff_clock, true);
 
             if (!sample_set)
             {
                 sample_set = true;
                 setMotor(M2, m2_power);
+
                 setValve(V2, VALVE_ON);
                 setValve(V3, VALVE_OFF);
             }
@@ -1056,33 +1095,40 @@ void Run_page_func(uint8_t page_num)
             }
             break;
 
-        case CLEAN: // clean 세척
-            rtc_get_datetime(&get_t);
-            clock_end1 = get_t.hour * 3600 + get_t.min * 60 + get_t.sec; //진행시간 확인
-            diff_clock = clock_end1 - clock_start1;
+        case CLEAN: // 시료통 세척
+            sec_check();
             TP_Bmp_num(205, 156, diff_clock, true);
 
             if (!sample_set)
             {
                 sample_set = true;
-                setMotor(V8M, 12); // 노즐 모터 동작
-                setMotor(M1, 12);
-                setMotor(M2, 12);
+                setMotor(V8M, sample_clean); // 노즐 모터 동작
+                setMotor(M1, m1_power);
+                setMotor(M2, m2_power);
+
                 setValve(V1, VALVE_ON);
                 setValve(V2, VALVE_ON);
                 setValve(V3, VALVE_OFF);
                 setValve(V5, VALVE_OFF); // 시료부 세척
             }
-            else if (diff_clock > 5 && diff_clock <= 10)
+            else if (diff_clock > 5 && diff_clock <= 20)
             {
-                setValve(V5, VALVE_ON); // 반응조 세척
+                setMotor(V8M, MOTOR_OFF); // 노즐 모터 멈춤
             }
-            else if (diff_clock > 10 && diff_clock <= 15)
+            else if (diff_clock > 20 && diff_clock <= 25)
             {
-                setMotor(V8M, MOTOR_OFF);
-                setValve(V5, VALVE_OFF);
+                setMotor(M1, MOTOR_OFF); // 시료모터 멈춤
             }
-            else if (diff_clock > 15)
+            else if (diff_clock > 25 && diff_clock <= 27)
+            {
+                setValve(V5, VALVE_ON);      // 반응조 세척
+                setMotor(V8M, center_clean); // 노즐 모터 동작
+            }
+            else if (diff_clock > 27 && diff_clock <= 37)
+            {
+                setMotor(V8M, MOTOR_OFF); // 반응조 세척 끝내고 남은 액체 5초간 배수
+            }
+            else if (diff_clock > 37)
             {
                 sample_run = STOP;
             }
@@ -1093,24 +1139,122 @@ void Run_page_func(uint8_t page_num)
         }
         break;
     case 3: // 과산화수소
+        if (S1 && !sensor_en)
+        {
+            sensor_en = true;
+            GUI_DrawRectangle(230, 117, 230 + 80, 117 + 14, WHITE, 1, 1);
+            GUI_DisString_EN(230, 117, "EMPTY", &Font20, WHITE, BLACK);
+        }
+        else if (!S1 && sensor_en)
+        {
+            sensor_en = false;
+            GUI_DrawRectangle(230, 117, 230 + 80, 117 + 14, WHITE, 1, 1);
+            GUI_DisString_EN(230, 117, "FULL", &Font20, WHITE, BLACK);
+        }
         switch (h2o2_run)
         {
-        case 0: // stop
+
+        case 0: // 과산화수소 정지
+            if (h2o2_set)
+            {
+                h2o2_set = false;
+                setMotor(M2, MOTOR_OFF);
+                setMotor(M3, MOTOR_OFF);
+                setMotor(M4, MOTOR_OFF);
+                setMotor(V8M, MOTOR_OFF);
+                setValve(V2, VALVE_OFF);
+                setValve(V3, VALVE_OFF);
+                setValve(V4, VALVE_OFF);
+                setValve(V5, VALVE_OFF);
+                setValve(V6, VALVE_OFF);
+
+                GUI_DrawRectangle(245, 155, 302, 220, BLACK, 1, 1); // 정지 바탕색
+                TP_Bmp_button(256, 177, 8);                         // 정지 표현
+                GUI_DrawRectangle(20, 155, 77, 220, WHITE, 1, 1);   // 투입 바탕색
+                TP_Bmp_button(30, 177, 1);                          // 투입 글씨
+                GUI_DrawRectangle(97, 155, 154, 220, WHITE, 1, 1);  // 투입 바탕색
+                TP_Bmp_button(107, 177, 2);                         // 투입 글씨
+                GUI_DrawRectangle(172, 155, 229, 220, WHITE, 1, 1); // 투입 바탕색
+                TP_Bmp_button(182, 177, 3);                         // 투입 글씨
+            }
             break;
-        case 1: // inject
+        case 1: // 과산화수소 투입
+            sec_check();
+
+            if (!h2o2_set)
+            {
+                h2o2_set = true;
+                setMotor(M3, m3_power);
+
+                setValve(V6, VALVE_ON);
+            }
+            else if (diff_clock > 5 || !S1) //투입 종료
+            {
+                h2o2_run = STOP;
+            }
+
+            break;
+        case 2: // 과산화수소 배수
             rtc_get_datetime(&get_t);
             clock_end1 = get_t.hour * 3600 + get_t.min * 60 + get_t.sec; //진행시간 확인
             diff_clock = clock_end1 - clock_start1;
+            TP_Bmp_num(130, 156, diff_clock, true);
+
+            if (!h2o2_set)
+            {
+                h2o2_set = true;
+                setMotor(M2, m2_power);
+
+                setValve(V2, VALVE_ON);
+                setValve(V3, VALVE_OFF);
+            }
+            else if (diff_clock >= 10)
+            {
+                h2o2_run = STOP;
+            }
             break;
-        case 2: // drain
-            rtc_get_datetime(&get_t);
-            clock_end1 = get_t.hour * 3600 + get_t.min * 60 + get_t.sec; //진행시간 확인
-            diff_clock = clock_end1 - clock_start1;
-            break;
-        case 3: // clean
-            rtc_get_datetime(&get_t);
-            clock_end1 = get_t.hour * 3600 + get_t.min * 60 + get_t.sec; //진행시간 확인
-            diff_clock = clock_end1 - clock_start1;
+        case 3: // 과산화수소 세척
+            sec_check();
+            TP_Bmp_num(205, 156, diff_clock, true);
+
+            if (!h2o2_set) // 반응조 노즐 - 과산화수소 배관 청소
+            {
+                h2o2_set = true;
+                setMotor(V8M, center_clean); // 노즐 모터 동작
+                setMotor(M2, m2_power);      //배수 모터
+                setMotor(M3, m3_power);      //과산화수소 배관
+                setMotor(M4, MOTOR_OFF);
+
+                setValve(V2, VALVE_ON);
+                setValve(V3, VALVE_OFF);
+                setValve(V4, VALVE_ON);
+                setValve(V5, VALVE_ON);  //
+                setValve(V6, VALVE_OFF); //
+            }
+            else if (diff_clock > 1 && diff_clock <= 5)
+            {
+                setMotor(V8M, MOTOR_OFF);
+            }
+            else if (diff_clock > 5 && diff_clock <= 7)
+            {
+                setMotor(V8M, center_clean);
+                setMotor(M3, MOTOR_OFF);
+                setMotor(M4, m4_power);
+                setValve(V4, VALVE_OFF);
+            }
+            else if (diff_clock > 7 && diff_clock <= 10)
+            {
+                setMotor(V8M, MOTOR_OFF);
+                setValve(V5, VALVE_OFF);
+            }
+            else if (diff_clock > 10 && diff_clock <= 15) // 남은 액 배수
+            {
+                setMotor(M4, MOTOR_OFF);
+            }
+            else if (diff_clock > 15)
+            {
+                h2o2_run = STOP;
+            }
             break;
 
         default:
@@ -1118,29 +1262,240 @@ void Run_page_func(uint8_t page_num)
         }
         break;
     case 5: // NAI
+        if (S1 && !sensor_en)
+        {
+            sensor_en = true;
+            GUI_DrawRectangle(230, 127, 230 + 80, 127 + 14, WHITE, 1, 1);
+            GUI_DisString_EN(230, 127, "EMPTY", &Font20, WHITE, BLACK);
+        }
+        else if (!S1 && sensor_en)
+        {
+            sensor_en = false;
+            GUI_DrawRectangle(230, 127, 230 + 80, 127 + 14, WHITE, 1, 1);
+            GUI_DisString_EN(230, 127, "FULL", &Font20, WHITE, BLACK);
+        }
         switch (nai_run)
         {
-        case 0: // stop
+
+        case STOP: // NAI stop
+            if (nai_set)
+            {
+                nai_set = false;
+                setMotor(M2, MOTOR_OFF);
+                setMotor(M3, MOTOR_OFF);
+                setMotor(M4, MOTOR_OFF);
+                setMotor(V8M, MOTOR_OFF);
+                setValve(V2, VALVE_OFF);
+                setValve(V3, VALVE_ON); //배수는 NAI때에 항상 NAI폐수통으로 향하게 셋팅
+                setValve(V4, VALVE_OFF);
+                setValve(V5, VALVE_OFF);
+                setValve(V7, VALVE_OFF);
+
+                GUI_DrawRectangle(259, 155, 305, 220, BLACK, 1, 1); // 정지 바탕색
+                TP_Bmp_button(265, 177, 8);                         // 정지 표현
+
+                GUI_DrawRectangle(14, 155, 60, 220, WHITE, 1, 1);   // 투입 바탕색
+                TP_Bmp_button(19, 177, 1);                          // 투입 글씨
+                GUI_DrawRectangle(78, 155, 123, 220, WHITE, 1, 1);  // 배수
+                TP_Bmp_button(83, 177, 2);                          //
+                GUI_DrawRectangle(138, 155, 184, 220, WHITE, 1, 1); // 세척
+                TP_Bmp_button(143, 177, 3);                         //
+                GUI_DrawRectangle(199, 155, 245, 220, WHITE, 1, 1); // 오버
+                GUI_DisString_EN(202, 177, "OVER", &Font16, WHITE, BLACK);
+            }
             break;
-        case 1: // inject
-            rtc_get_datetime(&get_t);
-            clock_end1 = get_t.hour * 3600 + get_t.min * 60 + get_t.sec; //진행시간 확인
-            diff_clock = clock_end1 - clock_start1;
+        case INJECT: // NAI 투입
+            sec_check();
+            TP_Bmp_num(29, 156, diff_clock, true);
+
+            if (!nai_set)
+            {
+                nai_set = true;
+                setMotor(M4, m4_power);
+
+                setValve(V7, VALVE_ON);
+            }
+            else if (diff_clock > 5 || !S1) //투입 종료
+            {
+                nai_run = STOP;
+            }
             break;
-        case 2: // drain
-            rtc_get_datetime(&get_t);
-            clock_end1 = get_t.hour * 3600 + get_t.min * 60 + get_t.sec; //진행시간 확인
-            diff_clock = clock_end1 - clock_start1;
+        case DRAIN: // NAI 배수
+            sec_check();
+            TP_Bmp_num(93, 156, diff_clock, true);
+
+            if (!nai_set)
+            {
+                nai_set = true;
+                setMotor(M2, m2_power);
+
+                setValve(V2, VALVE_ON);
+                setValve(V3, VALVE_ON);
+            }
+            else if (diff_clock >= 10)
+            {
+                nai_run = STOP;
+            }
             break;
-        case 3: // clean
-            rtc_get_datetime(&get_t);
-            clock_end1 = get_t.hour * 3600 + get_t.min * 60 + get_t.sec; //진행시간 확인
-            diff_clock = clock_end1 - clock_start1;
+        case CLEAN: // NAI 세척
+            sec_check();
+            TP_Bmp_num(153, 156, diff_clock, true);
+
+            if (!nai_set)
+            {
+                nai_set = true;
+                setMotor(V8M, center_clean); // 노즐 모터 동작
+                setMotor(M2, m2_power);
+                setMotor(M3, MOTOR_OFF);
+                setMotor(M4, m4_power);
+
+                setValve(V2, VALVE_ON);
+                setValve(V3, VALVE_ON);  // off : 일반폐수 ON : nai폐수
+                setValve(V4, VALVE_OFF); // off : Nai방향 ON : 과산화수소
+                setValve(V5, VALVE_ON);  // off : 시료부 on : 반응조
+                setValve(V6, VALVE_OFF); // off : 과산화수소 배관세척 on : 과산화수소
+                setValve(V7, VALVE_OFF); // off : nai배관세척 on : nai
+            }
+            else if (diff_clock > 1 && diff_clock <= 5)
+            {
+                setMotor(V8M, MOTOR_OFF);
+            }
+            else if (diff_clock > 5 && diff_clock <= 7) // 5초동안 반응조 세척후 배수 , 과산화수소 배관도 세척
+            {
+                setMotor(V8M, center_clean);
+                setMotor(M3, m3_power);
+                setMotor(M4, MOTOR_OFF);
+
+                setValve(V4, VALVE_ON);
+                setValve(V6, VALVE_OFF); // off : 과산화수소 배관세척 on : 과산화수소
+            }
+            else if (diff_clock > 7 && diff_clock <= 10)
+            {
+                setMotor(V8M, MOTOR_OFF);
+                setValve(V5, VALVE_OFF); // off : 시료부 on : 반응조
+            }
+            else if (diff_clock > 10 && diff_clock <= 15)
+            {
+                setMotor(M3, MOTOR_OFF);
+                setValve(V4, VALVE_OFF);
+            }
+            else if (diff_clock > 15 && diff_clock <= 18)
+            {
+                setMotor(M2, m2_power);
+                setMotor(M4, m4_power);
+                setValve(V7, VALVE_OFF); // 배관세척 방향
+                setValve(V4, VALVE_OFF); // NAI방향
+                setValve(V2, VALVE_OFF); // 오버플로우 배수 방향
+                setValve(V3, VALVE_ON);  //배수는 NAI때에 항상 NAI폐수통으로 향하게 셋팅
+
+                setMotor(M3, MOTOR_OFF);
+                setMotor(V8M, MOTOR_OFF);
+                setValve(V5, VALVE_OFF);
+            }
+            else if ((diff_clock > 18 && diff_clock <= 26) && !S1)
+            {
+                setMotor(M4, MOTOR_OFF);
+            }
+            else if (diff_clock > 26 && diff_clock <= 28) // 오버플로우 투입
+            {
+                setMotor(M4, over_power);
+            }
+            else if (diff_clock > 28 && diff_clock <= 33) // 오버플로우 배수
+            {
+                setMotor(M4, MOTOR_OFF);
+            }
+            else if (diff_clock > 33 && diff_clock <= 35) // 오버플로우 투입
+            {
+                setMotor(M4, over_power);
+            }
+            else if (diff_clock > 35 && diff_clock <= 40) // 오버플로우 배수
+            {
+                setMotor(M4, MOTOR_OFF);
+            }
+            else if (diff_clock > 40 && diff_clock <= 42) // 오버플로우 투입
+            {
+                setMotor(M4, over_power);
+            }
+            else if (diff_clock > 42 && diff_clock <= 43) // 오버플로우 배수
+            {
+                setMotor(M2, MOTOR_OFF);
+                setMotor(M3, MOTOR_OFF);
+                setMotor(M4, MOTOR_OFF);
+                setMotor(V8M, MOTOR_OFF);
+                setValve(V2, VALVE_OFF);
+                setValve(V3, VALVE_ON); //배수는 NAI때에 항상 NAI폐수통으로 향하게 셋팅
+                setValve(V4, VALVE_OFF);
+                setValve(V5, VALVE_OFF);
+                setValve(V7, VALVE_OFF);
+                
+            }
+            else if (diff_clock > 43 && diff_clock <= 55) // 오버플로우 배수
+            {
+                setMotor(M2, m2_power);
+
+                setValve(V2, VALVE_ON);
+                setValve(V3, VALVE_ON);
+            }
+            else if (diff_clock > 53)
+            {
+                nai_run = STOP;
+            }
             break;
-        case 4: // overflow
-            rtc_get_datetime(&get_t);
-            clock_end1 = get_t.hour * 3600 + get_t.min * 60 + get_t.sec; //진행시간 확인
-            diff_clock = clock_end1 - clock_start1;
+        case OVERFLOW: // NAI overflow
+            sec_check();
+            TP_Bmp_num(219, 156, diff_clock, true);
+
+            if (!nai_set)
+            {
+                nai_set = true;
+                setMotor(M4, over_power);
+                setMotor(M2, m2_power);
+
+                setValve(V2, VALVE_OFF);
+                setValve(V3, VALVE_ON);
+                setValve(V7, VALVE_ON);
+            }
+            else if (diff_clock > 0 && diff_clock <= 6) // 오버플로우 배수
+            {
+                setMotor(M4, MOTOR_OFF);
+            }
+            else if (diff_clock > 6 && diff_clock <= 7) // 오버플로우 투입
+            {
+                setMotor(M4, over_power);
+            }
+            else if (diff_clock > 7 && diff_clock <= 12) // 오버플로우 배수
+            {
+                setMotor(M4, MOTOR_OFF);
+            }
+            else if (diff_clock > 12 && diff_clock <= 13) // 오버플로우 투입
+            {
+                setMotor(M4, over_power);
+            }
+            else if (diff_clock > 13 && diff_clock <= 18) // 오버플로우 배수
+            {
+                setMotor(M4, MOTOR_OFF);
+            }
+            else if (diff_clock > 18 && diff_clock <= 19) // 오버플로우 투입
+            {
+                setMotor(M4, over_power);
+            }
+            else if (diff_clock > 19 && diff_clock <= 24) // 오버플로우 배수
+            {
+                setMotor(M4, MOTOR_OFF);
+            }
+            else if (diff_clock > 24 && diff_clock <= 25) // 오버플로우 투입
+            {
+                setMotor(M4, over_power);
+            }
+            else if (diff_clock > 25 && diff_clock <= 30) // 오버플로우 배수
+            {
+                setMotor(M4, MOTOR_OFF);
+            }
+
+            else if (diff_clock > 30) //투입 종료
+            {
+                nai_run = STOP;
+            }
             break;
 
         default:
@@ -1311,7 +1666,7 @@ void Run_page(uint8_t page_num)
     }
     else if (page_num == 5) // NAI
     {
-        if ((sTP_Draw.Xpoint > 16 && sTP_Draw.Xpoint < 80 && // 시료부 투입
+        if ((sTP_Draw.Xpoint > 14 && sTP_Draw.Xpoint < 60 && // 시료부 투입
              sTP_Draw.Ypoint > 150 && sTP_Draw.Ypoint < 223))
         {
             if (nai_run == 0)
@@ -1320,14 +1675,14 @@ void Run_page(uint8_t page_num)
                 rtc_get_datetime(&get_t);                                      // RTC 값 get
                 clock_start1 = get_t.hour * 3600 + get_t.min * 60 + get_t.sec; // 시작 초로 저장
                 printf("start clock : %d\r\n", clock_start1);
-                GUI_DrawRectangle(245, 155, 302, 220, WHITE, 1, 1); // 정지 바탕색
-                TP_Bmp_button(256, 177, 4);                         // 정지 표현
+                GUI_DrawRectangle(259, 155, 305, 220, WHITE, 1, 1); // 정지 바탕색
+                TP_Bmp_button(265, 177, 4);                         // 정지 표현
 
-                GUI_DrawRectangle(20, 155, 77, 220, BLACK, 1, 1); // 투입 바탕색
-                TP_Bmp_button(30, 177, 5);                        // 투입 글씨
+                GUI_DrawRectangle(14, 155, 60, 220, BLACK, 1, 1); // 투입 바탕색
+                TP_Bmp_button(19, 177, 5);                        // 투입 글씨
             }
         }
-        else if ((sTP_Draw.Xpoint > 93 && sTP_Draw.Xpoint < 157 && // 시료부 배수
+        else if ((sTP_Draw.Xpoint > 78 && sTP_Draw.Xpoint < 123 && // 시료부 배수
                   sTP_Draw.Ypoint > 150 && sTP_Draw.Ypoint < 223))
         {
             if (nai_run == 0)
@@ -1336,14 +1691,13 @@ void Run_page(uint8_t page_num)
                 rtc_get_datetime(&get_t);                                      // RTC 값 get
                 clock_start1 = get_t.hour * 3600 + get_t.min * 60 + get_t.sec; // 시작 초로 저장
                 printf("start clock : %d\r\n", clock_start1);
-                GUI_DrawRectangle(245, 155, 302, 220, WHITE, 1, 1); // 정지 바탕색
-                TP_Bmp_button(256, 177, 4);                         // 정지 표현
-
-                GUI_DrawRectangle(97, 155, 154, 220, BLACK, 1, 1); // 배수 바탕색
-                TP_Bmp_button(107, 177, 6);                        // 배수 글씨
+                GUI_DrawRectangle(259, 155, 305, 220, WHITE, 1, 1); // 정지 바탕색
+                TP_Bmp_button(265, 177, 4);                         // 정지 표현
+                GUI_DrawRectangle(77, 155, 123, 220, BLACK, 1, 1);  // 배수
+                TP_Bmp_button(83, 177, 6);
             }
         }
-        else if ((sTP_Draw.Xpoint > 170 && sTP_Draw.Xpoint < 230 && // 시료부 세척
+        else if ((sTP_Draw.Xpoint > 138 && sTP_Draw.Xpoint < 184 && // 시료부 세척
                   sTP_Draw.Ypoint > 150 && sTP_Draw.Ypoint < 223))
         {
             if (nai_run == 0)
@@ -1352,29 +1706,47 @@ void Run_page(uint8_t page_num)
                 rtc_get_datetime(&get_t);                                      // RTC 값 get
                 clock_start1 = get_t.hour * 3600 + get_t.min * 60 + get_t.sec; // 시작 초로 저장
                 printf("start clock : %d\r\n", clock_start1);
-                GUI_DrawRectangle(245, 155, 302, 220, WHITE, 1, 1); // 정지 바탕색
-                TP_Bmp_button(256, 177, 4);                         // 정지 표현
+                GUI_DrawRectangle(259, 155, 305, 220, WHITE, 1, 1); // 정지 바탕색
+                TP_Bmp_button(265, 177, 4);                         // 정지 표현
 
-                GUI_DrawRectangle(172, 155, 229, 220, BLACK, 1, 1); // 세척 바탕색
-                TP_Bmp_button(182, 177, 7);                         // 세척 글씨
+                GUI_DrawRectangle(138, 155, 184, 220, BLACK, 1, 1); // 세척
+                TP_Bmp_button(143, 177, 7);                         //
             }
         }
-        else if ((sTP_Draw.Xpoint > 240 && sTP_Draw.Xpoint < 305 && // 정지
+        else if ((sTP_Draw.Xpoint > 199 && sTP_Draw.Xpoint < 245 && // 오버플로우
+                  sTP_Draw.Ypoint > 150 && sTP_Draw.Ypoint < 223))
+        {
+            if (nai_run == 0)
+            {
+                nai_run = 4;
+                rtc_get_datetime(&get_t);                                      // RTC 값 get
+                clock_start1 = get_t.hour * 3600 + get_t.min * 60 + get_t.sec; // 시작 초로 저장
+                printf("start clock : %d\r\n", clock_start1);
+                GUI_DrawRectangle(259, 155, 305, 220, WHITE, 1, 1); // 정지 바탕색
+                TP_Bmp_button(265, 177, 4);                         // 정지 표현
+
+                GUI_DrawRectangle(199, 155, 245, 220, BLACK, 1, 1); // 오버
+                GUI_DisString_EN(202, 177, "OVER", &Font16, BLACK, WHITE);
+            }
+        }
+        else if ((sTP_Draw.Xpoint > 260 && sTP_Draw.Xpoint < 305 && // 정지
                   sTP_Draw.Ypoint > 150 && sTP_Draw.Ypoint < 223))
         {
             if (nai_run != 0)
             {
                 nai_run = 0;
 
-                GUI_DrawRectangle(245, 155, 302, 220, BLACK, 1, 1); // 정지 바탕색
-                TP_Bmp_button(256, 177, 8);                         // 정지 표현
+                GUI_DrawRectangle(259, 155, 305, 220, BLACK, 1, 1); // 정지 바탕색
+                TP_Bmp_button(265, 177, 8);                         // 정지 표현
 
-                GUI_DrawRectangle(20, 155, 77, 220, WHITE, 1, 1);   // 투입 바탕색
-                TP_Bmp_button(30, 177, 1);                          // 투입 글씨
-                GUI_DrawRectangle(97, 155, 154, 220, WHITE, 1, 1);  // 투입 바탕색
-                TP_Bmp_button(107, 177, 2);                         // 투입 글씨
-                GUI_DrawRectangle(172, 155, 229, 220, WHITE, 1, 1); // 투입 바탕색
-                TP_Bmp_button(182, 177, 3);                         // 투입 글씨
+                GUI_DrawRectangle(14, 155, 60, 220, WHITE, 1, 1);          // 투입 바탕색
+                TP_Bmp_button(19, 177, 1);                                 // 투입 글씨
+                GUI_DrawRectangle(77, 155, 123, 220, WHITE, 1, 1);         // 배수
+                TP_Bmp_button(83, 177, 2);                                 //
+                GUI_DrawRectangle(138, 155, 184, 220, WHITE, 1, 1);        // 세척
+                TP_Bmp_button(143, 177, 3);                                //
+                GUI_DrawRectangle(199, 155, 245, 220, WHITE, 1, 1);        // 오버
+                GUI_DisString_EN(202, 177, "OVER", &Font16, WHITE, BLACK); //
             }
         }
     }

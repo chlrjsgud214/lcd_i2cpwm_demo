@@ -75,17 +75,17 @@ void DEV_GPIO_Init(void)
 
 void SENSOR_GPIO_Init(void)
 {
-  DEV_GPIO_Mode(SENSOR_IN0, GPIO_IN);
-  DEV_GPIO_Mode(SENSOR_IN1, GPIO_IN);
-  DEV_GPIO_Mode(SENSOR_IN2, GPIO_IN);
-  DEV_GPIO_Mode(SENSOR_IN3, GPIO_IN);
-  DEV_GPIO_Mode(SENSOR_IN4, GPIO_IN);
+  DEV_GPIO_Mode(SENSOR_GP0, GPIO_IN);
+  DEV_GPIO_Mode(SENSOR_GP1, GPIO_IN);
+  DEV_GPIO_Mode(SENSOR_GP2, GPIO_IN);
+  DEV_GPIO_Mode(SENSOR_GP3, GPIO_IN);
+  DEV_GPIO_Mode(SENSOR_GP4, GPIO_IN);
 
-  gpio_set_pulls(SENSOR_IN0, true, false);
-  gpio_set_pulls(SENSOR_IN1, true, false);
-  gpio_set_pulls(SENSOR_IN2, true, false);
-  gpio_set_pulls(SENSOR_IN3, true, false);
-  gpio_set_pulls(SENSOR_IN4, true, false);
+  gpio_set_pulls(SENSOR_GP0, true,false); // PULL UP 3.3v에서 gnd가 입력되면 변함
+  gpio_set_pulls(SENSOR_GP1,true, false);
+  gpio_set_pulls(SENSOR_GP2, true, false);
+  gpio_set_pulls(SENSOR_GP3, true, false);
+  gpio_set_pulls(SENSOR_GP4, true, false);
 
   return 0;
 }

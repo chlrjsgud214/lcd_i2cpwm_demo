@@ -38,11 +38,17 @@
 #define PWM_CH0         0
 #define PWM_CH1         1
 #define PWM_CH2         2
-#define SENSOR_IN0       0
-#define SENSOR_IN1       1
-#define SENSOR_IN2       2
-#define SENSOR_IN3       3
-#define SENSOR_IN4       4
+
+#define SENSOR_GP0      0
+#define SENSOR_GP1      1
+#define SENSOR_GP2      2
+#define SENSOR_GP3      3
+#define SENSOR_GP4      4
+#define S0       gpio_get(SENSOR_GP0)
+#define S1       gpio_get(SENSOR_GP1)
+#define S2       gpio_get(SENSOR_GP2)
+#define S3       gpio_get(SENSOR_GP3)
+#define S4       gpio_get(SENSOR_GP4)
 
 #define SPI_PORT		spi1
 #define  MAX_BMP_FILES  25 

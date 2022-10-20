@@ -82,5 +82,7 @@ void TP_start_view(uint8_t pagenum);
 void TP_Bmp_button(uint16_t Xpoz, uint16_t Ypoz, uint8_t BtnNum);
 void TP_Bmp_num(uint16_t Xpoz, uint16_t Ypoz, uint8_t Num, bool back_g);
 
+void sec_check();
 void Run_page(uint8_t page_num);
+void Run_page_func(uint8_t page_num);
 #endif

@@ -50,7 +50,7 @@
 #define M2 2 // 배수
 #define M3 3 // 과산화수소
 #define M4 4 // NAI
-#define V8M 16 // 노즐 모터
+#define V8M 5 // 노즐 모터
 
 #define V1 9  // 시료
 #define V2 10 // 배수1

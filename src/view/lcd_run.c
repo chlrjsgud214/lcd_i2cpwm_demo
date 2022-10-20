@@ -35,13 +35,10 @@
 #include "fatfs_storage.h"
 #include "pca9685.h"
 
-
-
 void doSomething(int seconds)
 {
-    sleep_ms(seconds * 1000);
+	sleep_ms(seconds * 1000);
 }
-
 
 int lcd_run(void)
 {
@@ -70,10 +67,8 @@ int lcd_run(void)
 	// 	}
 	// }
 
-	
 	while (1)
 	{
-		
 		TP_DrawBoard(); // 터치 감지시 동작 이외엔 대기
 	}
 	return 0;
