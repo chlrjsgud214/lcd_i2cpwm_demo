@@ -25,8 +25,8 @@
 #define UDOUBLE uint32_t
 
 #define LCD_RST_PIN		15	
-#define LCD_DC_PIN		8
-#define LCD_CS_PIN		9
+#define LCD_DC_PIN		6 // GP8 -> GP6
+#define LCD_CS_PIN		7 // GP9 -> GP7
 #define LCD_CLK_PIN		10
 #define LCD_BKL_PIN		13
 #define LCD_MOSI_PIN	11
